@@ -133,8 +133,6 @@
             <!-- Content END-->
             <!-- Footer ==== -->
             <%@include file="component/footer.jsp" %>
-            <!-- Footer END ==== -->
-            <!--<button class="back-to-top fa fa-chevron-up" ></button>-->
         </div>
         <!-- External JavaScripts -->
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -152,8 +150,9 @@
         <script src="assets/vendors/owl-carousel/owl.carousel.js"></script>
         <script src="assets/js/functions.js"></script>
         <script src="assets/js/contact.js"></script>
-<!--        <script src="user/assets/js/lesson-view.js"></script>-->
+        <script src="assets/js/lesson-view.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     </body>
 </html>
+
 
