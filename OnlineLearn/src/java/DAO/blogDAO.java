@@ -27,7 +27,7 @@ public class blogDAO {
     public List<blog> getAllBlogs(int pageIndex, int pageSize) throws SQLException {
         try {
             con = SQLServerConnection.getConnection();
-            String sql = "SELECT * FROM blogs ORDER BY create_at\n"
+            String sql = "SELECT * FROM blogs ORDER BY create_at DESC\n"
                     + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
             ps = con.prepareStatement(sql);
             ps.setInt(1, pageIndex);
@@ -67,6 +67,27 @@ public class blogDAO {
             ps.close();
         }
         return null;
+    }
+    
+    public List<blog> getTopBlogsRecent() throws SQLException {
+        try {
+            con = SQLServerConnection.getConnection();
+            String sql = "SELECT TOP 3 * FROM blogs ORDER BY create_at DESC";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            List<blog> list = new ArrayList<>();
+            while (rs.next()) {
+                list.add(new blog(rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("content"),
+                        rs.getDate("create_at")));
+            }
+            return list;
+        } catch (SQLException ex) {
+            return null;
+        } finally {
+            ps.close();
+        }
     }
 
     public static void main(String[] args) throws SQLException {

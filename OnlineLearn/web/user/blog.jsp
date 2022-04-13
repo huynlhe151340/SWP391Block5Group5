@@ -40,7 +40,7 @@
     </head>
     <body id="bg">
         <div class="page-wraper">
-            <!--<div id="loading-icon-bx"></div>-->
+            <div id="loading-icon-bx"></div>
             <!-- Header Top ==== -->
             <%@include file="component/header.jsp" %> 
             <!-- header END ==== -->
@@ -81,7 +81,7 @@
                                                     <li><a href="#"><i class="fa fa-calendar">${c.getCreateAt()}</i></a></li>
                                                     <!--<li><a href="#"><i class="fa fa-user"></i>By William</a></li>-->
                                                 </ul>
-                                                <h5 class="post-title"><a href="blog-details.html">${c.getName()}</a></h5>
+                                                <h5 class="post-title"><a href="blog?id=${c.getId()}">${c.getName()}</a></h5>
                                                 <p>${c.getContent()}</p>
                                                 <div class="post-extra">
                                                     <a href="blog?id=${c.getId()}" class="btn-link">READ MORE</a>

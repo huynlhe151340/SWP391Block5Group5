@@ -5,8 +5,14 @@
  */
 package Controller;
 
+import DAO.blogDAO;
+import Entity.blog;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,8 +36,18 @@ public class BlogDetailController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
+        int id = Integer.parseInt(request.getParameter("id"));
+        blogDAO d = new blogDAO();
+
+//      Get blog by id 
+        blog b = d.getBlogById(id);
+        request.setAttribute("blog", b);
+
+//      Get list blog recent post
+        List<blog> listB = d.getTopBlogsRecent();
+        request.setAttribute("listBlog", listB);
         request.getRequestDispatcher("/user/blog-detail.jsp").forward(request, response);
     }
 
@@ -47,7 +63,11 @@ public class BlogDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogDetailController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -61,7 +81,11 @@ public class BlogDetailController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogDetailController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
