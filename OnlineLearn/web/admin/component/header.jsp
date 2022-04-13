@@ -17,7 +17,6 @@
         <meta name="keywords" content="" />
         <meta name="author" content="" />
         <meta name="robots" content="" />
-
         <!-- DESCRIPTION -->
         <meta name="description" content="EduChamp : Education HTML Template" />
 
