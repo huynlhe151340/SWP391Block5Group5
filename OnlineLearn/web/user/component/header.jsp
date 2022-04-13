@@ -63,8 +63,8 @@
 </head>
 
 <body id="bg">
-    <div class="page-wraper">
-        <div id="loading-icon-bx"></div>
+<!--    <div class="page-wraper">
+        <div id="loading-icon-bx"></div>-->
         <!-- Header Top ==== -->
         <header class="header rs-nav header-transparent">
             <div class="top-bar">
@@ -442,8 +442,8 @@
                         </ul>
                     </div><!-- END REVOLUTION SLIDER -->
                 </div>
-            </div>
-        </div>
+                <!--            </div>
+                        </div>-->
 
         <!-- External JavaScripts -->
         <script src="../assets/js/jquery.min.js"></script>
