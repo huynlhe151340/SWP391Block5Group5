@@ -14,22 +14,28 @@ import java.sql.Date;
 public class orders {
     
     private int id;
-    private int courseID;
     private int accountID;
-    private double totalPrice;
-    private Date createDate;
+    private int subjectID;
+    private Date registrationTime;
+    private int packageID;
+    private double totalCost;
     private int status;
+    private Date validFrom;
+    private Date validTo;
 
     public orders() {
     }
 
-    public orders(int id, int courseID, int accountID, double totalPrice, Date createDate, int status) {
+    public orders(int id, int accountID, int subjectID, Date registrationTime, int packageID, double totalCost, int status, Date validFrom, Date validTo) {
         this.id = id;
-        this.courseID = courseID;
         this.accountID = accountID;
-        this.totalPrice = totalPrice;
-        this.createDate = createDate;
+        this.subjectID = subjectID;
+        this.registrationTime = registrationTime;
+        this.packageID = packageID;
+        this.totalCost = totalCost;
         this.status = status;
+        this.validFrom = validFrom;
+        this.validTo = validTo;
     }
 
     public int getId() {
@@ -40,14 +46,6 @@ public class orders {
         this.id = id;
     }
 
-    public int getCourseID() {
-        return courseID;
-    }
-
-    public void setCourseID(int courseID) {
-        this.courseID = courseID;
-    }
-
     public int getAccountID() {
         return accountID;
     }
@@ -56,20 +54,36 @@ public class orders {
         this.accountID = accountID;
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
+    public int getSubjectID() {
+        return subjectID;
     }
 
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setSubjectID(int subjectID) {
+        this.subjectID = subjectID;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public Date getRegistrationTime() {
+        return registrationTime;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setRegistrationTime(Date registrationTime) {
+        this.registrationTime = registrationTime;
+    }
+
+    public int getPackageID() {
+        return packageID;
+    }
+
+    public void setPackageID(int packageID) {
+        this.packageID = packageID;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
     }
 
     public int getStatus() {
@@ -80,9 +94,25 @@ public class orders {
         this.status = status;
     }
 
+    public Date getValidFrom() {
+        return validFrom;
+    }
+
+    public void setValidFrom(Date validFrom) {
+        this.validFrom = validFrom;
+    }
+
+    public Date getValidTo() {
+        return validTo;
+    }
+
+    public void setValidTo(Date validTo) {
+        this.validTo = validTo;
+    }
+
     @Override
     public String toString() {
-        return "orders{" + "id=" + id + ", courseID=" + courseID + ", accountID=" + accountID + ", totalPrice=" + totalPrice + ", createDate=" + createDate + ", status=" + status + '}';
+        return "orders{" + "id=" + id + ", accountID=" + accountID + ", subjectID=" + subjectID + ", registrationTime=" + registrationTime + ", packageID=" + packageID + ", totalCost=" + totalCost + ", status=" + status + ", validFrom=" + validFrom + ", validTo=" + validTo + '}';
     }
     
     

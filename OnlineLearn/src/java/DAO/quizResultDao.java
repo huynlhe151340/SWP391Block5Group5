@@ -9,6 +9,6 @@ package DAO;
  *
  * @author khait
  */
-public class blogDAO {
+public class quizResultDao {
     
 }

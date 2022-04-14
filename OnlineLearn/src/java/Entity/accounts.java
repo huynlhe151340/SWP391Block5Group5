@@ -20,11 +20,12 @@ public class accounts {
     private int roleID;
     private int status;
     private Date createDate;
+    private String activeCode;
 
     public accounts() {
     }
 
-    public accounts(int id, String email, String password, int accountDetailID, int roleID, int status, Date createDate) {
+    public accounts(int id, String email, String password, int accountDetailID, int roleID, int status, Date createDate, String activeCode) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -32,6 +33,7 @@ public class accounts {
         this.roleID = roleID;
         this.status = status;
         this.createDate = createDate;
+        this.activeCode = activeCode;
     }
 
     public int getId() {
@@ -92,7 +94,15 @@ public class accounts {
 
     @Override
     public String toString() {
-        return "accounts{" + "id=" + id + ", email=" + email + ", password=" + password + ", accountDetailID=" + accountDetailID + ", roleID=" + roleID + ", status=" + status + ", createDate=" + createDate + '}';
+        return "accounts{" + "id=" + id + ", email=" + email + ", password=" + password + ", accountDetailID=" + accountDetailID + ", roleID=" + roleID + ", status=" + status + ", createDate=" + createDate + ", activeCode=" + activeCode + '}';
     }
-    
+
+    public String getActiveCode() {
+        return activeCode;
+    }
+
+    public void setActiveCode(String activeCode) {
+        this.activeCode = activeCode;
+    }
+
 }
