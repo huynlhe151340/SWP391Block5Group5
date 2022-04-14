@@ -5,10 +5,19 @@
  */
 package DAO;
 
+import com.sun.xml.ws.tx.at.v10.types.PrepareResponse;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author khait
  */
 public class courseDao {
+    private Connection conn;
+    private PreparedStatement ps;
+    private ResultSet rs;
+    
     
 }
