@@ -11,19 +11,23 @@ package Entity;
  */
 public class courses {
     
-    private int id;
+     private int id;
     private String name;
     private double price;
     private String description;
     private String image;
     private String note;
     private int status;
+    private int lectures;
+    private int duration;
+    private int skillLevel;
+    private String language;
     private int teacerID;
 
     public courses() {
     }
 
-    public courses(int id, String name, double price, String description, String image, String note, int status, int teacerID) {
+    public courses(int id, String name, double price, String description, String image, String note, int status, int lectures, int duration, int skillLevel, String language, int teacerID) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -31,6 +35,10 @@ public class courses {
         this.image = image;
         this.note = note;
         this.status = status;
+        this.lectures = lectures;
+        this.duration = duration;
+        this.skillLevel = skillLevel;
+        this.language = language;
         this.teacerID = teacerID;
     }
 
@@ -90,6 +98,38 @@ public class courses {
         this.status = status;
     }
 
+    public int getLectures() {
+        return lectures;
+    }
+
+    public void setLectures(int lectures) {
+        this.lectures = lectures;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public int getSkillLevel() {
+        return skillLevel;
+    }
+
+    public void setSkillLevel(int skillLevel) {
+        this.skillLevel = skillLevel;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
     public int getTeacerID() {
         return teacerID;
     }
@@ -97,11 +137,5 @@ public class courses {
     public void setTeacerID(int teacerID) {
         this.teacerID = teacerID;
     }
-
-    @Override
-    public String toString() {
-        return "courses{" + "id=" + id + ", name=" + name + ", price=" + price + ", description=" + description + ", image=" + image + ", note=" + note + ", status=" + status + ", teacerID=" + teacerID + '}';
-    }
     
-   
 }
