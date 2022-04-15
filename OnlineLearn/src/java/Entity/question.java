@@ -12,7 +12,7 @@ package Entity;
 public class question {
     
     private int id;
-    private int subjectID;
+    private int courseID;
     private int lessonID;
     private int status;
     private String content;
@@ -23,9 +23,9 @@ public class question {
     public question() {
     }
 
-    public question(int id, int subjectID, int lessonID, int status, String content, String media, String answerOption, String explanation) {
+    public question(int id, int courseID, int lessonID, int status, String content, String media, String answerOption, String explanation) {
         this.id = id;
-        this.subjectID = subjectID;
+        this.courseID = courseID;
         this.lessonID = lessonID;
         this.status = status;
         this.content = content;
@@ -42,12 +42,12 @@ public class question {
         this.id = id;
     }
 
-    public int getSubjectID() {
-        return subjectID;
+    public int getCourseID() {
+        return courseID;
     }
 
-    public void setSubjectID(int subjectID) {
-        this.subjectID = subjectID;
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
     }
 
     public int getLessonID() {
@@ -100,7 +100,7 @@ public class question {
 
     @Override
     public String toString() {
-        return "question{" + "id=" + id + ", subjectID=" + subjectID + ", lessonID=" + lessonID + ", status=" + status + ", content=" + content + ", media=" + media + ", answerOption=" + answerOption + ", explanation=" + explanation + '}';
+        return "question{" + "id=" + id + ", courseID=" + courseID + ", lessonID=" + lessonID + ", status=" + status + ", content=" + content + ", media=" + media + ", answerOption=" + answerOption + ", explanation=" + explanation + '}';
     }
-    
+
 }

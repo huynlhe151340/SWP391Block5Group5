@@ -15,7 +15,7 @@ public class orders {
     
     private int id;
     private int accountID;
-    private int subjectID;
+    private int courseID;
     private Date registrationTime;
     private int packageID;
     private double totalCost;
@@ -26,10 +26,10 @@ public class orders {
     public orders() {
     }
 
-    public orders(int id, int accountID, int subjectID, Date registrationTime, int packageID, double totalCost, int status, Date validFrom, Date validTo) {
+    public orders(int id, int accountID, int courseID, Date registrationTime, int packageID, double totalCost, int status, Date validFrom, Date validTo) {
         this.id = id;
         this.accountID = accountID;
-        this.subjectID = subjectID;
+        this.courseID = courseID;
         this.registrationTime = registrationTime;
         this.packageID = packageID;
         this.totalCost = totalCost;
@@ -54,12 +54,12 @@ public class orders {
         this.accountID = accountID;
     }
 
-    public int getSubjectID() {
-        return subjectID;
+    public int getCourseID() {
+        return courseID;
     }
 
-    public void setSubjectID(int subjectID) {
-        this.subjectID = subjectID;
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
     }
 
     public Date getRegistrationTime() {
@@ -112,8 +112,7 @@ public class orders {
 
     @Override
     public String toString() {
-        return "orders{" + "id=" + id + ", accountID=" + accountID + ", subjectID=" + subjectID + ", registrationTime=" + registrationTime + ", packageID=" + packageID + ", totalCost=" + totalCost + ", status=" + status + ", validFrom=" + validFrom + ", validTo=" + validTo + '}';
+        return "orders{" + "id=" + id + ", accountID=" + accountID + ", courseID=" + courseID + ", registrationTime=" + registrationTime + ", packageID=" + packageID + ", totalCost=" + totalCost + ", status=" + status + ", validFrom=" + validFrom + ", validTo=" + validTo + '}';
     }
-    
-    
+ 
 }

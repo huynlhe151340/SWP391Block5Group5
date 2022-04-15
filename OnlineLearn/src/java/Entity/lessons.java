@@ -18,12 +18,12 @@ public class lessons {
     private String videoLink;
     private String type;
     private int status;
-    private int subjectID;
+    private int courseID;
 
     public lessons() {
     }
 
-    public lessons(int id, String title, String belongingTopic, String content, String videoLink, String type, int status, int subjectID) {
+    public lessons(int id, String title, String belongingTopic, String content, String videoLink, String type, int status, int courseID) {
         this.id = id;
         this.title = title;
         this.belongingTopic = belongingTopic;
@@ -31,7 +31,7 @@ public class lessons {
         this.videoLink = videoLink;
         this.type = type;
         this.status = status;
-        this.subjectID = subjectID;
+        this.courseID = courseID;
     }
 
     public int getId() {
@@ -90,17 +90,17 @@ public class lessons {
         this.status = status;
     }
 
-    public int getSubjectID() {
-        return subjectID;
+    public int getCourseID() {
+        return courseID;
     }
 
-    public void setSubjectID(int subjectID) {
-        this.subjectID = subjectID;
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
     }
 
     @Override
     public String toString() {
-        return "lessons{" + "id=" + id + ", title=" + title + ", belongingTopic=" + belongingTopic + ", content=" + content + ", videoLink=" + videoLink + ", type=" + type + ", status=" + status + ", subjectID=" + subjectID + '}';
+        return "lessons{" + "id=" + id + ", title=" + title + ", belongingTopic=" + belongingTopic + ", content=" + content + ", videoLink=" + videoLink + ", type=" + type + ", status=" + status + ", courseID=" + courseID + '}';
     }
-    
+
 }

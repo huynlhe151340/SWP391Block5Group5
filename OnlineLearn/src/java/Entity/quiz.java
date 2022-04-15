@@ -13,8 +13,8 @@ public class quiz {
     
     private int id;
     private String name;
-    private int subjectID;
-    private int typeID;
+    private int courseID;
+    private int type;
     private int level;
     private String duration;
     private int status;
@@ -22,11 +22,11 @@ public class quiz {
     public quiz() {
     }
 
-    public quiz(int id, String name, int subjectID, int typeID, int level, String duration, int status) {
+    public quiz(int id, String name, int courseID, int type, int level, String duration, int status) {
         this.id = id;
         this.name = name;
-        this.subjectID = subjectID;
-        this.typeID = typeID;
+        this.courseID = courseID;
+        this.type = type;
         this.level = level;
         this.duration = duration;
         this.status = status;
@@ -48,20 +48,20 @@ public class quiz {
         this.name = name;
     }
 
-    public int getSubjectID() {
-        return subjectID;
+    public int getCourseID() {
+        return courseID;
     }
 
-    public void setSubjectID(int subjectID) {
-        this.subjectID = subjectID;
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
     }
 
-    public int getTypeID() {
-        return typeID;
+    public int getType() {
+        return type;
     }
 
-    public void setTypeID(int typeID) {
-        this.typeID = typeID;
+    public void setType(int type) {
+        this.type = type;
     }
 
     public int getLevel() {
@@ -90,7 +90,7 @@ public class quiz {
 
     @Override
     public String toString() {
-        return "quiz{" + "id=" + id + ", name=" + name + ", subjectID=" + subjectID + ", typeID=" + typeID + ", level=" + level + ", duration=" + duration + ", status=" + status + '}';
+        return "quiz{" + "id=" + id + ", name=" + name + ", courseID=" + courseID + ", type=" + type + ", level=" + level + ", duration=" + duration + ", status=" + status + '}';
     }
-    
+
 }

@@ -9,7 +9,7 @@ package Entity;
  *
  * @author khait
  */
-public class subject {
+public class course {
     
     private int id;
     private String name;
@@ -21,10 +21,10 @@ public class subject {
     private String description;
     private int packageID;
 
-    public subject() {
+    public course() {
     }
 
-    public subject(int id, String name, String thumbnail, int categoryID, int feature, int ownerID, int status, String description, int packageID) {
+    public course(int id, String name, String thumbnail, int categoryID, int feature, int ownerID, int status, String description, int packageID) {
         this.id = id;
         this.name = name;
         this.thumbnail = thumbnail;
