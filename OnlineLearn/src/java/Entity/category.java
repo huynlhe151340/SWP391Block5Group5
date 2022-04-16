@@ -9,20 +9,18 @@ package Entity;
  *
  * @author khait
  */
-public class teachers {
+public class category {
     
     private int id;
-    private String name;
-    private int universityID;
+    private String category;
     private int status;
 
-    public teachers() {
+    public category() {
     }
 
-    public teachers(int id, String name, int universityID, int status) {
+    public category(int id, String category, int status) {
         this.id = id;
-        this.name = name;
-        this.universityID = universityID;
+        this.category = category;
         this.status = status;
     }
 
@@ -34,20 +32,12 @@ public class teachers {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getCategory() {
+        return category;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getUniversityID() {
-        return universityID;
-    }
-
-    public void setUniversityID(int universityID) {
-        this.universityID = universityID;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getStatus() {
@@ -60,7 +50,7 @@ public class teachers {
 
     @Override
     public String toString() {
-        return "teachers{" + "id=" + id + ", name=" + name + ", universityID=" + universityID + ", status=" + status + '}';
+        return "subjectCategory{" + "id=" + id + ", category=" + category + ", status=" + status + '}';
     }
     
 }

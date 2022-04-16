@@ -9,6 +9,6 @@ package DAO;
  *
  * @author khait
  */
-public class statusCourseDao {
+public class postDao {
     
 }
