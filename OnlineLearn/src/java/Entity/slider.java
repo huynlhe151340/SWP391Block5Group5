@@ -16,16 +16,18 @@ public class slider {
     private String image;
     private String backlink;
     private int status;
+    private int courseID;
 
     public slider() {
     }
 
-    public slider(int id, String title, String image, String backlink, int status) {
+    public slider(int id, String title, String image, String backlink, int status, int courseID) {
         this.id = id;
         this.title = title;
         this.image = image;
         this.backlink = backlink;
         this.status = status;
+        this.courseID = courseID;
     }
 
     public int getId() {
@@ -68,9 +70,17 @@ public class slider {
         this.status = status;
     }
 
+    public int getCourseID() {
+        return courseID;
+    }
+
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
+    }
+
     @Override
     public String toString() {
-        return "slider{" + "id=" + id + ", title=" + title + ", image=" + image + ", backlink=" + backlink + ", status=" + status + '}';
+        return "slider{" + "id=" + id + ", title=" + title + ", image=" + image + ", backlink=" + backlink + ", status=" + status + ", courseID=" + courseID + '}';
     }
-    
+
 }

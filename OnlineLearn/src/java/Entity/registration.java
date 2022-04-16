@@ -11,27 +11,25 @@ import java.sql.Date;
  *
  * @author khait
  */
-public class orders {
+public class registration {
     
     private int id;
     private int accountID;
     private int courseID;
     private Date registrationTime;
-    private int packageID;
     private double totalCost;
     private int status;
     private Date validFrom;
     private Date validTo;
 
-    public orders() {
+    public registration() {
     }
 
-    public orders(int id, int accountID, int courseID, Date registrationTime, int packageID, double totalCost, int status, Date validFrom, Date validTo) {
+    public registration(int id, int accountID, int courseID, Date registrationTime, double totalCost, int status, Date validFrom, Date validTo) {
         this.id = id;
         this.accountID = accountID;
         this.courseID = courseID;
         this.registrationTime = registrationTime;
-        this.packageID = packageID;
         this.totalCost = totalCost;
         this.status = status;
         this.validFrom = validFrom;
@@ -70,14 +68,6 @@ public class orders {
         this.registrationTime = registrationTime;
     }
 
-    public int getPackageID() {
-        return packageID;
-    }
-
-    public void setPackageID(int packageID) {
-        this.packageID = packageID;
-    }
-
     public double getTotalCost() {
         return totalCost;
     }
@@ -112,7 +102,7 @@ public class orders {
 
     @Override
     public String toString() {
-        return "orders{" + "id=" + id + ", accountID=" + accountID + ", courseID=" + courseID + ", registrationTime=" + registrationTime + ", packageID=" + packageID + ", totalCost=" + totalCost + ", status=" + status + ", validFrom=" + validFrom + ", validTo=" + validTo + '}';
+        return "registration{" + "id=" + id + ", accountID=" + accountID + ", courseID=" + courseID + ", registrationTime=" + registrationTime + ", totalCost=" + totalCost + ", status=" + status + ", validFrom=" + validFrom + ", validTo=" + validTo + '}';
     }
- 
+
 }

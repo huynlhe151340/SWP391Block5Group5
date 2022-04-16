@@ -19,12 +19,11 @@ public class course {
     private int ownerID;
     private int status;
     private String description;
-    private int packageID;
 
     public course() {
     }
 
-    public course(int id, String name, String thumbnail, int categoryID, int feature, int ownerID, int status, String description, int packageID) {
+    public course(int id, String name, String thumbnail, int categoryID, int feature, int ownerID, int status, String description) {
         this.id = id;
         this.name = name;
         this.thumbnail = thumbnail;
@@ -33,7 +32,6 @@ public class course {
         this.ownerID = ownerID;
         this.status = status;
         this.description = description;
-        this.packageID = packageID;
     }
 
     public int getId() {
@@ -100,17 +98,9 @@ public class course {
         this.description = description;
     }
 
-    public int getPackageID() {
-        return packageID;
-    }
-
-    public void setPackageID(int packageID) {
-        this.packageID = packageID;
-    }
-
     @Override
     public String toString() {
-        return "subject{" + "id=" + id + ", name=" + name + ", thumbnail=" + thumbnail + ", categoryID=" + categoryID + ", feature=" + feature + ", ownerID=" + ownerID + ", status=" + status + ", description=" + description + ", packageID=" + packageID + '}';
+        return "course{" + "id=" + id + ", name=" + name + ", thumbnail=" + thumbnail + ", categoryID=" + categoryID + ", feature=" + feature + ", ownerID=" + ownerID + ", status=" + status + ", description=" + description + '}';
     }
-    
+
 }

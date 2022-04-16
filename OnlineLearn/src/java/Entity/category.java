@@ -9,16 +9,16 @@ package Entity;
  *
  * @author khait
  */
-public class courseCategory {
+public class category {
     
     private int id;
     private String category;
     private int status;
 
-    public courseCategory() {
+    public category() {
     }
 
-    public courseCategory(int id, String category, int status) {
+    public category(int id, String category, int status) {
         this.id = id;
         this.category = category;
         this.status = status;

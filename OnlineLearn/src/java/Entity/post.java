@@ -19,17 +19,19 @@ public class post {
     private Date updateDate;
     private int categoryID;
     private String postDetail;
+    private int status;
 
     public post() {
     }
 
-    public post(int id, String title, String author, Date updateDate, int categoryID, String postDetail) {
+    public post(int id, String title, String author, Date updateDate, int categoryID, String postDetail, int status) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.updateDate = updateDate;
         this.categoryID = categoryID;
         this.postDetail = postDetail;
+        this.status = status;
     }
 
     public int getId() {
@@ -82,7 +84,15 @@ public class post {
 
     @Override
     public String toString() {
-        return "post{" + "id=" + id + ", title=" + title + ", author=" + author + ", updateDate=" + updateDate + ", categoryID=" + categoryID + ", postDetail=" + postDetail + '}';
+        return "post{" + "id=" + id + ", title=" + title + ", author=" + author + ", updateDate=" + updateDate + ", categoryID=" + categoryID + ", postDetail=" + postDetail + ", status=" + status + '}';
     }
-    
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
 }
