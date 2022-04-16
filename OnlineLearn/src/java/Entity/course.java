@@ -10,28 +10,32 @@ package Entity;
  * @author khait
  */
 public class course {
-    
+
     private int id;
     private String name;
     private String thumbnail;
     private int categoryID;
     private int feature;
-    private int ownerID;
-    private int status;
+    private String owner;
     private String description;
+    private float price;
+    private float salePrice;
+    private int status;
 
     public course() {
     }
 
-    public course(int id, String name, String thumbnail, int categoryID, int feature, int ownerID, int status, String description) {
+    public course(int id, String name, String thumbnail, int categoryID, int feature, String owner, String description, float price, float salePrice, int status) {
         this.id = id;
         this.name = name;
         this.thumbnail = thumbnail;
         this.categoryID = categoryID;
         this.feature = feature;
-        this.ownerID = ownerID;
-        this.status = status;
+        this.owner = owner;
         this.description = description;
+        this.price = price;
+        this.salePrice = salePrice;
+        this.status = status;
     }
 
     public int getId() {
@@ -74,20 +78,12 @@ public class course {
         this.feature = feature;
     }
 
-    public int getOwnerID() {
-        return ownerID;
+    public String getOwner() {
+        return owner;
     }
 
-    public void setOwnerID(int ownerID) {
-        this.ownerID = ownerID;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public String getDescription() {
@@ -98,9 +94,33 @@ public class course {
         this.description = description;
     }
 
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public float getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(float salePrice) {
+        this.salePrice = salePrice;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
-        return "course{" + "id=" + id + ", name=" + name + ", thumbnail=" + thumbnail + ", categoryID=" + categoryID + ", feature=" + feature + ", ownerID=" + ownerID + ", status=" + status + ", description=" + description + '}';
+        return "course{" + "id=" + id + ", name=" + name + ", thumbnail=" + thumbnail + ", categoryID=" + categoryID + ", feature=" + feature + ", owner=" + owner + ", description=" + description + ", price=" + price + ", salePrice=" + salePrice + ", status=" + status + '}';
     }
 
 }

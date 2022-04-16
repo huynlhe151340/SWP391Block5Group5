@@ -5,10 +5,9 @@
  */
 package Controller;
 
-import DAO.blogDAO;
-import Entity.blog;
+import DAO.postDao;
+import Entity.post;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AD
  */
-@WebServlet(name = "BlogDetailController", urlPatterns = {"/user/blog"})
-public class BlogDetailController extends HttpServlet {
+@WebServlet(name = "PostDetailController", urlPatterns = {"/user/blog"})
+public class PostDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,14 +38,14 @@ public class BlogDetailController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         int id = Integer.parseInt(request.getParameter("id"));
-        blogDAO d = new blogDAO();
+        postDao d = new postDao();
 
 //      Get blog by id 
-        blog b = d.getBlogById(id);
+        post b = d.getPostById(id);
         request.setAttribute("blog", b);
 
 //      Get list blog recent post
-        List<blog> listB = d.getTopBlogsRecent();
+        List<post> listB = d.getTopPostRecent();
         request.setAttribute("listBlog", listB);
         request.getRequestDispatcher("/user/blog-detail.jsp").forward(request, response);
     }
@@ -66,7 +65,7 @@ public class BlogDetailController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(BlogDetailController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PostDetailController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -84,7 +83,7 @@ public class BlogDetailController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(BlogDetailController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PostDetailController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

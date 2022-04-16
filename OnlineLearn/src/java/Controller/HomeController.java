@@ -5,8 +5,8 @@
  */
 package Controller;
 
-import DAO.blogDAO;
-import Entity.blog;
+import DAO.courseDao;
+import Entity.course;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AD
  */
-@WebServlet(name = "BlogController", urlPatterns = {"/user/blogs"})
-public class BlogController extends HttpServlet {
+@WebServlet(name = "HomeController", urlPatterns = {"/user/home"})
+public class HomeController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,12 +35,17 @@ public class BlogController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        blogDAO d = new blogDAO();
-        List<blog> listB = d.getAllBlogs(0, 5);
-        request.setAttribute("listBlog", listB);
-        request.getRequestDispatcher("/user/blog.jsp").forward(request, response);
+        courseDao dao = new courseDao();
+        List<course> listC;
+        try {
+            listC = dao.getTopCourse();
+            request.setAttribute("listC", listC);
+            request.getRequestDispatcher("/user/index.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -55,11 +60,7 @@ public class BlogController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(BlogController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -73,11 +74,7 @@ public class BlogController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(BlogController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
