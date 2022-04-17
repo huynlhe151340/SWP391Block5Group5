@@ -73,7 +73,8 @@
                 <div class="breadcrumb-row">
                     <div class="container">
                         <ul class="list-inline">
-                            <li><a href="#">Home</a></li>
+                            <li><a href="home">Home</a></li>
+                            <li><a href="courses">Courses List</a></li>
                             <li>Courses Details</li>
                         </ul>
                     </div>
@@ -87,12 +88,12 @@
                             <div class="row d-flex flex-row-reverse">
                                 <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
                                     <div class="course-detail-bx">
-                                        <div class="course-price">
-                                            <del>$190</del>
-                                            <h4 class="price">$120</h4>
+                                        <div class="course-price" style="align-items: center;display: flex;justify-content: center;">
+                                            <del>$${Math.round(course.getPrice())}</del>
+                                            <h4 class="price" style="margin-left: 10px">$${Math.round(course.getPrice() *(1 - course.getSalePrice()))}</h4>
                                         </div>	
                                         <div class="course-buy-now text-center">
-                                            <a href="#" class="btn radius-xl text-uppercase">Buy Now This Courses</a>
+                                            <a href="#" class="btn radius-xl text-uppercase">Buy Now This Course</a>
                                         </div>
                                         <div class="teacher-bx">
                                             <div class="teacher-info">
@@ -100,34 +101,16 @@
                                                     <img src="assets/images/testimonials/pic1.jpg" alt=""/>
                                                 </div>
                                                 <div class="teacher-name">
-                                                    <h5>Hinata Hyuga</h5>
-                                                    <span>Science Teacher</span>
+                                                    <h5>${course.getOwner()}</h5>
+                                                    <!--<span>Science Teacher</span>-->
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="cours-more-info">
-                                            <div class="review">
-                                                <span>3 Review</span>
-                                                <ul class="cours-star">
-                                                    <li class="active"><i class="fa fa-star"></i></li>
-                                                    <li class="active"><i class="fa fa-star"></i></li>
-                                                    <li class="active"><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                </ul>
-                                            </div>
-                                            <div class="price categories">
+                                            <div class="price categories" style="text-align: left">
                                                 <span>Categories</span>
-                                                <h5 class="text-primary">Frontend</h5>
+                                                <h5 class="text-primary">${course.getCategory().getCategory()}</h5>
                                             </div>
-                                        </div>
-                                        <div class="course-info-list scroll-page">
-                                            <ul class="navbar">
-                                                <li><a class="nav-link" href="#overview"><i class="ti-zip"></i>Overview</a></li>
-                                                <li><a class="nav-link" href="#curriculum"><i class="ti-bookmark-alt"></i>Curriculum</a></li>
-                                                <li><a class="nav-link" href="#instructor"><i class="ti-user"></i>Instructor</a></li>
-                                                <li><a class="nav-link" href="#reviews"><i class="ti-comments"></i>Reviews</a></li>
-                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -135,14 +118,14 @@
                                 <div class="col-lg-9 col-md-8 col-sm-12">
                                     <div class="courses-post">
                                         <div class="ttr-post-media media-effect">
-                                            <a href="#"><img src="assets/images/blog/default/thum1.jpg" alt=""></a>
+                                            <div><img src="assets/images/courses/${course.getThumbnail()}" alt=""></div>
                                         </div>
                                         <div class="ttr-post-info">
                                             <div class="ttr-post-title ">
-                                                <h2 class="post-title">Nvidia and UE4 Technologies Practice</h2>
+                                                <h2 class="post-title">${course.getName()}</h2>
                                             </div>
                                             <div class="ttr-post-text">
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                <p>${course.getDescription()}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -151,20 +134,16 @@
                                         <div class="row">
                                             <div class="col-md-12 col-lg-4">
                                                 <ul class="course-features">
-                                                    <li><i class="ti-book"></i> <span class="label">Lectures</span> <span class="value">8</span></li>
-                                                    <li><i class="ti-help-alt"></i> <span class="label">Quizzes</span> <span class="value">1</span></li>
-                                                    <li><i class="ti-time"></i> <span class="label">Duration</span> <span class="value">60 hours</span></li>
-                                                    <li><i class="ti-stats-up"></i> <span class="label">Skill level</span> <span class="value">Beginner</span></li>
-                                                    <li><i class="ti-smallcap"></i> <span class="label">Language</span> <span class="value">English</span></li>
+                                                    <li><i class="ti-book"></i> <span class="label">Lessons</span> <span class="value">8</span></li>
+                                                    <li><i class="ti-time"></i> <span class="label">Duration</span> <span class="value">${course.getDuration()}</span></li>
+                                                    <li><i class="ti-stats-up"></i> <span class="label">Skill level</span> <span class="value">${course.getSkillLevel()}</span></li>
+                                                    <li><i class="ti-smallcap"></i> <span class="label">Language</span> <span class="value">${course.getLanguage()}</span></li>
                                                     <li><i class="ti-user"></i> <span class="label">Students</span> <span class="value">32</span></li>
-                                                    <li><i class="ti-check-box"></i> <span class="label">Assessments</span> <span class="value">Yes</span></li>
                                                 </ul>
                                             </div>
                                             <div class="col-md-12 col-lg-8">
                                                 <h5 class="m-b5">Course Description</h5>
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                                                <h5 class="m-b5">Certification</h5>
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                                                <p>${course.getDescription()}</p>
                                                 <h5 class="m-b5">Learning Outcomes</h5>
                                                 <ul class="list-checked primary">
                                                     <li>Over 37 lectures and 55.5 hours of content!</li>
@@ -247,128 +226,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="" id="instructor">
-                                        <h4>Instructor</h4>
-                                        <div class="instructor-bx">
-                                            <div class="instructor-author">
-                                                <img src="assets/images/testimonials/pic1.jpg" alt="">
-                                            </div>
-                                            <div class="instructor-info">
-                                                <h6>Keny White </h6>
-                                                <span>Professor</span>
-                                                <ul class="list-inline m-tb10">
-                                                    <li><a href="#" class="btn sharp-sm facebook"><i class="fa fa-facebook"></i></a></li>
-                                                    <li><a href="#" class="btn sharp-sm twitter"><i class="fa fa-twitter"></i></a></li>
-                                                    <li><a href="#" class="btn sharp-sm linkedin"><i class="fa fa-linkedin"></i></a></li>
-                                                    <li><a href="#" class="btn sharp-sm google-plus"><i class="fa fa-google-plus"></i></a></li>
-                                                </ul>
-                                                <p class="m-b0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
-                                            </div>
-                                        </div>
-                                        <div class="instructor-bx">
-                                            <div class="instructor-author">
-                                                <img src="assets/images/testimonials/pic2.jpg" alt="">
-                                            </div>
-                                            <div class="instructor-info">
-                                                <h6>Keny White </h6>
-                                                <span>Professor</span>
-                                                <ul class="list-inline m-tb10">
-                                                    <li><a href="#" class="btn sharp-sm facebook"><i class="fa fa-facebook"></i></a></li>
-                                                    <li><a href="#" class="btn sharp-sm twitter"><i class="fa fa-twitter"></i></a></li>
-                                                    <li><a href="#" class="btn sharp-sm linkedin"><i class="fa fa-linkedin"></i></a></li>
-                                                    <li><a href="#" class="btn sharp-sm google-plus"><i class="fa fa-google-plus"></i></a></li>
-                                                </ul>
-                                                <p class="m-b0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="" id="reviews">
-                                        <h4>Reviews</h4>
-
-                                        <div class="review-bx">
-                                            <div class="all-review">
-                                                <h2 class="rating-type">3</h2>
-                                                <ul class="cours-star">
-                                                    <li class="active"><i class="fa fa-star"></i></li>
-                                                    <li class="active"><i class="fa fa-star"></i></li>
-                                                    <li class="active"><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                </ul>
-                                                <span>3 Rating</span>
-                                            </div>
-                                            <div class="review-bar">
-                                                <div class="bar-bx">
-                                                    <div class="side">
-                                                        <div>5 star</div>
-                                                    </div>
-                                                    <div class="middle">
-                                                        <div class="bar-container">
-                                                            <div class="bar-5" style="width:90%;"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="side right">
-                                                        <div>150</div>
-                                                    </div>
-                                                </div>
-                                                <div class="bar-bx">
-                                                    <div class="side">
-                                                        <div>4 star</div>
-                                                    </div>
-                                                    <div class="middle">
-                                                        <div class="bar-container">
-                                                            <div class="bar-5" style="width:70%;"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="side right">
-                                                        <div>140</div>
-                                                    </div>
-                                                </div>
-                                                <div class="bar-bx">
-                                                    <div class="side">
-                                                        <div>3 star</div>
-                                                    </div>
-                                                    <div class="middle">
-                                                        <div class="bar-container">
-                                                            <div class="bar-5" style="width:50%;"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="side right">
-                                                        <div>120</div>
-                                                    </div>
-                                                </div>
-                                                <div class="bar-bx">
-                                                    <div class="side">
-                                                        <div>2 star</div>
-                                                    </div>
-                                                    <div class="middle">
-                                                        <div class="bar-container">
-                                                            <div class="bar-5" style="width:40%;"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="side right">
-                                                        <div>110</div>
-                                                    </div>
-                                                </div>
-                                                <div class="bar-bx">
-                                                    <div class="side">
-                                                        <div>1 star</div>
-                                                    </div>
-                                                    <div class="middle">
-                                                        <div class="bar-container">
-                                                            <div class="bar-5" style="width:20%;"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="side right">
-                                                        <div>80</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>

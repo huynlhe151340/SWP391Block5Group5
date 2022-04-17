@@ -5,42 +5,44 @@
  */
 package Controller;
 
-import DAO.postDao;
-import Entity.post;
+import DAO.accountDao;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author AD
+ * @author Admin
  */
-@WebServlet(name = "PostController", urlPatterns = {"/user/posts"})
-public class PostController extends HttpServlet {
+@WebServlet(name = "ForgotConfirm_Controller", urlPatterns = {"/user/ForgotConfirm_Controller"})
+public class ForgotConfirm_Controller extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        postDao d = new postDao();
-        List<post> listP = d.getAllPosts(0, 5);
-        request.setAttribute("listPost", listP);
-        request.getRequestDispatcher("/user/post.jsp").forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            HttpSession session = request.getSession();
+            String email = request.getParameter("email");
+            session.setAttribute("email",email);
+            String code_confirm = request.getParameter("code");
+            String code = (String) session.getAttribute("code");
+            accountDao dao = new accountDao();
+
+            if (code.equalsIgnoreCase(code_confirm)) {
+                dao.update_code_status(code, 2, email);
+                request.getRequestDispatcher("/user/NewPassWord.jsp").forward(request, response);
+            } else {
+                request.setAttribute("email", email);
+                request.setAttribute("mess", "Code không khớp");
+                request.getRequestDispatcher("/user/Confirm_forgetpass.jsp").forward(request, response);
+            }
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -55,11 +57,7 @@ public class PostController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -73,11 +71,7 @@ public class PostController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

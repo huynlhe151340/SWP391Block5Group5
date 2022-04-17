@@ -5,11 +5,9 @@
  */
 package Controller;
 
-import DAO.postDao;
-import Entity.post;
+import DAO.courseDao;
+import Entity.course;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -22,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AD
  */
-@WebServlet(name = "PostController", urlPatterns = {"/user/posts"})
-public class PostController extends HttpServlet {
+@WebServlet(name = "CourseDetailControlelr", urlPatterns = {"/user/courseDetail"})
+public class CourseDetailControlelr extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,12 +33,18 @@ public class PostController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        postDao d = new postDao();
-        List<post> listP = d.getAllPosts(0, 5);
-        request.setAttribute("listPost", listP);
-        request.getRequestDispatcher("/user/post.jsp").forward(request, response);
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+            courseDao dao = new courseDao();
+            course c = dao.getCourseById(id);
+            request.setAttribute("course", c);
+            request.getRequestDispatcher("/user/course-detail.jsp").forward(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -55,11 +59,7 @@ public class PostController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -73,11 +73,7 @@ public class PostController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

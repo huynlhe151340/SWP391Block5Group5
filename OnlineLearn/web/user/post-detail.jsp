@@ -63,7 +63,7 @@
                 <div class="page-banner ovbl-dark" style="background-image:url(assets/images/banner/banner2.jpg);">
                     <div class="container">
                         <div class="page-banner-entry">
-                            <h1 class="text-white">Blog Details</h1>
+                            <h1 class="text-white">Post Details</h1>
                         </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                     <div class="container">
                         <ul class="list-inline">
                             <li><a href="#">Home</a></li>
-                            <li>Blog Details</li>
+                            <li>Post Details</li>
                         </ul>
                     </div>
                 </div>
@@ -86,14 +86,14 @@
                                     <!-- blog start -->
                                     <div class="recent-news blog-lg">
                                         <div class="action-box blog-lg">
-                                            <img src="assets/images/blog/default/thum1.jpg" alt="">
+                                            <img src="assets/images/post/${post.getImage()}" alt="">
                                         </div>
                                         <div class="info-bx">
                                             <ul class="media-post">
-                                                <li><a href="#"><i class="fa fa-calendar"></i>${blog.getCreateAt()}</a></li>
+                                                <li><i class="fa fa-calendar" style="margin-right: 10px"></i>${post.getUpdateDate()}</li>
                                             </ul>
-                                            <h5 class="post-title">${blog.getName()}</h5>
-                                            <p>${blog.getContent()}</p>
+                                            <h5 class="post-title">${post.getTitle()}</h5>
+                                            <p>${post.getPostDetail()}</p>
                                         </div>
                                     </div>
                                     <!-- blog END -->
@@ -102,31 +102,18 @@
                                 <!-- Side bar start -->
                                 <div class="col-lg-4 col-xl-4">
                                     <aside  class="side-bar sticky-top">
-                                        <!--                                        <div class="widget">
-                                                                                    <h6 class="widget-title">Search</h6>
-                                                                                    <div class="search-bx style-1">
-                                                                                        <form role="search" method="post">
-                                                                                            <div class="input-group">
-                                                                                                <input name="text" class="form-control" placeholder="Enter your keywords..." type="text">
-                                                                                                <span class="input-group-btn">
-                                                                                                    <button type="submit" class="fa fa-search text-primary"></button>
-                                                                                                </span> 
-                                                                                            </div>
-                                                                                        </form>
-                                                                                    </div>
-                                                                                </div>-->
                                         <div class="widget recent-posts-entry">
                                             <h6 class="widget-title">Recent Posts</h6>
                                             <div class="widget-post-bx">
-                                                <c:forEach var="b" items="${listBlog}">
+                                                <c:forEach var="b" items="${listPost}">
                                                     <div class="widget-post clearfix">
-                                                        <div class="ttr-post-media"> <img src="assets/images/blog/recent-blog/pic1.jpg" width="200" height="143" alt=""> </div>
+                                                        <div class="ttr-post-media"> <img src="assets/images/post/${b.getImage()}" width="200" height="143" alt=""> </div>
                                                         <div class="ttr-post-info">
                                                             <div class="ttr-post-header">
-                                                                <h6 class="post-title"><a href="blog?id=${c.getId()}">${b.getName()}</a></h6>
+                                                                <h6 class="post-title"><a href="post?id=${b.getId()}">${b.getTitle()}</a></h6>
                                                             </div>
                                                             <ul class="media-post">
-                                                                <li><a href="blog?id=${c.getId()}"><i class="fa fa-calendar"></i>${b.getCreateAt()}</a></li>
+                                                                <li><a href="post?id=${b.getId()}"><i class="fa fa-calendar"></i>${b.getUpdateDate()}</a></li>
                                                             </ul>
                                                         </div>
                                                     </div>

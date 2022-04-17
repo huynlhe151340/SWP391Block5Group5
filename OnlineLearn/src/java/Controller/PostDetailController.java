@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AD
  */
-@WebServlet(name = "PostDetailController", urlPatterns = {"/user/blog"})
+@WebServlet(name = "PostDetailController", urlPatterns = {"/user/post"})
 public class PostDetailController extends HttpServlet {
 
     /**
@@ -42,12 +42,12 @@ public class PostDetailController extends HttpServlet {
 
 //      Get blog by id 
         post b = d.getPostById(id);
-        request.setAttribute("blog", b);
+        request.setAttribute("post", b);
 
 //      Get list blog recent post
-        List<post> listB = d.getTopPostRecent();
-        request.setAttribute("listBlog", listB);
-        request.getRequestDispatcher("/user/blog-detail.jsp").forward(request, response);
+        List<post> listP = d.getTopPostRecent();
+        request.setAttribute("listPost", listP);
+        request.getRequestDispatcher("/user/post-detail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -50,7 +50,7 @@
                 <div class="page-banner ovbl-dark" style="background-image:url(assets/images/banner/banner2.jpg);">
                     <div class="container">
                         <div class="page-banner-entry">
-                            <h1 class="text-white">Blogs</h1>
+                            <h1 class="text-white">Posts</h1>
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                     <div class="container">
                         <ul class="list-inline">
                             <li><a href="#">Home</a></li>
-                            <li>Blogs</li>
+                            <li>Post</li>
                         </ul>
                     </div>
                 </div>
@@ -70,21 +70,21 @@
                     <div class="section-area section-sp1">
                         <div class="container">
                             <div class="ttr-blog-grid-3 row" id="masonry">
-                                <c:forEach var="c" items="${listBlog}">
+                                <c:forEach var="c" items="${listPost}">
                                     <div class="post action-card col-lg-4 col-md-6 col-sm-12 col-xs-12 m-b40">
                                         <div class="recent-news">
                                             <div class="action-box">
-                                                <img src="assets/images/blog/latest-blog/pic1.jpg" alt="">
+                                                <img src="assets/images/post/${c.getImage()}" alt="">
                                             </div>
                                             <div class="info-bx">
                                                 <ul class="media-post">
-                                                    <li><a href="#"><i class="fa fa-calendar">${c.getCreateAt()}</i></a></li>
+                                                    <li><a href="#"><i class="fa fa-calendar">${c.getUpdateDate()}</i></a></li>
                                                     <!--<li><a href="#"><i class="fa fa-user"></i>By William</a></li>-->
                                                 </ul>
-                                                <h5 class="post-title"><a href="blog?id=${c.getId()}">${c.getName()}</a></h5>
-                                                <p>${c.getContent()}</p>
+                                                <h5 class="post-title"><a href="post?id=${c.getId()}">${c.getTitle()}</a></h5>
+                                                <p>${c.getPostDetail()}</p>
                                                 <div class="post-extra">
-                                                    <a href="blog?id=${c.getId()}" class="btn-link">READ MORE</a>
+                                                    <a href="post?id=${c.getId()}" class="btn-link">READ MORE</a>
                                                     <!--<a href="#" class="comments-bx"><i class="fa fa-comments-o"></i>20 Comment</a>-->
                                                 </div>
                                             </div>

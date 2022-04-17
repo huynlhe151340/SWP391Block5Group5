@@ -36,6 +36,17 @@ public class accounts {
         this.activeCode = activeCode;
     }
 
+    public accounts(String email, String password, int accountDetailID, int roleID, int status, String activeCode) {
+        this.email = email;
+        this.password = password;
+        this.accountDetailID = accountDetailID;
+        this.roleID = roleID;
+        this.status = status;
+        this.activeCode = activeCode;
+    }
+    
+    
+
     public int getId() {
         return id;
     }

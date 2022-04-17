@@ -5,25 +5,23 @@
  */
 package Controller;
 
-import DAO.postDao;
-import Entity.post;
+import DAO.accountDetailDao;
+import Entity.accountDetails;
+import Entity.accounts;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author AD
+ * @author khait
  */
-@WebServlet(name = "PostController", urlPatterns = {"/user/posts"})
-public class PostController extends HttpServlet {
+@WebServlet(name = "EditProfileController", urlPatterns = {"/user/edit-profile"})
+public class EditProfileController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,12 +33,36 @@ public class PostController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        postDao d = new postDao();
-        List<post> listP = d.getAllPosts(0, 5);
-        request.setAttribute("listPost", listP);
-        request.getRequestDispatcher("/user/post.jsp").forward(request, response);
+        try {
+            String name = request.getParameter("name").trim();
+            String mobile = request.getParameter("mobile").trim();
+            String email = request.getParameter("email").trim();
+            String address = request.getParameter("address").trim();
+            boolean gender = true;
+            if (Integer.parseInt(request.getParameter("gender").trim()) == 1) {
+                gender = false;
+            } else {
+                gender = true;
+            }
+
+            HttpSession session = request.getSession();
+            accounts ac = (accounts) session.getAttribute("currentAccount");
+            accountDetails details = new accountDetails(ac.getAccountDetailID(), name, mobile, address, gender);
+//              response.getWriter().print(details.toString());
+            boolean updateProfile = new accountDetailDao().editProfile(details, details.getId());
+            if (updateProfile) {
+//                request.getRequestDispatcher("/user/user.jsp").forward(request, response);
+                response.getWriter().print("Update success");
+            } else {
+//                request.getRequestDispatcher("/user/user.jsp").forward(request, response);
+                response.getWriter().print("Update fail");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("/user/error.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -55,11 +77,7 @@ public class PostController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -73,11 +91,7 @@ public class PostController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

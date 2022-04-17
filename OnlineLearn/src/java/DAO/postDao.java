@@ -22,7 +22,7 @@ public class postDao {
     public List<post> getAllPosts(int pageIndex, int pageSize) throws SQLException {
         try {
             con = SQLServerConnection.getConnection();
-            String sql = "SELECT * FROM blogs ORDER BY create_at DESC\n"
+            String sql = "SELECT * FROM post ORDER BY update_date DESC\n"
                     + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
             ps = con.prepareStatement(sql);
             ps.setInt(1, pageIndex);
@@ -35,7 +35,9 @@ public class postDao {
                         rs.getString("author"),
                         rs.getDate("update_date"),
                         rs.getInt("category_id"),
-                        rs.getString("postDetail"), rs.getInt("status")));
+                        rs.getString("post_detail"),
+                        rs.getString("image"),
+                        rs.getInt("status")));
             }
             return list;
         } catch (SQLException ex) {
@@ -48,7 +50,7 @@ public class postDao {
     public post getPostById(int id) throws SQLException {
         try {
             con = SQLServerConnection.getConnection();
-            String sql = "SELECT * FROM blogs WHERE id = ?";
+            String sql = "SELECT * FROM post WHERE id = ?";
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();
@@ -58,7 +60,8 @@ public class postDao {
                         rs.getString("author"),
                         rs.getDate("update_date"),
                         rs.getInt("category_id"),
-                        rs.getString("postDetail"),
+                        rs.getString("post_detail"),
+                        rs.getString("image"),
                         rs.getInt("status"));
             }
         } catch (SQLException ex) {
@@ -82,7 +85,8 @@ public class postDao {
                         rs.getString("author"),
                         rs.getDate("update_date"),
                         rs.getInt("category_id"),
-                        rs.getString("postDetail"),
+                        rs.getString("post_detail"),
+                        rs.getString("image"),
                         rs.getInt("status")));
             }
             return list;

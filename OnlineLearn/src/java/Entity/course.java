@@ -14,27 +14,33 @@ public class course {
     private int id;
     private String name;
     private String thumbnail;
-    private int categoryID;
+    private category category;
     private int feature;
     private String owner;
     private String description;
     private float price;
     private float salePrice;
+    private String duration;
+    private String skillLevel;
+    private String language;
     private int status;
 
     public course() {
     }
 
-    public course(int id, String name, String thumbnail, int categoryID, int feature, String owner, String description, float price, float salePrice, int status) {
+    public course(int id, String name, String thumbnail, category category, int feature, String owner, String description, float price, float salePrice, String duration, String skillLevel, String language, int status) {
         this.id = id;
         this.name = name;
         this.thumbnail = thumbnail;
-        this.categoryID = categoryID;
+        this.category = category;
         this.feature = feature;
         this.owner = owner;
         this.description = description;
         this.price = price;
         this.salePrice = salePrice;
+        this.duration = duration;
+        this.skillLevel = skillLevel;
+        this.language = language;
         this.status = status;
     }
 
@@ -62,12 +68,12 @@ public class course {
         this.thumbnail = thumbnail;
     }
 
-    public int getCategoryID() {
-        return categoryID;
+    public category getCategory() {
+        return category;
     }
 
-    public void setCategoryID(int categoryID) {
-        this.categoryID = categoryID;
+    public void setCategory(category category) {
+        this.category = category;
     }
 
     public int getFeature() {
@@ -110,6 +116,30 @@ public class course {
         this.salePrice = salePrice;
     }
 
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getSkillLevel() {
+        return skillLevel;
+    }
+
+    public void setSkillLevel(String skillLevel) {
+        this.skillLevel = skillLevel;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
     public int getStatus() {
         return status;
     }
@@ -120,7 +150,6 @@ public class course {
 
     @Override
     public String toString() {
-        return "course{" + "id=" + id + ", name=" + name + ", thumbnail=" + thumbnail + ", categoryID=" + categoryID + ", feature=" + feature + ", owner=" + owner + ", description=" + description + ", price=" + price + ", salePrice=" + salePrice + ", status=" + status + '}';
+        return "course{" + "id=" + id + ", name=" + name + ", thumbnail=" + thumbnail + ", category=" + category + ", feature=" + feature + ", owner=" + owner + ", description=" + description + ", price=" + price + ", salePrice=" + salePrice + ", duration=" + duration + ", skillLevel=" + skillLevel + ", language=" + language + ", status=" + status + '}';
     }
-
 }

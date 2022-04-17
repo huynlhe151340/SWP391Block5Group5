@@ -19,18 +19,20 @@ public class post {
     private Date updateDate;
     private int categoryID;
     private String postDetail;
+    private String image;
     private int status;
 
     public post() {
     }
 
-    public post(int id, String title, String author, Date updateDate, int categoryID, String postDetail, int status) {
+    public post(int id, String title, String author, Date updateDate, int categoryID, String postDetail, String image, int status) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.updateDate = updateDate;
         this.categoryID = categoryID;
         this.postDetail = postDetail;
+        this.image = image;
         this.status = status;
     }
 
@@ -82,9 +84,12 @@ public class post {
         this.postDetail = postDetail;
     }
 
-    @Override
-    public String toString() {
-        return "post{" + "id=" + id + ", title=" + title + ", author=" + author + ", updateDate=" + updateDate + ", categoryID=" + categoryID + ", postDetail=" + postDetail + ", status=" + status + '}';
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getStatus() {
@@ -93,6 +98,11 @@ public class post {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "post{" + "id=" + id + ", title=" + title + ", author=" + author + ", updateDate=" + updateDate + ", categoryID=" + categoryID + ", postDetail=" + postDetail + ", image=" + image + ", status=" + status + '}';
     }
 
 }

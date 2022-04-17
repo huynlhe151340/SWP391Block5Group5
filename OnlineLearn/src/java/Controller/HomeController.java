@@ -6,7 +6,9 @@
 package Controller;
 
 import DAO.courseDao;
+import DAO.postDao;
 import Entity.course;
+import Entity.post;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -38,10 +40,16 @@ public class HomeController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         courseDao dao = new courseDao();
+        postDao pDao = new postDao();
         List<course> listC;
+        List<post> listP;
         try {
             listC = dao.getTopCourse();
             request.setAttribute("listC", listC);
+            
+            listP = pDao.getTopPostRecent();
+            request.setAttribute("listP", listP);
+            
             request.getRequestDispatcher("/user/index.jsp").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
