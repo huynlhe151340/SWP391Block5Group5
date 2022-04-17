@@ -54,7 +54,7 @@
         <!-- STYLESHEETS ============================================= -->
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <link class="skin" rel="stylesheet" type="text/css" href="assets/css/color/color-1.css">
-
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     </head>
     <body id="bg">
         <div class="page-wraper">
@@ -440,7 +440,7 @@
                                                 <div class="profile-head">
                                                     <h3>Edit Profile</h3>
                                                 </div>
-                                                <form class="edit-profile" action="edit-profile">
+                                                <form class="edit-profile">
                                                     <div class="">
                                                         <div class="form-group row">
                                                             <div class="col-12 col-sm-9 col-md-9 col-lg-10 ml-auto">
@@ -450,19 +450,19 @@
                                                         <div class="form-group row">
                                                             <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Full Name</label>
                                                             <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                                <input class="form-control" type="text" value="${accountDetail.name}">
+                                                                <input name="name" id="name" class="form-control" type="text" value="${accountDetail.name}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Phone No.</label>
                                                             <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                                <input class="form-control" type="text" value="${accountDetail.mobile}">
+                                                                <input name="mobile" id="mobile" class="form-control" type="text" value="${accountDetail.mobile}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Email</label>
                                                             <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                                <input class="form-control" type="text" value="${currentAccount.email}">
+                                                                <input name="email" id="email" class="form-control" type="text" value="${currentAccount.email}" readonly="">
                                                             </div>
                                                         </div>
                                                         <div class="seperator"></div>
@@ -475,73 +475,78 @@
                                                         <div class="form-group row">
                                                             <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Address</label>
                                                             <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                                <input class="form-control" type="text" value="${accountDetail.address}">
+                                                                <input name="address" id="address" class="form-control" type="text" value="${accountDetail.address}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Gender</label>
                                                             <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                                <input checked="true" name="gender" type="radio" value="0"> Male <span>&emsp;</span> <input name="gender" type="radio" value="1"> Female
+                                                                <c:if test="${accountDetail.gender ==  true}"><input id="gender" checked="true" name="gender" type="radio" value="0"> Male </c:if>
+                                                                <c:if test="${accountDetail.gender ==  false}"><input id="gender" name="gender" type="radio" value="0"> Male </c:if>
+                                                                <c:if test="${accountDetail.gender ==  true}"><span>&emsp;</span> <input id="gender" name="gender" type="radio" value="1"> Female</c:if>
+                                                                <c:if test="${accountDetail.gender ==  false}"><span>&emsp;</span> <input id="gender" checked="true" name="gender" type="radio" value="1"> Female</c:if>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
+                                                            <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
 
-                                                    </div>
-                                                    <div class="">
+                                                        </div>
+                                                                <h3 id="result"></h3>
                                                         <div class="">
-                                                            <div class="row">
-                                                                <div class="col-12 col-sm-3 col-md-3 col-lg-2">
-                                                                </div>
-                                                                <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                                    <button type="reset" class="btn">Save changes</button>
-                                                                    <!--<button type="reset" class="btn-secondry">Cancel</button>-->
+                                                            <div class="">
+                                                                <div class="row">
+                                                                    <div class="col-12 col-sm-3 col-md-3 col-lg-2">
+                                                                    </div>
+                                                                    <div class="col-12 col-sm-9 col-md-9 col-lg-7">
+                                                                        <button type="button" class="btn" onclick="displayPostNotification()">Save</button>
+                                                                        <!--<button type="reset" class="btn-secondry">Cancel</button>-->
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="tab-pane" id="change-password">
-                                                <div class="profile-head">
-                                                    <h3>Change Password</h3>
+                                                    </form>
                                                 </div>
-                                                <form class="edit-profile" action="change-password">
-                                                    <div class="">
-                                                        <div class="form-group row">
-                                                            <div class="col-12 col-sm-8 col-md-8 col-lg-9 ml-auto">
-                                                                <h3>Password</h3>
+                                                <div class="tab-pane" id="change-password">
+                                                    <div class="profile-head">
+                                                        <h3>Change Password</h3>
+                                                    </div>
+                                                    <form class="edit-profile">
+                                                        <div class="">
+                                                            <div class="form-group row">
+                                                                <div class="col-12 col-sm-8 col-md-8 col-lg-9 ml-auto">
+                                                                    <h3>Password</h3>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group row" hidden="">
-                                                            <label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">Email</label>
-                                                            <div class="col-12 col-sm-8 col-md-8 col-lg-7">
-                                                                <input name="email" class="form-control" type="text" value="${currentAccount.email}">
+                                                            <div class="form-group row" hidden="">
+                                                                <label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">Email</label>
+                                                                <div class="col-12 col-sm-8 col-md-8 col-lg-7">
+                                                                    <input id="email" name="email" class="form-control" type="text" value="${currentAccount.email}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">Current Password</label>
                                                             <div class="col-12 col-sm-8 col-md-8 col-lg-7">
-                                                                <input name="oldPassword" class="form-control" type="password" value="">
+                                                                <input id="oldPassword" name="oldPassword" class="form-control" type="password" value="">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">New Password</label>
                                                             <div class="col-12 col-sm-8 col-md-8 col-lg-7">
-                                                                <input name="newPassword" class="form-control" type="password" value="">
+                                                                <input id="newPassword" name="newPassword" class="form-control" type="password" value="">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">Re Type New Password</label>
                                                             <div class="col-12 col-sm-8 col-md-8 col-lg-7">
-                                                                <input name="re-newPassword" class="form-control" type="password" value="">
+                                                                <input id="re-newPassword" name="re-newPassword" class="form-control" type="password" value="">
                                                             </div>
                                                         </div>
                                                     </div>
+                                                            <h3 id="result-change"></h3>
                                                     <div class="row">
                                                         <div class="col-12 col-sm-4 col-md-4 col-lg-3">
                                                         </div>
                                                         <div class="col-12 col-sm-8 col-md-8 col-lg-7">
-                                                            <button type="reset" class="btn">Save changes</button>
+                                                            <button type="button" class="btn" onclick="displayChangePasswordNotification()">Save</button>
                                                             <!--<button type="reset" class="btn-secondry">Cancel</button>-->
                                                         </div>
                                                     </div>
@@ -575,7 +580,10 @@
         <script src="assets/vendors/masonry/filter.js"></script>
         <script src="assets/vendors/owl-carousel/owl.carousel.js"></script>
         <script src="assets/js/functions.js"></script>
-        <script src="assets/js/contact.js"></script>
+        <script src="assets/js/contact.js"></script>  
+        <script src="assets/js/edit-profile.js"></script>
+        <script src="assets/js/change-passowrd.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <!--<script src='assets/vendors/switcher/switcher.js'></script>-->
     </body>
 

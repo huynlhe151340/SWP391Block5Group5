@@ -5,10 +5,10 @@
  */
 package Controller;
 
-import DAO.accountDetailDao;
-import Entity.accountDetails;
+import DAO.accountDao;
 import Entity.accounts;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author khait
  */
-@WebServlet(name = "UserController", urlPatterns = {"/user/customer"})
-public class UserController extends HttpServlet {
+@WebServlet(name = "Login", urlPatterns = {"/user/login"})
+public class Login extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,16 +36,13 @@ public class UserController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
             HttpSession session = request.getSession();
-            accounts ac = (accounts) session.getAttribute("currentAccount");
-            System.out.println(ac.toString());
-            accountDetails details = new accountDetailDao().getOne(ac.getAccountDetailID());
-            System.out.println(details.toString());
-            request.setAttribute("accountDetail", details);
-            request.getRequestDispatcher("/user/user.jsp").forward(request, response);
+            accounts ac = new accountDao().login(email, password);
+            session.setAttribute("currentAccount", ac);
+            request.getRequestDispatcher("customer").forward(request, response);
         } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect("/user/error.jsp");
         }
     }
 

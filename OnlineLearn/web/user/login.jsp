@@ -12,6 +12,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <form action="login" method="POST">
+            <input type="text" name="email" value="" /><br>
+            <input type="password" name="password" value="" /><br>
+            <input type="submit" value="Login" />
+        </form>
     </body>
 </html>

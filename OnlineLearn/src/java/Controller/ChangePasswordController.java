@@ -5,10 +5,10 @@
  */
 package Controller;
 
-import DAO.accountDetailDao;
-import Entity.accountDetails;
+import DAO.accountDao;
 import Entity.accounts;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author khait
  */
-@WebServlet(name = "UserController", urlPatterns = {"/user/customer"})
-public class UserController extends HttpServlet {
+@WebServlet(name = "ChangePasswordController", urlPatterns = {"/user/change-password"})
+public class ChangePasswordController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,13 +36,27 @@ public class UserController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+//            String email = request.getParameter("email").trim();
+            String oldPassword = request.getParameter("oldPassword").trim();
+            String newPassword = request.getParameter("newPassword").trim();
+            String reNewPassword = request.getParameter("reNewPassword").trim();
+
             HttpSession session = request.getSession();
             accounts ac = (accounts) session.getAttribute("currentAccount");
-            System.out.println(ac.toString());
-            accountDetails details = new accountDetailDao().getOne(ac.getAccountDetailID());
-            System.out.println(details.toString());
-            request.setAttribute("accountDetail", details);
-            request.getRequestDispatcher("/user/user.jsp").forward(request, response);
+            if (!oldPassword.equalsIgnoreCase(ac.getPassword())) {
+                response.getWriter().print("Mật khẩu cũ không đúng!!");
+            } else {
+                if (!newPassword.equalsIgnoreCase(reNewPassword)) {
+                    response.getWriter().print("Mật khẩu cũ không không khớp!!");
+                } else {
+                    boolean changePassword = new accountDao().changePassword(newPassword, ac.getId());
+                    if (changePassword) {
+                        response.getWriter().print("Thay đổi mật khẩu thành công!!");
+                    } else {
+                        response.getWriter().print("Thay đổi mật khẩu không thành công!!");
+                    }
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("/user/error.jsp");
