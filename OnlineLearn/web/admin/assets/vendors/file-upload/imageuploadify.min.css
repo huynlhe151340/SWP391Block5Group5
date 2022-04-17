@@ -53,7 +53,11 @@
 .imageuploadify .imageuploadify-images-list button.btn-default {
     display: block;
     color: #fff !important;
+<<<<<<< HEAD
+	background: var(--primary) !important;
+=======
 	background: #4c1864 !important;
+>>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
     border-color: #3AA0FF;
     border-radius: 40px;
     margin: 15px auto;
