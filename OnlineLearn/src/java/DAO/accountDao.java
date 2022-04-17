@@ -120,6 +120,7 @@ public class accountDao {
         return null;
     }
 
+
     public boolean changePassword(String newPassword, int id){
         
         int check = 0;
@@ -134,5 +135,44 @@ public class accountDao {
             e.printStackTrace();
         }
         return check >0;
+
+    // update
+    public boolean update_code_status(String code, int status, String email) {
+
+        String sql = "UPDATE accounts SET active_code=?,status=? WHERE email=?";
+        try (Connection con = SQLServerConnection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, code);
+            ps.setObject(2, status);
+            ps.setObject(3, email);
+
+            int check = ps.executeUpdate();
+            if (check > 0) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean update_pass(String pass, String email) {
+
+        String sql = "UPDATE accounts SET password=? WHERE email=?";
+        try (Connection con = SQLServerConnection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, pass);
+            ps.setObject(2, email);
+
+            int check = ps.executeUpdate();
+            if (check > 0) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
