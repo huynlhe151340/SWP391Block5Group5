@@ -20,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author khait
  */
-@WebServlet(name = "UserController", urlPatterns = {"/user/customer"})
-public class UserController extends HttpServlet {
+@WebServlet(name = "EditProfileController", urlPatterns = {"/user/edit-profile"})
+public class EditProfileController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,13 +36,29 @@ public class UserController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            String name = request.getParameter("name").trim();
+            String mobile = request.getParameter("mobile").trim();
+            String email = request.getParameter("email").trim();
+            String address = request.getParameter("address").trim();
+            boolean gender = true;
+            if (Integer.parseInt(request.getParameter("gender").trim()) == 1) {
+                gender = false;
+            } else {
+                gender = true;
+            }
+
             HttpSession session = request.getSession();
             accounts ac = (accounts) session.getAttribute("currentAccount");
-            System.out.println(ac.toString());
-            accountDetails details = new accountDetailDao().getOne(ac.getAccountDetailID());
-            System.out.println(details.toString());
-            request.setAttribute("accountDetail", details);
-            request.getRequestDispatcher("/user/user.jsp").forward(request, response);
+            accountDetails details = new accountDetails(ac.getAccountDetailID(), name, mobile, address, gender);
+//              response.getWriter().print(details.toString());
+            boolean updateProfile = new accountDetailDao().editProfile(details, details.getId());
+            if (updateProfile) {
+//                request.getRequestDispatcher("/user/user.jsp").forward(request, response);
+                response.getWriter().print("Update success");
+            } else {
+//                request.getRequestDispatcher("/user/user.jsp").forward(request, response);
+                response.getWriter().print("Update fail");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("/user/error.jsp");

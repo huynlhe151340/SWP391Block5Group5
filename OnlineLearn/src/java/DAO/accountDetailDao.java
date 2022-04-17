@@ -6,6 +6,7 @@
 package DAO;
 
 import Entity.accountDetails;
+import Entity.accounts;
 import JDBC.SQLServerConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,6 +25,7 @@ public class accountDetailDao {
         String sql = "SELECT * FROM accountDetail WHERE id= ?";
         try (Connection con = SQLServerConnection.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 accountDetails ac = new accountDetails(
@@ -76,9 +78,28 @@ public class accountDetailDao {
         return check > 0;
     }
     
+    public boolean editProfile(accountDetails d, int id){
+        
+        int check = 0;
+        String sql = "UPDATE accountDetail SET name= ?, mobile= ?,"
+                + " address= ?, gender= ? WHERE id= ?";
+        try(Connection con = SQLServerConnection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, d.getName());
+            ps.setObject(2, d.getMobile());
+            ps.setObject(3, d.getAddress());
+            ps.setObject(4, d.isGender());
+            ps.setObject(5, id);
+            check = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
+    
     public static void main(String[] args) {
-        accountDetails a = new accountDetails(0, "a", "a", "a", true);
-        accountDetailDao b = new accountDetailDao();
-        System.out.println(b.insert(a));
+        accounts ac = new accountDao().getOne(3);
+        accountDetails acd = new accountDetailDao().getOne(ac.getAccountDetailID());
+        System.out.println(acd.toString());
     }
 }

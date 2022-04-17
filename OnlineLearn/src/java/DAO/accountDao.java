@@ -120,6 +120,22 @@ public class accountDao {
         return null;
     }
 
+
+    public boolean changePassword(String newPassword, int id){
+        
+        int check = 0;
+        String sql = "UPDATE accounts SET password= ? WHERE id= ?";
+        try(Connection con = SQLServerConnection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, newPassword);
+            ps.setObject(2, id);
+            
+            check = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return check >0;
+
     // update
     public boolean update_code_status(String code, int status, String email) {
 
@@ -158,12 +174,5 @@ public class accountDao {
             e.printStackTrace();
         }
         return false;
-    }
-
-    public static void main(String[] args) {
-        accountDao d = new accountDao();
-
-        System.out.println(d.update_pass("aaaaa1231", "hieunxhe140911@fpt.du.vn"));
-
     }
 }
