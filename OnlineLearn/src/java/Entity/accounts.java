@@ -115,5 +115,33 @@ public class accounts {
     public void setActiveCode(String activeCode) {
         this.activeCode = activeCode;
     }
+    private accountDetails accountDetail;
 
+    public accounts(int id, String email, String password, int accountDetailID, int roleID, int status, Date createDate, String activeCode, accountDetails accountDetail) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.accountDetailID = accountDetailID;
+        this.roleID = roleID;
+        this.status = status;
+        this.createDate = createDate;
+        this.activeCode = activeCode;
+        this.accountDetail = accountDetail;
+    }
+
+    public accountDetails getAccountDetail() {
+        return accountDetail;
+    }
+
+    public void setAccountDetail(accountDetails accountDetail) {
+        this.accountDetail = accountDetail;
+    }
+
+    public accounts(String email, String password, int accountDetailID, int roleID, int status) {
+        this.email = email;
+        this.password = password;
+        this.accountDetailID = accountDetailID;
+        this.roleID = roleID;
+        this.status = status;
+    }
 }
