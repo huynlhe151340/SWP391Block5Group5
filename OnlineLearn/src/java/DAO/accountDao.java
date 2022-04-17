@@ -120,31 +120,6 @@ public class accountDao {
         return null;
     }
 
-    public accounts login(String email, String password) {
-
-        String sql = "SELECT * FROM accounts WHERE email= ? AND password= ?";
-        try (Connection con = SQLServerConnection.getConnection();
-                PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setObject(1, email);
-            ps.setObject(2, password);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                accounts ac = new accounts(
-                        rs.getInt("id"),
-                        rs.getString("email"),
-                        rs.getString("password"),
-                        rs.getInt("account_detailID"),
-                        rs.getInt("role_id"),
-                        rs.getInt("status"),
-                        rs.getDate("create_date"),
-                        rs.getString("active_code"));
-                return ac;
-            }
-        } catch (Exception e) {
-        }
-        return null;
-    }
-
     public boolean changePassword(String newPassword, int id){
         
         int check = 0;
