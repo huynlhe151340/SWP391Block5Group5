@@ -396,11 +396,7 @@
 	-moz-transition: all 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); 
 	-o-transition: all 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); 
 	transition: all 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); /* easeOutCubic */
-<<<<<<< HEAD
-	color: var(--primary);
-=======
 	color: #4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 }
 .ttr-opened-sidebar .ttr-sidebar{
 	left: 0;
@@ -554,11 +550,7 @@
 	background-color: #f4f4f4;
 }
 .ttr-sidebar-navi ul li.show > a{
-<<<<<<< HEAD
-	color: var(--primary);
-=======
 	color: #4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 }
 .ttr-overlay{
 	position: fixed;
@@ -843,11 +835,7 @@
 /* Full Calendra */
 
 .fc-toolbar button.fc-state-active{
-<<<<<<< HEAD
-	background: var(--primary);
-=======
 	background: #4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 	color: #fff;
 	
 }
@@ -937,11 +925,7 @@
 	color: #333;
 }
 .noti-box-list ul li .notification-text a{
-<<<<<<< HEAD
-	color:var(--primary);
-=======
 	color:#4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 }
 .noti-box-list ul li .notification-time{
 	position: absolute;
@@ -973,11 +957,7 @@
 	color:#fff;
 }
 .dashbg-primary{
-<<<<<<< HEAD
-	background-color:var(--primary);
-=======
 	background-color:#4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 	color:#fff;
 }
 .dashbg-red{

@@ -50,11 +50,7 @@
 	padding: 0;
 }
 .secondary-menu .btn-link:hover{
-<<<<<<< HEAD
-	color:var(--primary);
-=======
 	color:#4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 }
 .secondary-menu .secondary-inner {
     display: inline-block;
@@ -1026,11 +1022,7 @@
     color: #fff;
 }
 .header-transparent .secondary-menu .btn-link:hover{
-<<<<<<< HEAD
-	color:var(--primary);
-=======
 	color:#4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 }
 .header-transparent .navbar-toggler span{
     background-color: #fff;
@@ -1980,19 +1972,11 @@ button.back-to-top {
 	display: inline-block;
 	font-size: 13px;
 	text-transform: capitalize;
-<<<<<<< HEAD
-	font-family: ;
-	margin-right: 5px;
-}
-.media-post li a{
-	color:var(--primary);
-=======
 /*	font-family: ;*/
 	margin-right: 5px;
 }
 .media-post li a{
 	color:#4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 	vertical-align: middle;
 }
 .media-post li a i{
@@ -2054,11 +2038,7 @@ button.back-to-top {
 	font-size:13px;
 }
 .cours-star li.active{
-<<<<<<< HEAD
-	color:var(--primary);
-=======
 	color:#4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 }
 .cours-more-info .price,
 .cours-more-info .review{
@@ -2110,11 +2090,7 @@ button.back-to-top {
 .recent-news-carousel .owl-nav .owl-prev,
 .testimonial-carousel .owl-nav .owl-next,
 .testimonial-carousel .owl-nav .owl-prev{
-<<<<<<< HEAD
-	background-color:var(--primary);
-=======
 	background-color:#4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 	margin: 0 5px !important;
 }
 .courses-carousel .owl-nav .owl-next:hover,
@@ -2123,11 +2099,7 @@ button.back-to-top {
 .recent-news-carousel .owl-nav .owl-prev:hover,
 .testimonial-carousel .owl-nav .owl-next:hover,
 .testimonial-carousel .owl-nav .owl-prev:hover{
-<<<<<<< HEAD
-	background-color:var(--sc-primary);
-=======
 	background-color: #4d0a91;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 }
 /* Online Cours */
 .online-cours h2{
@@ -2184,11 +2156,7 @@ button.back-to-top {
     margin-top: 0;
     line-height: 32px;
     padding-left: 10px;
-<<<<<<< HEAD
-    border-left: 5px solid var(--primary);
-=======
     border-left: 5px solid #4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 }
 .heading-bx.left p{
 	max-width:500px;
@@ -2238,11 +2206,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5e14', end
 }
 .event-time{
 	color: #fff;
-<<<<<<< HEAD
-    background-color: var(--primary);
-=======
     background-color: #4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
     text-align: center;
     padding: 15px 10px;
     border-radius: 4px;
@@ -2297,11 +2261,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5e14', end
 .upcoming-event-carousel.owl-btn-1 .owl-next{
 	margin: 0 100px !important;
     font-size: 20px;
-<<<<<<< HEAD
-    background-color: var(--primary);
-=======
     background-color: #4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
     width: 50px;
     height: 50px;
     line-height: 50px;
@@ -2309,11 +2269,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5e14', end
 }
 .upcoming-event-carousel.owl-btn-1 .owl-prev:hover,
 .upcoming-event-carousel.owl-btn-1 .owl-next:hover{
-<<<<<<< HEAD
-	background-color: var(--sc-primary);
-=======
 	background-color:  #4d0a91;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 }
 /* Testimonials */
 .testimonial-bx{
@@ -2500,11 +2456,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 .contact-bx .focused .input-group label{
 	top: -8px;
 	font-size: 10px;
-<<<<<<< HEAD
-	color:var(--primary);
-=======
 	color:#4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 }
 .contact-bx .input-group textarea.form-control{
 	height:120px;
@@ -2693,11 +2645,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 .course-info-list ul li a.active,
 .course-info-list ul li a:hover{
 	color:#fff;
-<<<<<<< HEAD
-	background: var(--primary);
-=======
 	background: #4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 }
 .course-info-list ul li a i{
 	margin-right:10px;
@@ -2725,11 +2673,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 .course-features li i{
 	margin-right:10px;
 	font-size:16px;
-<<<<<<< HEAD
-	color:var(--primary);
-=======
 	color:#4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 }
 .course-features li .label{
 	width:60%;
@@ -2756,11 +2700,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 .curriculum-list h5{
 	font-size: 14px;
 	font-weight: 500;
-<<<<<<< HEAD
-	color:var(--primary);
-=======
 	color:#4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 	margin-bottom: 0px;
 	text-transform: uppercase;
 }
@@ -2837,11 +2777,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 }
 .bar-container [class*="bar"]{
 	height:8px;
-<<<<<<< HEAD
-	background:var(--primary);
-=======
 	background:#4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 }
 /* MemberShip */
 .pricingtable-inner {
@@ -2979,11 +2915,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 	padding: 10px 30px;
 }
 .profile-tabnav .nav li a.active{
-<<<<<<< HEAD
-	background-color: var(--primary);
-=======
 	background-color: #4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 	color: #fff;
 	border-radius: 0;
 }
@@ -3088,11 +3020,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 	width: 20px;
 	height: 20px;
 	background-color: transparent;
-<<<<<<< HEAD
-	border: 2px solid var(--primary);
-=======
 	border: 2px solid #4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 	top: 2px;
 }
 .custom-control-label:after{
@@ -3101,11 +3029,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 	top: 2px;
 }
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before{
-<<<<<<< HEAD
-	background-color: var(--primary);
-=======
 	background-color: #4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 }
 .account-container .form-forget{
 	display:flex;
@@ -3126,11 +3050,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 	margin-right:10px;
 }
 .account-form .heading-bx p a{
-<<<<<<< HEAD
-	color: var(--primary);
-=======
 	color: #4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 	text-decoration: underline;
 	padding-bottom: 0px;
 }

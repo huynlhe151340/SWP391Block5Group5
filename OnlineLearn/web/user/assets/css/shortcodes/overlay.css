@@ -60,11 +60,7 @@
 .ovpr-middle:after,
 .ovpr-dark:after,
 .ovpr:after {
-<<<<<<< HEAD
-    background: ;
-=======
     /*background: ;*/
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 }
 .ovbl-light:after {
     opacity: 0.3;
