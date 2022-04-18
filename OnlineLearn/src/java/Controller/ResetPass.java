@@ -6,11 +6,8 @@
 package Controller;
 
 import DAO.accountDao;
-import DAO.accountDetailDao;
 import Entity.accounts;
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

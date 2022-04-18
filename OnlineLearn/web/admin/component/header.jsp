@@ -73,8 +73,8 @@
                 <div class="ttr-logo-box">
                     <div>
                         <a href="index.html" class="ttr-logo">
-                            <img class="ttr-logo-mobile" alt="" src="../assets/images/logo-mobile.png" width="30" height="30">
-                            <img class="ttr-logo-desktop" alt="" src="../assets/images/logo-white.png" width="160" height="27">
+                            <img class="ttr-logo-mobile" alt="" src="assets/images/logo-mobile.png" width="30" height="30">
+                            <img class="ttr-logo-desktop" alt="" src="assets/images/logo-white.png" width="160" height="27">
                         </a>
                     </div>
                 </div>
@@ -101,9 +101,9 @@
                 <div class="ttr-header-right ttr-with-seperator">
                     <!-- header right menu start -->
                     <ul class="ttr-header-navigation">
-                        <li>
+<!--                        <li>
                             <a href="#" class="ttr-material-button ttr-search-toggle"><i class="fa fa-search"></i></a>
-                        </li>
+                        </li>-->
                         <li>
                             <a href="#" class="ttr-material-button ttr-submenu-toggle"><i class="fa fa-bell"></i></a>
                             <div class="ttr-header-submenu noti-menu">
@@ -181,9 +181,9 @@
                             <a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="../assets/images/testimonials/pic3.jpg" width="32" height="32"></span></a>
                             <div class="ttr-header-submenu">
                                 <ul>
-                                    <li><a href="user-profile.html">My profile</a></li>
+<!--                                    <li><a href="user-profile.html">My profile</a></li>
                                     <li><a href="list-view-calendar.html">Activity</a></li>
-                                    <li><a href="mailbox.html">Messages</a></li>
+                                    <li><a href="mailbox.html">Messages</a></li>-->
                                     <li><a href="../login.html">Logout</a></li>
                                 </ul>
                             </div>
@@ -193,7 +193,7 @@
                     <!-- header right menu end -->
                 </div>
                 <!--header search panel start -->
-                <div class="ttr-search-bar">
+<!--                <div class="ttr-search-bar">
                     <form class="ttr-search-form">
                         <div class="ttr-search-input-wrapper">
                             <input type="text" name="qq" placeholder="search something..." class="ttr-search-input">
@@ -203,7 +203,7 @@
                             <i class="ti-close"></i>
                         </span>
                     </form>
-                </div>
+                </div>-->
                 <!--header search panel end -->
             </div>
         </header>
@@ -213,7 +213,7 @@
             <div class="ttr-sidebar-wrapper content-scroll">
                 <!-- side menu logo start -->
                 <div class="ttr-sidebar-logo">
-                    <a href="#"><img alt="" src="../assets/images/logo.png" width="122" height="27"></a>
+                    <a href="#"><img alt="" src="assets/images/logo.png" width="122" height="27"></a>
                     <!-- <div class="ttr-sidebar-pin-button" title="Pin/Unpin Menu">
                             <i class="material-icons ttr-fixed-icon">gps_fixed</i>
                             <i class="material-icons ttr-not-fixed-icon">gps_not_fixed</i>
@@ -229,19 +229,43 @@
                         <li>
                             <a href="index.html" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-home"></i></span>
-                                <span class="ttr-label">Dashborad</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="courses.html" class="ttr-material-button">
-                                <span class="ttr-icon"><i class="ti-book"></i></span>
-                                <span class="ttr-label">Courses</span>
+                                <span class="ttr-label">Dashboard</span>
                             </a>
                         </li>
                         <li>
                             <a href="#" class="ttr-material-button">
-                                <span class="ttr-icon"><i class="ti-email"></i></span>
-                                <span class="ttr-label">Mailbox</span>
+                                <span class="ttr-icon"><i class="ti-book"></i></span>
+                                <span class="ttr-label">Courses</span>
+                                <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="basic-calendar.html" class="ttr-material-button"><span class="ttr-label">Lesson</span></a>
+                                </li>
+                                <li>
+                                    <a href="list-view-calendar.html" class="ttr-material-button"><span class="ttr-label">List View</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="ti-user"></i></span>
+                                <span class="ttr-label">User</span>
+                                <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="basic-calendar.html" class="ttr-material-button"><span class="ttr-label">Lesson</span></a>
+                                </li>
+                                <li>
+                                    <a href="list-view-calendar.html" class="ttr-material-button"><span class="ttr-label">List View</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="ti-user"></i></span>
+                                <span class="ttr-label">User</span>
                                 <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
                             </a>
                             <ul>
@@ -259,12 +283,12 @@
                         <li>
                             <a href="#" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-calendar"></i></span>
-                                <span class="ttr-label">Calendar</span>
+                                <span class="ttr-label">Courses</span>
                                 <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
                             </a>
                             <ul>
                                 <li>
-                                    <a href="basic-calendar.html" class="ttr-material-button"><span class="ttr-label">Basic Calendar</span></a>
+                                    <a href="basic-calendar.html" class="ttr-material-button"><span class="ttr-label">Lesson</span></a>
                                 </li>
                                 <li>
                                     <a href="list-view-calendar.html" class="ttr-material-button"><span class="ttr-label">List View</span></a>
