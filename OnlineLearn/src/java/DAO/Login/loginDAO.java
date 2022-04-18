@@ -169,7 +169,11 @@ public class loginDAO {
     
     public static void main(String[] args) throws SQLException {
 //        System.out.println(isHaveEmail("a"));
+
+//System.out.println(checkPassword("khaitqhe141672@fpt.edu.v", "123456789"));
+
 //System.out.println(checkPassword("admin", "admin"));
+
 //System.out.println(getAccountByEmail("huynlhe151340@fpt.edu.vn"));
 //System.out.println(getAccountDetailsByID(1));
     }

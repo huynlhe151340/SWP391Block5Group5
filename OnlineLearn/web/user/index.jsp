@@ -209,7 +209,11 @@
 								data-paddingright="[30,35,35,15]"
 								data-paddingbottom="[12,12,12,12]"
 								data-paddingleft="[30,35,35,15]"
+
+								style="z-index: 8; white-space: nowrap; outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer; background-color:#4c1864 !important; border:0; border-radius:30px; margin-right:5px;">READ MORE </div>
+
 								style="z-index: 8; white-space: nowrap; outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer; background-color:var(--primary) !important; border:0; border-radius:30px; margin-right:5px;">READ MORE </div>
+
 							<div class="tp-caption Newspaper-Button rev-btn" 
 								id="slide-100-layer-6" 
 								data-x="['center','center','center','center']" 
@@ -367,7 +371,11 @@
 								data-paddingright="[30,35,35,15]"
 								data-paddingbottom="[12,12,12,12]"
 								data-paddingleft="[30,35,35,15]"
+
+								style="z-index: 8; white-space: nowrap; outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer; background-color:#4c1864 !important; border:0; border-radius:30px; margin-right:5px;">READ MORE </div>
+
 								style="z-index: 8; white-space: nowrap; outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer; background-color:var(--primary) !important; border:0; border-radius:30px; margin-right:5px;">READ MORE </div>
+
 							<div class="tp-caption Newspaper-Button rev-btn" 
 								id="slide-200-layer-6" 
 								data-x="['center','center','center','center']" 
