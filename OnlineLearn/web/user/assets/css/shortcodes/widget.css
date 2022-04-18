@@ -87,11 +87,7 @@
 .widget_categories ul li.active a,
 .widget_archive ul li.active a,
 .widget_archive ul li a:hover{
-<<<<<<< HEAD
-    color: var(--primary);
-=======
     color: #4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 }
 /* .widget_categories ul li:before,
 .widget_archive ul li:before,
@@ -216,11 +212,7 @@
 	color:#000;
 }
 .widget .post-title a:hover{
-<<<<<<< HEAD
-	color:var(--primary);
-=======
 	color:#4c1864;
->>>>>>> 3aecb3692964fba1d1db16568f6f6ac0bc77308f
 }
 .recent-posts-entry .widget-post {
     margin-bottom: 20px;
