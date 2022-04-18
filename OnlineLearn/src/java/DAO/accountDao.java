@@ -120,22 +120,23 @@ public class accountDao {
         return null;
     }
 
-    public boolean changePassword(String newPassword, int id) {
 
+    public boolean changePassword(String newPassword, int id){
+        
         int check = 0;
         String sql = "UPDATE accounts SET password= ? WHERE id= ?";
-        try (Connection con = SQLServerConnection.getConnection();
+        try(Connection con = SQLServerConnection.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setObject(1, newPassword);
             ps.setObject(2, id);
-
+            
             check = ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return check > 0;
+        return check >0;
     }
-
+    // update
     public boolean update_code_status(String code, int status, String email) {
 
         String sql = "UPDATE accounts SET active_code=?,status=? WHERE email=?";
