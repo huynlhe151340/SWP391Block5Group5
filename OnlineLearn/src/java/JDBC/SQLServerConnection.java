@@ -23,7 +23,7 @@ public class SQLServerConnection {
     public static final String PORT = "1433";
     public static final String DBNAME = "onlinelearn";
     public static final String USERNAME = "sa";
-    public static final String PASSWORD = "admin";
+    public static final String PASSWORD = "sa";
 
     /**
      * Get connection to MSSQL Server

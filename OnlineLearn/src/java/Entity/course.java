@@ -12,7 +12,7 @@ package Entity;
 public class course {
     
     private int id;
-    private String name;
+    String name;
     private String thumbnail;
     private int categoryID;
     private int feature;
