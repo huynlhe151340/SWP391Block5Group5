@@ -66,18 +66,10 @@
                     <file>${file.reference.javax.servlet.jsp.jstl-api-1.2.1.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
-<<<<<<< HEAD
-=======
-
->>>>>>> 31596ee034fa9abceae66eb82faa8a264a7798d1
                 <library dirs="200">
                     <file>${file.reference.jbcrypt-0.4.jar-1}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
-<<<<<<< HEAD
-=======
-
->>>>>>> 31596ee034fa9abceae66eb82faa8a264a7798d1
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>

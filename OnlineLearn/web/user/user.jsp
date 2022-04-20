@@ -582,7 +582,7 @@
         <script src="assets/js/functions.js"></script>
         <script src="assets/js/contact.js"></script>  
         <script src="assets/js/edit-profile.js"></script>
-        <script src="assets/js/change-passowrd.js"></script>
+        <script src="assets/js/change-password.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <!--<script src='assets/vendors/switcher/switcher.js'></script>-->
     </body>

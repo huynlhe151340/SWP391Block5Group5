@@ -13,35 +13,40 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Admin
+ * @author khait
  */
-@WebServlet(name = "ForgotConfirm_Controller", urlPatterns = {"/user/ForgotConfirm_Controller"})
-public class ForgotConfirm_Controller extends HttpServlet {
+@WebServlet(name = "BlockAccountController", urlPatterns = {"/admin/block-account"})
+public class BlockAccountController extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            String email = request.getParameter("email");
-            session.setAttribute("email",email);
-            String code_confirm = request.getParameter("code").trim();
-            String code = (String) session.getAttribute("code");
-            accountDao dao = new accountDao();
-
-            if (code.equalsIgnoreCase(code_confirm)) {
-                dao.update_code_status(code, 2, email);
-                request.getRequestDispatcher("/user/NewPassWord.jsp").forward(request, response);
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+            int flag = Integer.parseInt(request.getParameter("flag"));
+            
+            if(flag == 3){
+                boolean updateStatus = new accountDao().updateStatus(3, id);
+                response.getWriter().print("Block account success!!");
             } else {
-                request.setAttribute("email", email);
-                request.setAttribute("mess", "Code không khớp");
-                request.getRequestDispatcher("/user/Confirm_ForgotPass.jsp").forward(request, response);
+                boolean updateStatus = new accountDao().updateStatus(2, id);
+                response.getWriter().print("Un-Block account success!!");
             }
-
+        }catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("/admin/error.jsp");
         }
     }
 

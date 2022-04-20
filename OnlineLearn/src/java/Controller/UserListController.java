@@ -6,8 +6,11 @@
 package Controller;
 
 import DAO.accountDao;
+import Entity.accounts;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,31 +20,50 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Admin
+ * @author khait
  */
-@WebServlet(name = "ForgotConfirm_Controller", urlPatterns = {"/user/ForgotConfirm_Controller"})
-public class ForgotConfirm_Controller extends HttpServlet {
+@WebServlet(name = "UserListController", urlPatterns = {"/admin/user-list"})
+public class UserListController extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            String email = request.getParameter("email");
-            session.setAttribute("email",email);
-            String code_confirm = request.getParameter("code").trim();
-            String code = (String) session.getAttribute("code");
-            accountDao dao = new accountDao();
+        try {
+            String pageStr = request.getParameter("page");
+            int page = 1;
 
-            if (code.equalsIgnoreCase(code_confirm)) {
-                dao.update_code_status(code, 2, email);
-                request.getRequestDispatcher("/user/NewPassWord.jsp").forward(request, response);
-            } else {
-                request.setAttribute("email", email);
-                request.setAttribute("mess", "Code không khớp");
-                request.getRequestDispatcher("/user/Confirm_ForgotPass.jsp").forward(request, response);
+            if (pageStr != null) {
+                page = Integer.parseInt(pageStr);
             }
-
+            
+            accountDao acDao = new accountDao();
+            int numberAccount = 6; // cho nhận mỗi trang hiển thị là 8sp
+            int totalAccount = acDao.countTotalAccount(); // tổng số lượng sản phẩm có được trong bảng
+            int totalPage = (totalAccount % numberAccount == 0) ? totalAccount / numberAccount : totalAccount / numberAccount + 1;
+            // tìm được tổng số lượng page mà mình có được
+            List<Integer> lsPage = new ArrayList<>();
+            // for này có chức năng hiển thị list page
+            for (int i = 1; i <= totalPage; ++i) {
+                lsPage.add(i);
+            }
+            // hiển thị sản phẩm trong 1 trang mà người dùng vừa yêu cầu
+            List<accounts> lsAccount= acDao.getAccountPerPage((page * numberAccount - numberAccount), numberAccount);
+            request.setAttribute("page", page);
+            request.setAttribute("lsPage", lsPage);
+            request.setAttribute("lsAccount", lsAccount);
+            request.getRequestDispatcher("/admin/user-list.jsp").forward(request, response);// cau lenh day du lieu ve trang index.jsp
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("/admin/error.jsp");
         }
     }
 
