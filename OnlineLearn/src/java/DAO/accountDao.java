@@ -135,6 +135,7 @@ public class accountDao {
             e.printStackTrace();
         }
         return check >0;
+    }
 
     // update
     public boolean update_code_status(String code, int status, String email) {
