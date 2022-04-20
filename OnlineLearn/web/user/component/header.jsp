@@ -63,7 +63,6 @@
 
     <body id="bg">
         <div class="page-wraper">
-            <div id="loading-icon-bx"></div>
             <!-- Header Top ==== -->
             <header class="header rs-nav header-transparent">
                 <div class="top-bar">
@@ -84,12 +83,12 @@
                                         </select>
                                     </li>
                                     <c:if test="${not empty currentAccount}">
-                                        <li><a href="customer">Welcome ${currentAccount.accountDetail.name}</a></li>
+                                        <li><a href="/user/customer">Welcome ${currentAccount.accountDetail.name}</a></li>
                                         <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
                                         </c:if>
                                         <c:if test="${empty currentAccount}">
                                         <li><a href="${pageContext.request.contextPath}/user/login.jsp">Login</a></li>
-                                        <li><a href="register.jsp">Register</a></li>
+                                        <li><a href="/user/register.jsp">Register</a></li>
                                         </c:if>
 
                                 </ul>
