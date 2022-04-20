@@ -44,7 +44,7 @@
 
         <!-- All PLUGINS CSS ============================================= -->
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/user/assets/css/assets.css">
-
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/user/assets/css/newcss.css">
         <!-- TYPOGRAPHY ============================================= -->
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/user/assets/css/typography.css">
 
@@ -61,27 +61,32 @@
             <div id="loading-icon-bx"></div>
             <div class="account-form">
                 <div class="account-head" style="background-image:url(${pageContext.request.contextPath}/user/assets/images/background/bg2.jpg);">
-                    <a href="index.html"><img src="${pageContext.request.contextPath}/user/assets/images/logo-white-2.png" alt=""></a>
+                    <a href="/user/home"><img src="${pageContext.request.contextPath}/user/assets/images/logo-white-2.png" alt=""></a>
                 </div>
                 <div class="account-form-inner">
                     <div class="account-container">
                         <div class="heading-bx left">
                             <h2 class="title-head">Login to your <span>Account</span></h2>
-                            <p>Don't have an account? <a href="register.html">Create one here</a></p>
-                        </div>	
+                            <p>Don't have an account? <a href="/user/register.jsp">Create one here</a></p>
+                        </div>
+                        <c:if test="${notActiveMess == true}"> 
+                            <div style="color:red">Your account has not active yet. Please active your account.</div>
+                            <button id="demo" class="btn button-sm green">Go Active</button>
+                        </c:if>
+                        <c:if test="${blockMess == true}"> 
+                            <div style="color:red">Your account has been block.</div>
+                            <!--<a href="#" class="btn button-sm green">Go Unblock</a>-->
+                        </c:if>	
                         <form class="contact-bx" action="${pageContext.request.contextPath}/login" method="post">
-                            <div class="row placeani">
+                            <div class="row placeani" style="margin-top: 20px;">
                                 <div class="col-lg-12">
                                     <div class="form-group ${lastInputEmail != null ? "focused" : ""}">
                                         <div class="input-group">
                                             <label>Your Email</label>
                                             <input name="email" type="text" required="" class="form-control" value="${lastInputEmail}">
                                         </div>
-                                        <c:if test="${loginMess == false}"> 
+                                        <c:if test="${not empty loginMess}"> 
                                             <div style="color:red">The username or password you entered is not matched to any account.</div>
-                                        </c:if>
-                                        <c:if test="${loginGoogle == false}"> 
-                                            <div style="color:red">Something wrong. Cannot login with your Google Account</div>
                                         </c:if>
                                     </div>
                                 </div>
@@ -99,24 +104,38 @@
                                             <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
                                             <label class="custom-control-label" for="customControlAutosizing">Remember me</label>
                                         </div>
-                                        <a href="forget-password.html" class="ml-auto">Forgot Password?</a>
+                                        <a href="/user/ForgotPass.jsp" class="ml-auto">Forgot Password?</a>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 m-b30">
+                                    <h5 style="color: red;">${mess}</h5>
                                     <button name="submit" type="submit" value="Submit" class="btn button-md">Login</button>
-                                </div>
-                                <div class="col-lg-12">
-                                    <h6>Login with Social media</h6>
-                                    <div class="d-flex">
-                                        <!--<a class="btn flex-fill m-r5 facebook" href="#"><i class="fa fa-facebook"></i>Facebook</a>-->
-                                        <a class="btn flex-fill m-l5 google-plus" href="https://accounts.google.com/o/oauth2/auth?scope=openid%20profile%20email&redirect_uri=http://localhost:8080/login-google&response_type=code
-                            &client_id=703040187711-72n78kgehkn2rnhbbbo13551cl6777li.apps.googleusercontent.com&approval_prompt=force"><i class="fa fa-google-plus"></i>Google Plus</a>
-                                    </div>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="popup hide__popup">
+            <div class="popup__content">
+                <div class="popup__close"><i class="fa fa-close"></i></div>
+                <form style="margin-top: 100px;" class="contact-bx" action="/user/send-mail" method="POST">
+                    <div class="row placeani">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <label>Your Email</label>
+                                    <input name="email" type="text" value="${lastInputEmail}" readonly class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 m-b30">
+                            <p class="notification" style="color: red;"> ${mess}&nbsp;</p>
+                            <button name="submit" type="submit" value="Submit" class="btn button-md">Confirm Email</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         <!-- External JavaScripts -->
@@ -134,7 +153,8 @@
         <script src="${pageContext.request.contextPath}/user/assets/vendors/owl-carousel/owl.carousel.js"></script>
         <script src="${pageContext.request.contextPath}/user/assets/js/functions.js"></script>
         <script src="${pageContext.request.contextPath}/user/assets/js/contact.js"></script>
-        <script src='${pageContext.request.contextPath}/user/assets/vendors/switcher/switcher.js'></script>
+        <script src="${pageContext.request.contextPath}/user/assets/js/active-account.js"></script>
+        <!--<script src='${pageContext.request.contextPath}/user/assets/vendors/switcher/switcher.js'></script>-->
     </body>
 
 </html>

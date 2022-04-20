@@ -1012,14 +1012,15 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.jackson-databind-2.13.1.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.javax.servlet.jsp.jstl-1.2.4.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.javax.servlet.jsp.jstl-api-1.2.1.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
-<<<<<<< HEAD
-        <copyfiles files="${file.reference.jbcrypt-0.4.jar-1}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
-=======
 
         <copyfiles files="${file.reference.jbcrypt-0.4.jar-1}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
 
+        <copyfiles files="${file.reference.jbcrypt-0.4.jar-1}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
 
->>>>>>> 31596ee034fa9abceae66eb82faa8a264a7798d1
+
+        <copyfiles files="${file.reference.jbcrypt-0.4.jar-1}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+
+
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
@@ -1039,13 +1040,13 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.jackson-databind-2.13.1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.javax.servlet.jsp.jstl-1.2.4.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.javax.servlet.jsp.jstl-api-1.2.1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
-<<<<<<< HEAD
-        <copyfiles files="${file.reference.jbcrypt-0.4.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
-=======
 
         <copyfiles files="${file.reference.jbcrypt-0.4.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
 
->>>>>>> 31596ee034fa9abceae66eb82faa8a264a7798d1
+        <copyfiles files="${file.reference.jbcrypt-0.4.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
+
+        <copyfiles files="${file.reference.jbcrypt-0.4.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
+
     </target>
     <target depends="init" if="dist.ear.dir" name="-clean-webinf-lib">
         <delete dir="${build.web.dir}/WEB-INF/lib"/>

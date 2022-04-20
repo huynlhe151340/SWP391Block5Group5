@@ -9,8 +9,8 @@ package Entity;
  *
  * @author khait
  */
-public class lessons {
-    
+public class lessons extends course {
+
     private int id;
     private String title;
     private String belongingTopic;
@@ -32,6 +32,34 @@ public class lessons {
         this.type = type;
         this.status = status;
         this.courseID = courseID;
+    }
+
+    public lessons(String title, String belongingTopic, String content, String videoLink, String type, int status, int courseID) {
+        this.title = title;
+        this.belongingTopic = belongingTopic;
+        this.content = content;
+        this.videoLink = videoLink;
+        this.type = type;
+        this.status = status;
+        this.courseID = courseID;
+    }
+
+    private String name;
+
+    public lessons(int id, String title, String belongingTopic, String name, int status) {
+        this.id = id;
+        this.title = title;
+        this.belongingTopic = belongingTopic;
+        this.status = status;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getId() {

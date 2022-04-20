@@ -60,7 +60,7 @@
             <div id="loading-icon-bx"></div>
             <div class="account-form">
                 <div class="account-head" style="background-image:url(assets/images/background/bg2.jpg);">
-                    <a href="index.html"><img src="assets/images/logo-white-2.png" alt=""></a>
+                    <a href="/user/home"><img src="assets/images/logo-white-2.png" alt=""></a>
                 </div>
                 <div class="account-form-inner">
                     <div class="account-container">
@@ -84,9 +84,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
                                 <div class="col-lg-12 m-b30">
                                     <p class="notification" style="color: red;"> ${mess}&nbsp;</p>
                                     <p class="notification" style="color: #00CC00;"> ${mess_Sucess}&nbsp;</p>
@@ -95,7 +92,7 @@
                             </div>
                         </form>
                         <div class="heading-bx left">                           
-                            <p>Login Your Account <a href="login.html">Click here</a></p>
+                            <p>Login Your Account <a href="/user/login.jsp">Click here</a></p>
                         </div>
                     </div>
                 </div>
@@ -116,5 +113,5 @@
         <script src="assets/vendors/owl-carousel/owl.carousel.js"></script>
         <script src="assets/js/functions.js"></script>
         <script src="assets/js/contact.js"></script>
-        <script src='assets/vendors/switcher/switcher.js'></script>
+        <!--<script src='assets/vendors/switcher/switcher.js'></script>-->
     </body>

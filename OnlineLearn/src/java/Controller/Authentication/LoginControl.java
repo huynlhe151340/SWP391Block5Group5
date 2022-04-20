@@ -8,7 +8,6 @@ package Controller.Authentication;
 import DAO.Login.loginDAO;
 import Entity.accounts;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,25 +39,45 @@ public class LoginControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        
-        System.out.println("here");
+
+         System.out.println("here");
         if (loginDAO.isHaveEmail(email)) {
             if (loginDAO.checkPassword(email, password)) {
                 HttpSession session = request.getSession(); //tao session de luu phien dang nhap
                 try {
                     accounts currentAccount = loginDAO.getAccountByEmail(email);
+
+                    if (currentAccount.getStatus() == 1) {
+                        request.setAttribute("lastInputEmail", email);
+                        request.setAttribute("lastInputPassword", password);
+                        request.setAttribute("notActiveMess", true);
+                        request.getRequestDispatcher("user/login.jsp").forward(request, response);
+                        return;
+                    }
+                    if (currentAccount.getStatus() == 3) {
+                        request.setAttribute("lastInputEmail", email);
+                        request.setAttribute("lastInputPassword", password);
+                        request.setAttribute("blockMess", true);
+                        request.getRequestDispatcher("user/login.jsp").forward(request, response);
+                        return;
+                    }
                     session.setAttribute("currentAccount", currentAccount);
+                    if (currentAccount.getRoleID() == 1) {
+                        request.getRequestDispatcher("admin/index.jsp").forward(request, response);
+                    }
+                    if (currentAccount.getRoleID() == 2) {
+                        request.setAttribute("isIndex", true);
+                        request.getRequestDispatcher("user/index.jsp").forward(request, response);
+                    }
                 } catch (Exception ex) {
-                   ex.printStackTrace();
+                    ex.printStackTrace();
                 }
-                request.setAttribute("isIndex", true);
-                request.getRequestDispatcher("user/index.jsp").forward(request, response);
             }
         }
-            request.setAttribute("lastInputEmail", email);
-            request.setAttribute("lastInputPassword", password);
-            request.setAttribute("loginMess", false);
-            request.getRequestDispatcher("user/login.jsp").forward(request, response);
+        request.setAttribute("lastInputEmail", email);
+        request.setAttribute("lastInputPassword", password);
+        request.setAttribute("loginMess", "The username or password you entered is not matched to any account.");
+        request.getRequestDispatcher("user/login.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

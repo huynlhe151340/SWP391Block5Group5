@@ -13,35 +13,40 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import utils.JavaMail;
+import utils.RandomString;
 
 /**
  *
- * @author Admin
+ * @author khait
  */
-@WebServlet(name = "ForgotConfirm_Controller", urlPatterns = {"/user/ForgotConfirm_Controller"})
-public class ForgotConfirm_Controller extends HttpServlet {
+@WebServlet(name = "SendMailController", urlPatterns = {"/user/send-mail"})
+public class SendMailController extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
+        try {
             String email = request.getParameter("email");
-            session.setAttribute("email",email);
-            String code_confirm = request.getParameter("code").trim();
-            String code = (String) session.getAttribute("code");
-            accountDao dao = new accountDao();
-
-            if (code.equalsIgnoreCase(code_confirm)) {
-                dao.update_code_status(code, 2, email);
-                request.getRequestDispatcher("/user/NewPassWord.jsp").forward(request, response);
-            } else {
-                request.setAttribute("email", email);
-                request.setAttribute("mess", "Code không khớp");
-                request.getRequestDispatcher("/user/Confirm_ForgotPass.jsp").forward(request, response);
-            }
-
+            RandomString rd = new RandomString();
+            String code = rd.generateRandomString();
+            String subject = "Code to create new password";
+            new JavaMail().sentEmail(email, subject, code);
+            boolean updateCode = new accountDao().update_code_status(code, 1, email);
+            request.setAttribute("email", email);
+            request.getRequestDispatcher("/user/active-account.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("/user/error.jsp");
         }
     }
 
