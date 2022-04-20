@@ -16,8 +16,8 @@ import java.util.Properties;
  */
 public class JavaMail {
 
-    private final String MAIL = "hieu03072000@gmail.com";
-    private final String PASSWORD = "songlaphaichat";
+    private final String MAIL = "khaitran30062000@gmail.com";
+    private final String PASSWORD = "khai123098";
 
     public void sentEmail(String toEmail, String subject, String text) {
 

@@ -85,24 +85,29 @@ public class JSPPageFilter implements Filter {
 //                return;
 //            }
 //            httpResponse.sendRedirect("user/index.jsp");
-            if(url.contains("/admin") || url.contains("/admin/")){
+            if (url.contains("/admin") || url.contains("/admin/")) {
                 httpResponse.sendRedirect("/user/login.jsp");
                 return;
             }
             return;
         }
         //  Đăng Nhập rồi thì không vào trang login.jsp nữa
-            if(url.contains("user/login.jsp")){
-                httpResponse.sendRedirect("/user/index.jsp");
-                return;
+        if (url.contains("user/login.jsp")) {
+            if (currentAccount.getRoleID() == 1) {
+                httpResponse.sendRedirect("/admin/index.jsp");
             }
+            if (currentAccount.getRoleID() == 2) {
+                httpResponse.sendRedirect("/user/index.jsp");
+            }
+            return;
+        }
         //        Đã đăng nhập
-            if (url.equals("/")) {
-                httpResponse.sendRedirect("/user/index.jsp");
-                return;
-            }
-        if(currentAccount.getRoleID() == 2){
-            if(url.contains("/admin") || url.contains("/admin/")){
+        if (url.equals("/")) {
+            httpResponse.sendRedirect("/user/index.jsp");
+            return;
+        }
+        if (currentAccount.getRoleID() == 2) {
+            if (url.contains("/admin") || url.contains("/admin/")) {
                 httpResponse.sendRedirect("/user/index.jsp");
                 return;
             }
@@ -114,7 +119,6 @@ public class JSPPageFilter implements Filter {
                 return;
             }
         }
-
 
     }
 
@@ -164,7 +168,7 @@ public class JSPPageFilter implements Filter {
 
         Throwable problem = null;
         try {
-            chain.doFilter(request, response);          
+            chain.doFilter(request, response);
         } catch (Throwable t) {
             // If an exception is thrown somewhere down the filter chain,
             // we still want to execute our after processing, and then

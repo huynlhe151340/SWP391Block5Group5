@@ -59,7 +59,7 @@
             <div id="loading-icon-bx"></div>
             <div class="account-form">
                 <div class="account-head" style="background-image:url(${pageContext.request.contextPath}/user/assets/images/background/bg2.jpg);">
-                    <a href="index.jsp"><img src="${pageContext.request.contextPath}/user/assets/images/logo-white-2.png" alt=""></a>
+                    <a href="/user/home"><img src="${pageContext.request.contextPath}/user/assets/images/logo-white-2.png" alt=""></a>
                 </div>
                 <div class="account-form-inner">
                     <div class="account-container">

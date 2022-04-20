@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -120,22 +122,22 @@ public class accountDao {
         return null;
     }
 
+    public boolean changePassword(String newPassword, int id) {
 
-    public boolean changePassword(String newPassword, int id){
-        
         int check = 0;
         String sql = "UPDATE accounts SET password= ? WHERE id= ?";
-        try(Connection con = SQLServerConnection.getConnection();
+        try (Connection con = SQLServerConnection.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setObject(1, newPassword);
             ps.setObject(2, id);
-            
+
             check = ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return check >0;
+        return check > 0;
     }
+
     // update
     public boolean update_code_status(String code, int status, String email) {
 
@@ -174,5 +176,82 @@ public class accountDao {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public List<accounts> getAllAccount() {
+
+        List<accounts> list = new ArrayList<>();
+        String sql = "SELECT * FROM accounts";
+        try (Connection con = SQLServerConnection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                accounts ac = new accounts(
+                        rs.getInt("id"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getInt("account_detailID"),
+                        rs.getInt("role_id"),
+                        rs.getInt("status"),
+                        rs.getDate("create_date"),
+                        rs.getString("active_code"));
+                list.add(ac);
+            }
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public int countTotalAccount() {
+        return getAllAccount().size();
+    }
+    
+    public List<accounts> getAccountPerPage(int pageIndex, int numberProduct) {
+        List<accounts> ls = new ArrayList<>();
+        String sql = "SELECT * FROM accounts ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROW ONLY";
+
+        try (Connection con = SQLServerConnection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, pageIndex);
+            ps.setObject(2, numberProduct);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                accounts ac = new accounts(
+                        rs.getInt("id"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getInt("account_detailID"),
+                        rs.getInt("role_id"),
+                        rs.getInt("status"),
+                        rs.getDate("create_date"),
+                        rs.getString("active_code"));
+                ls.add(ac);
+            }
+            return ls;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+    
+    public boolean updateStatus(int status, int id){
+        int check = 0;
+        String sql = "UPDATE accounts SET status= ? WHERE id= ?";
+        try(Connection con = SQLServerConnection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, status);
+            ps.setObject(2, id);
+            
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+
+    public static void main(String[] args) {
+        boolean a = new accountDao().update_code_status("jgBvFn", 2, "khaitqhe141672@fpt.edu.vn");
     }
 }

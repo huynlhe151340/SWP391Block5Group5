@@ -83,7 +83,8 @@ public class loginDAO {
                 con.close();
             }
         }
-        return BCrypt.checkpw(password, pass);
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(10));
+        return BCrypt.checkpw(pass, hashedPassword);
     }
     
     public static accounts getAccountByEmail(String email) throws SQLException {
@@ -169,7 +170,7 @@ public class loginDAO {
     
     public static void main(String[] args) throws SQLException {
 //        System.out.println(isHaveEmail("a"));
-System.out.println(checkPassword("khaitqhe141672@fpt.edu.v", "123456789"));
+System.out.println(checkPassword("khaitqhe141672@fpt.edu.vn", "123456"));
 //System.out.println(getAccountByEmail("huynlhe151340@fpt.edu.vn"));
 //System.out.println(getAccountDetailsByID(1));
     }
