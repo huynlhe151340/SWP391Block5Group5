@@ -1,22 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package JDBC;
 
-/**
- *
- * @author Admin
- */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author AnhDT
- */
 public class SQLServerConnection {
 
     public static final String HOSTNAME = "localhost";
@@ -25,10 +13,6 @@ public class SQLServerConnection {
     public static final String USERNAME = "sa";
     public static final String PASSWORD = "123";
 
-    /**
-     * Get connection to MSSQL Server
-     * @return Connection
-     */
     public static Connection getConnection() {
         
         // Create a variable for the connection string.
