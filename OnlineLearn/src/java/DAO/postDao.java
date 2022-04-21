@@ -21,8 +21,8 @@ public class postDao {
             String sql = "SELECT * FROM post ORDER BY update_date DESC\n"
                     + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
             ps = con.prepareStatement(sql);
-            ps.setInt(1, pageIndex);
-            ps.setInt(2, pageSize);
+            ps.setInt(1, pageIndex * pageSize);
+            ps.setInt(2, pageIndex * pageSize + pageSize);
             rs = ps.executeQuery();
             List<post> list = new ArrayList<>();
             while (rs.next()) {
@@ -91,6 +91,23 @@ public class postDao {
         } finally {
             ps.close();
         }
+    }
+    
+    public int getNumberOfPost() throws SQLException {
+        try {
+            con = SQLServerConnection.getConnection();
+            String sql = "SELECT COUNT(*) as number_post from post";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("number_post");
+            }
+        } catch (SQLException ex) {
+            return 0;
+        } finally {
+            ps.close();
+        }
+        return 0;
     }
 
     public static void main(String[] args) throws SQLException {

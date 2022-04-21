@@ -19,24 +19,27 @@
         <meta property="og:image" content="" />
         <meta name="format-detection" content="telephone=no">
         <!-- FAVICONS ICON ============================================= -->
-        <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
-        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
+        <link rel="icon" href="${pageContext.request.contextPath}/user/assets/images/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/user/assets/images/favicon.png" />
         <!-- PAGE TITLE HERE ============================================= -->
         <title>EduChamp : Education HTML Template </title>
         <!-- MOBILE SPECIFIC ============================================= -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- All PLUGINS CSS ============================================= -->
-        <link rel="stylesheet" type="text/css" href="assets/css/assets.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/user/assets/css/assets.css">
         <!-- TYPOGRAPHY ============================================= -->
-        <link rel="stylesheet" type="text/css" href="assets/css/typography.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/user/assets/css/typography.css">
         <!-- SHORTCODES ============================================= -->
-        <link rel="stylesheet" type="text/css" href="assets/css/shortcodes/shortcodes.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/user/assets/css/shortcodes/shortcodes.css">
         <!-- STYLESHEETS ============================================= -->
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-        <link class="skin" rel="stylesheet" type="text/css" href="assets/css/color/color-1.css">
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
-        <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/user/assets/css/style.css">
+        <link class="skin" rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/user/assets/css/color/color-1.css">
+        <!-- REVOLUTION SLIDER CSS ============================================= -->
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/user/assets/vendors/revolution/css/layers.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/user/assets/vendors/revolution/css/settings.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/user/assets/vendors/revolution/css/navigation.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/user/assets/css/custom.css">
+        <!-- REVOLUTION SLIDER END -->
     </head>
     <body id="bg">
         <div class="page-wraper">
@@ -79,9 +82,10 @@
                                             <div class="info-bx">
                                                 <ul class="media-post">
                                                     <li><a href="#"><i class="fa fa-calendar">${c.getUpdateDate()}</i></a></li>
-                                                    <!--<li><a href="#"><i class="fa fa-user"></i>By William</a></li>-->
+                                                    <li><a href="#"><i class="fa fa-user"></i>${c.getAuthor()}</a></li>
                                                 </ul>
-                                                <h5 class="post-title"><a href="post?id=${c.getId()}">${c.getTitle()}</a></h5>
+                                                <h5 class="post-title">
+                                                    <a href="post?id=${c.getId()}">${c.getTitle()}</a></h5>
                                                 <p>${c.getPostDetail()}</p>
                                                 <div class="post-extra">
                                                     <a href="post?id=${c.getId()}" class="btn-link">READ MORE</a>
@@ -95,11 +99,16 @@
                             <!-- Pagination ==== -->
                             <div class="pagination-bx rounded-sm gray clearfix">
                                 <ul class="pagination">
-                                    <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
+                                    <!--<li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>-->
+                                    <c:forEach begin="1" end="${numOfPage}" var="p">
+                                        <c:if test="${pageIndex==p}">
+                                            <li class="active"><span href="posts?page=${p}">${p}</span></li>
+                                            </c:if>
+                                            <c:if test="${pageIndex!=p}">
+                                            <li><a href="posts?page=${p}">${p}</a></li>
+                                            </c:if>
+                                    </c:forEach>
+                                    <!--<li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>-->
                                 </ul>
                             </div>
                             <!-- Pagination END ==== -->

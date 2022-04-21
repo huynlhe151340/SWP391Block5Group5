@@ -121,11 +121,28 @@ public class courseDao {
             ps.close();
         }
     }
+    
+    public int getNumberOfCourse() throws SQLException {
+        try {
+            con = SQLServerConnection.getConnection();
+            String sql = "SELECT COUNT(*) AS number_courses FROM courses";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("number_courses");
+            }
+        } catch (SQLException ex) {
+            return 0;
+        } finally {
+            ps.close();
+        }
+        return 0;
+    }
 
     public static void main(String[] args) throws SQLException {
         courseDao d = new courseDao();
         List<course> list = d.getTopCourse();
-        System.out.println(d.getCourseById(1));
+        System.out.println(d.getNumberOfCourse());
         for (course b : list) {
             System.out.println(b);
         }

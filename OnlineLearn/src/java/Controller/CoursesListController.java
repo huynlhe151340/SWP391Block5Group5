@@ -1,7 +1,7 @@
 package Controller;
 
-import DAO.postDao;
-import Entity.post;
+import DAO.courseDao;
+import Entity.course;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "PostController", urlPatterns = {"/user/posts"})
-public class PostController extends HttpServlet {
+@WebServlet(name = "CoursesListController", urlPatterns = {"/user/courses"})
+public class CoursesListController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,22 +28,21 @@ public class PostController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        postDao d = new postDao();
+        courseDao c = new courseDao();
         int pageIndex = 1;
+        int pageSize = 4;
         try {
             pageIndex = Integer.parseInt(request.getParameter("page"));
         } catch (NumberFormatException ex) {
             pageIndex = 1;
         }
-
-        int pageSize = 3;
-        List<post> listP = d.getAllPosts((pageIndex - 1), pageSize);
-        int totalPost = d.getNumberOfPost();
-        int numOfPage = totalPost % pageSize == 0 ? totalPost / pageSize : (totalPost / pageSize) + 1;
-        request.setAttribute("listPost", listP);
+        List<course> listC = c.getAllCourses(pageIndex - 1, pageSize);
+        int totalCourse = c.getNumberOfCourse();
+        int numOfPage = totalCourse % pageSize == 0 ? totalCourse / pageSize : (totalCourse / pageSize) + 1;
+        request.setAttribute("listCourse", listC);
         request.setAttribute("pageIndex", pageIndex);
         request.setAttribute("numOfPage", numOfPage);
-        request.getRequestDispatcher("/user/post.jsp").forward(request, response);
+        request.getRequestDispatcher("/user/courses.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,7 +60,7 @@ public class PostController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CoursesListController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -79,7 +78,7 @@ public class PostController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CoursesListController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

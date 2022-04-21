@@ -278,11 +278,11 @@
                                          data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]"
                                          data-paddingleft="[0,0,0,0]"
                                          style="z-index: 6; font-family:rubik; font-weight:700; text-align:center; white-space: normal;">
-                                        Welcome To University
+                                        Welcome To Our Website
                                     </div>
 
                                     <!-- LAYER NR. 3 -->
-                                    <div class="tp-caption Newspaper-Subtitle   tp-resizeme" id="slide-100-layer-3"
+<!--                                    <div class="tp-caption Newspaper-Subtitle   tp-resizeme" id="slide-100-layer-3"
                                          data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
                                          data-y="['top','top','top','top']" data-voffset="['210','210','210','210']"
                                          data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
@@ -293,7 +293,7 @@
                                          data-paddingleft="[0,0,0,0]"
                                          style="z-index: 7; white-space: nowrap; color:#fff; font-family:rubik; font-size:18px; font-weight:400;">
                                         Batter Education For A Better
-                                    </div>
+                                    </div>-->
 
                                     <!-- LAYER NR. 3 -->
                                     <div class="tp-caption Newspaper-Subtitle   tp-resizeme" id="slide-100-layer-4"
@@ -306,11 +306,10 @@
                                          data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
                                          data-paddingleft="[0,0,0,0]"
                                          style="z-index: 7; text-transform:capitalize; white-space: unset; color:#fff; font-family:rubik; font-size:18px; line-height:28px; font-weight:400;">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                        Ipsum has been the industry's standard dummy text ever since the
+                                       Learn, Learn more, Learn forever
                                     </div>
                                     <!-- LAYER NR. 4 -->
-                                    <div class="tp-caption Newspaper-Button rev-btn " id="slide-100-layer-5"
+<!--                                    <div class="tp-caption Newspaper-Button rev-btn " id="slide-100-layer-5"
                                          data-x="['center','center','center','center']" data-hoffset="['90','80','75','90']"
                                          data-y="['top','top','top','top']" data-voffset="['400','400','400','420']"
                                          data-width="none" data-height="none" data-whitespace="nowrap" data-type="button"
@@ -332,7 +331,7 @@
                                          data-paddingtop="[12,12,12,12]" data-paddingright="[30,35,35,15]"
                                          data-paddingbottom="[12,12,12,12]" data-paddingleft="[30,35,35,15]"
                                          style="z-index: 8; white-space: nowrap; outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer; border-radius:30px;">
-                                        CONTACT US</div>
+                                        CONTACT US</div>-->
                                 </li>
                                 <li data-index="rs-200" data-transition="parallaxvertical" data-slotamount="default"
                                     data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default"
@@ -373,7 +372,7 @@
                                          data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]"
                                          data-paddingleft="[0,0,0,0]"
                                          style="z-index: 6; font-family:rubik; font-weight:700; text-align:center; white-space: normal;text-transform:uppercase;">
-                                        Welcome To University
+                                        Welcome To Our Website
                                     </div>
 
                                     <!-- LAYER NR. 3 -->
@@ -401,11 +400,10 @@
                                          data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
                                          data-paddingleft="[0,0,0,0]"
                                          style="z-index: 7; text-transform:capitalize; white-space: unset; color:#fff; font-family:rubik; font-size:18px; line-height:28px; font-weight:400;">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                        Ipsum has been the industry's standard dummy text ever since the
+                                        Learn, Learn more, Learn forever
                                     </div>
                                     <!-- LAYER NR. 4 -->
-                                    <div class="tp-caption Newspaper-Button rev-btn " id="slide-200-layer-5"
+<!--                                    <div class="tp-caption Newspaper-Button rev-btn " id="slide-200-layer-5"
                                          data-x="['center','center','center','center']" data-hoffset="['90','80','75','90']"
                                          data-y="['top','top','top','top']" data-voffset="['400','400','400','420']"
                                          data-width="none" data-height="none" data-whitespace="nowrap" data-type="button"
@@ -427,7 +425,7 @@
                                          data-paddingtop="[12,12,12,12]" data-paddingright="[30,35,35,15]"
                                          data-paddingbottom="[12,12,12,12]" data-paddingleft="[30,35,35,15]"
                                          style="z-index: 8; white-space: nowrap; outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer; border-radius:30px;">
-                                        CONTACT US</div>
+                                        CONTACT US</div>-->
                                 </li>
                                 <!-- SLIDE  -->
                             </ul>
