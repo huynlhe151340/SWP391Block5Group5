@@ -29,7 +29,7 @@ public class ForgotConfirm_Controller extends HttpServlet {
             HttpSession session = request.getSession();
             String email = request.getParameter("email");
             session.setAttribute("email",email);
-            String code_confirm = request.getParameter("code");
+            String code_confirm = request.getParameter("code").trim();
             String code = (String) session.getAttribute("code");
             accountDao dao = new accountDao();
 
@@ -39,7 +39,7 @@ public class ForgotConfirm_Controller extends HttpServlet {
             } else {
                 request.setAttribute("email", email);
                 request.setAttribute("mess", "Code không khớp");
-                request.getRequestDispatcher("/user/Confirm_forgetpass.jsp").forward(request, response);
+                request.getRequestDispatcher("/user/Confirm_ForgotPass.jsp").forward(request, response);
             }
 
         }

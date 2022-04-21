@@ -1,5 +1,10 @@
 /OnlineLearn/nbproject/private/
 /OnlineLearn/build/
+<<<<<<< HEAD
 /OnlineLearn/src/java/JDBC/
 /DemoAjax/nbproject/private/
 
+=======
+/DemoAjax/nbproject/private/
+/OnlineLearn/dist/
+>>>>>>> 267d6ecf54a8d483e5cdc59b8eff9d7e18d9af52

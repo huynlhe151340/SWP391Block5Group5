@@ -1,0 +1,149 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 19, 2022, 4:00:19 PM
+    Author     : khait
+*/
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    transition: 0.3s;
+    transform: scale(1);
+}
+
+.popup__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    margin: 0 auto;
+    height: 55rem;
+    transform: translate(-50%, -50%);
+    padding: 1.6rem;
+    display: table;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.popup__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    padding: 1.5rem;
+    background-color: #f1f1f1;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.popup__close i {
+    width: 1.7rem;
+    height: 1.7rem;
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 6px;
+}
+
+.popup__close:hover {
+    background-color: red;
+}
+
+.popup__left {
+    display: table-cell;
+    width: 50%;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.popup__right {
+    display: table-cell;
+    width: 50%;
+    vertical-align: middle;
+    padding: 3rem 5rem;
+}
+
+.popup-img__container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.popup-img__container img.popup__img {
+    display: block;
+    width: 60rem;
+    height: 45rem;
+    max-width: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+
+.right__content {
+    text-align: center;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.right__content h1 {
+    font-size: 4rem;
+    color: #000;
+    margin-bottom: 1.6rem;
+}
+
+.right__content h1 span {
+    color: #59b210;
+}
+
+.right__content p {
+    font-size: 1.8rem;
+    color: #666;
+    margin-bottom: 1.6rem;
+}
+
+.popup__form {
+    width: 100%;
+    padding: 2rem 0;
+    text-indent: 1rem;
+    margin-bottom: 1.6rem;
+    border-radius: 3rem;
+    background-color: #f1f1f1;
+    border: none;
+}
+
+.popup__form:focus {
+    outline: none;
+}
+
+.right__content a:link,
+.right__content a:visited {
+    display: inline-block;
+    padding: 1.8rem 5rem;
+    border-radius: 3rem;
+    font-weight: 700;
+    color: #fff;
+    background-color: #222;
+    border: 1px solid #666;
+    transition: 0.3s;
+}
+
+.right__content a:hover {
+    background-color: #59b210;
+    border: 1px solid #666;
+    color: #222;
+}
+
+.hide__popup {
+    transform: scale(0.2);
+    opacity: 0;
+    visibility: hidden;
+}
+

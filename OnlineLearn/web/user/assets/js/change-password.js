@@ -24,12 +24,12 @@ function displayChangePasswordNotification() {
     }
 }
 
-function onClickChangePassword(){
+function onClickChangePassword() {
     const oldPassword = document.getElementById('oldPassword').value;
     const newPassword = document.getElementById('newPassword').value;
 //    const email = document.getElementById('email').value;
     const reNewPassword = document.getElementById('re-newPassword').value;
-    
+
     if (confirm("Do you continue?")) {
         $.ajax({
             type: "post",
@@ -49,4 +49,3 @@ function onClickChangePassword(){
         });
     }
 }
-

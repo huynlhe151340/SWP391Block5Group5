@@ -104,5 +104,4 @@ public class post {
     public String toString() {
         return "post{" + "id=" + id + ", title=" + title + ", author=" + author + ", updateDate=" + updateDate + ", categoryID=" + categoryID + ", postDetail=" + postDetail + ", image=" + image + ", status=" + status + '}';
     }
-
 }
