@@ -85,8 +85,8 @@
                                                     <li><a href="#"><i class="fa fa-user"></i>${c.getAuthor()}</a></li>
                                                 </ul>
                                                 <h5 class="post-title">
-                                                    <a href="post?id=${c.getId()}">${c.getTitle()}</a></h5>
-                                                <p>${c.getPostDetail()}</p>
+                                                    <a href="post?id=${c.getId()}" class="text-claim-2">${c.getTitle()}</a></h5>
+                                                <p class="text-claim-3">${c.getPostDetail()}</p>
                                                 <div class="post-extra">
                                                     <a href="post?id=${c.getId()}" class="btn-link">READ MORE</a>
                                                     <!--<a href="#" class="comments-bx"><i class="fa fa-comments-o"></i>20 Comment</a>-->

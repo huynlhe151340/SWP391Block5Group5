@@ -17,14 +17,15 @@ public class courseDao {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    public List<course> getAllCourses(int pageIndex, int pageSize) throws SQLException {
+    public List<course> getCoursesByPage(int pageIndex, int pageSize) throws SQLException {
         try {
             con = SQLServerConnection.getConnection();
             String sql = "SELECT *,ct.name as category_name,ct.status as category_status "
-                    + "FROM courses c JOIN category ct ON c.category_id = ct.id"
-                    + " ORDER BY c.id DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+                    + "FROM courses c JOIN category ct ON c.category_id = ct.id "
+                    + "WHERE c.status = 1 ORDER BY c.id DESC "
+                    + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
             ps = con.prepareStatement(sql);
-            ps.setInt(1, pageIndex);
+            ps.setInt(1, pageIndex * pageSize);
             ps.setInt(2, pageSize);
             rs = ps.executeQuery();
             List<course> list = new ArrayList<>();
@@ -93,7 +94,7 @@ public class courseDao {
             con = SQLServerConnection.getConnection();
             String sql = "SELECT TOP 3 *,ct.name as category_name,ct.status as category_status "
                     + "FROM courses c JOIN category ct ON c.category_id = ct.id"
-                    + " ORDER BY c.id DESC";
+                    + " WHERE c.status = 1 ORDER BY c.id DESC";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             List<course> list = new ArrayList<>();
@@ -125,7 +126,8 @@ public class courseDao {
     public int getNumberOfCourse() throws SQLException {
         try {
             con = SQLServerConnection.getConnection();
-            String sql = "SELECT COUNT(*) AS number_courses FROM courses";
+            String sql = "SELECT COUNT(*) AS number_courses FROM courses "
+                    + "WHERE status = 1";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             if (rs.next()) {

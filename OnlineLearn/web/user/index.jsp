@@ -54,7 +54,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 heading-bx left">
-                                <h2 class="title-head">Our <span>Courses</span></h2>
+                                <h2 class="title-head">Recent <span>Courses</span></h2>
                             </div>
                         </div>
                         <div class="row">
@@ -68,7 +68,7 @@
                                                 <a href="courseDetail?id=${c.getId()}" class="btn">Read More</a>
                                             </div>
                                             <div class="info-bx text-center">
-                                                <h5><a href="courseDetail?id=${c.getId()}">${c.getName()}</a></h5>
+                                                <h5><a href="courseDetail?id=${c.getId()}" class="text-claim-2">${c.getName()}</a></h5>
                                                 <span>${c.getCategory().getCategory()}</span>
                                             </div>
                                             <div class="cours-more-info">
@@ -105,8 +105,8 @@
                                                 <li><a href="post?id=${p.getId()}"><i class="fa fa-calendar"></i>${p.getUpdateDate()}</a></li>
                                                 <li><a href="postD?id=${p.getId()}"><i class="fa fa-user"></i>By ${p.getAuthor()}</a></li>
                                             </ul>
-                                            <h5 class="post-title"><a href="post?id=${p.getId()}">${p.getTitle()}.</a></h5>
-                                            <p>${p.getPostDetail()}.</p>
+                                                <h5 class="post-title"><a href="post?id=${p.getId()}" class="text-claim-2">${p.getTitle()}.</a></h5>
+                                            <p class="text-claim-3">${p.getPostDetail()}.</p>
                                             <div class="post-extra">
                                                 <a href="post?id=${p.getId()}" class="btn-link">READ MORE</a>
                                             </div>

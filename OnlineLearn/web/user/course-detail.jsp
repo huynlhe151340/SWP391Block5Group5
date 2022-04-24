@@ -107,7 +107,7 @@
                                 <div class="col-lg-9 col-md-8 col-sm-12">
                                     <div class="courses-post">
                                         <div class="ttr-post-media media-effect">
-                                            <div><img src="assets/images/courses/${course.getThumbnail()}" alt=""></div>
+                                            <div><img src="assets/images/courses/1.png" style="height: 500px;object-fit: contain" alt=""></div>
                                         </div>
                                         <div class="ttr-post-info">
                                             <div class="ttr-post-title ">
@@ -123,11 +123,11 @@
                                         <div class="row">
                                             <div class="col-md-12 col-lg-4">
                                                 <ul class="course-features">
-                                                    <li><i class="ti-book"></i> <span class="label">Lessons</span> <span class="value">8</span></li>
+                                                    <!--<li><i class="ti-book"></i> <span class="label">Lessons</span> <span class="value">8</span></li>-->
                                                     <li><i class="ti-time"></i> <span class="label">Duration</span> <span class="value">${course.getDuration()}</span></li>
                                                     <li><i class="ti-stats-up"></i> <span class="label">Skill level</span> <span class="value">${course.getSkillLevel()}</span></li>
                                                     <li><i class="ti-smallcap"></i> <span class="label">Language</span> <span class="value">${course.getLanguage()}</span></li>
-                                                    <li><i class="ti-user"></i> <span class="label">Students</span> <span class="value">32</span></li>
+                                                    <!--<li><i class="ti-user"></i> <span class="label">Students</span> <span class="value">32</span></li>-->
                                                 </ul>
                                             </div>
                                             <div class="col-md-12 col-lg-8">
@@ -147,74 +147,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="m-b30" id="curriculum">
-                                        <h4>Curriculum</h4>
-                                        <ul class="curriculum-list">
-                                            <li>
-                                                <h5>First Level</h5>
-                                                <ul>
-                                                    <li>
-                                                        <div class="curriculum-list-box">
-                                                            <span>Lesson 1.</span> Introduction to UI Design
-                                                        </div>
-                                                        <span>120 minutes</span>
-                                                    </li>
-                                                    <li>
-                                                        <div class="curriculum-list-box">
-                                                            <span>Lesson 2.</span> User Research and Design
-                                                        </div>
-                                                        <span>60 minutes</span>
-                                                    </li>
-                                                    <li>
-                                                        <div class="curriculum-list-box">
-                                                            <span>Lesson 3.</span> Evaluating User Interfaces Part 1
-                                                        </div>
-                                                        <span>85 minutes</span>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <h5>Second Level</h5>
-                                                <ul>
-                                                    <li>
-                                                        <div class="curriculum-list-box">
-                                                            <span>Lesson 1.</span> Prototyping and Design
-                                                        </div>
-                                                        <span>110 minutes</span>
-                                                    </li>
-                                                    <li>
-                                                        <div class="curriculum-list-box">
-                                                            <span>Lesson 2.</span> UI Design Capstone
-                                                        </div>
-                                                        <span>120 minutes</span>
-                                                    </li>
-                                                    <li>
-                                                        <div class="curriculum-list-box">
-                                                            <span>Lesson 3.</span> Evaluating User Interfaces Part 2
-                                                        </div>
-                                                        <span>120 minutes</span>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <h5>Final</h5>
-                                                <ul>
-                                                    <li>
-                                                        <div class="curriculum-list-box">
-                                                            <span>Part 1.</span> Final Test
-                                                        </div>
-                                                        <span>120 minutes</span>
-                                                    </li>
-                                                    <li>
-                                                        <div class="curriculum-list-box">
-                                                            <span>Part 2.</span> Online Test
-                                                        </div>
-                                                        <span>120 minutes</span>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>

@@ -30,13 +30,13 @@ public class CoursesListController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         courseDao c = new courseDao();
         int pageIndex = 1;
-        int pageSize = 4;
+        int pageSize = 3;
         try {
             pageIndex = Integer.parseInt(request.getParameter("page"));
         } catch (NumberFormatException ex) {
             pageIndex = 1;
         }
-        List<course> listC = c.getAllCourses(pageIndex - 1, pageSize);
+        List<course> listC = c.getCoursesByPage(pageIndex - 1, pageSize);
         int totalCourse = c.getNumberOfCourse();
         int numOfPage = totalCourse % pageSize == 0 ? totalCourse / pageSize : (totalCourse / pageSize) + 1;
         request.setAttribute("listCourse", listC);

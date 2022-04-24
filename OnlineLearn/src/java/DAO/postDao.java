@@ -15,14 +15,15 @@ public class postDao {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    public List<post> getAllPosts(int pageIndex, int pageSize) throws SQLException {
+    public List<post> getPostsByPage(int pageIndex, int pageSize) throws SQLException {
         try {
             con = SQLServerConnection.getConnection();
-            String sql = "SELECT * FROM post ORDER BY update_date DESC\n"
+            String sql = "SELECT * FROM post WHERE status = 1 "
+                    + "ORDER BY update_date DESC "
                     + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
             ps = con.prepareStatement(sql);
             ps.setInt(1, pageIndex * pageSize);
-            ps.setInt(2, pageIndex * pageSize + pageSize);
+            ps.setInt(2, pageSize);
             rs = ps.executeQuery();
             List<post> list = new ArrayList<>();
             while (rs.next()) {
@@ -71,7 +72,8 @@ public class postDao {
     public List<post> getTopPostRecent() throws SQLException {
         try {
             con = SQLServerConnection.getConnection();
-            String sql = "SELECT TOP 3 * FROM post ORDER BY update_date DESC";
+            String sql = "SELECT TOP 3 * FROM post WHERE status = 1 "
+                    + "ORDER BY update_date DESC";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             List<post> list = new ArrayList<>();
@@ -96,7 +98,8 @@ public class postDao {
     public int getNumberOfPost() throws SQLException {
         try {
             con = SQLServerConnection.getConnection();
-            String sql = "SELECT COUNT(*) as number_post from post";
+            String sql = "SELECT COUNT(*) as number_post FROM post "
+                    + "WHERE status = 1";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -112,7 +115,7 @@ public class postDao {
 
     public static void main(String[] args) throws SQLException {
         postDao d = new postDao();
-        List<post> list = d.getAllPosts(0, 5);
+        List<post> list = d.getPostsByPage(1, 5);
         System.out.println(d.getPostById(1));
         for (post b : list) {
             System.out.println(b);

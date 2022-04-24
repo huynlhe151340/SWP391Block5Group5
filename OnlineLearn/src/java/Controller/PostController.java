@@ -37,7 +37,7 @@ public class PostController extends HttpServlet {
         }
 
         int pageSize = 3;
-        List<post> listP = d.getAllPosts((pageIndex - 1), pageSize);
+        List<post> listP = d.getPostsByPage((pageIndex - 1), pageSize);
         int totalPost = d.getNumberOfPost();
         int numOfPage = totalPost % pageSize == 0 ? totalPost / pageSize : (totalPost / pageSize) + 1;
         request.setAttribute("listPost", listP);
