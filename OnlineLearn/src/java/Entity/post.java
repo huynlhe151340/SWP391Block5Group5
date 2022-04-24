@@ -12,7 +12,7 @@ import java.sql.Date;
  * @author khait
  */
 public class post {
-    
+
     private int id;
     private String title;
     private String author;
@@ -103,6 +103,39 @@ public class post {
     @Override
     public String toString() {
         return "post{" + "id=" + id + ", title=" + title + ", author=" + author + ", updateDate=" + updateDate + ", categoryID=" + categoryID + ", postDetail=" + postDetail + ", image=" + image + ", status=" + status + '}';
+    }
+    private int accountID;
+
+    public post(int id, String title, String author, Date updateDate, int categoryID, String postDetail, String image, int status, int accountID) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.updateDate = updateDate;
+        this.categoryID = categoryID;
+        this.postDetail = postDetail;
+        this.image = image;
+        this.status = status;
+        this.accountID = accountID;
+    }
+
+    public post(int id, String title, String author, Date updateDate, int categoryID, String postDetail, int status, int accountID, String image) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.updateDate = updateDate;
+        this.categoryID = categoryID;
+        this.postDetail = postDetail;
+        this.status = status;
+        this.accountID = accountID;
+        this.image = image;
+    }
+
+    public int getAccountID() {
+        return accountID;
+    }
+
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
     }
 
 }

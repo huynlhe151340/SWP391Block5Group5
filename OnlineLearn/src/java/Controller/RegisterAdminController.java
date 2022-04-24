@@ -10,6 +10,7 @@ import DAO.accountDetailDao;
 import Entity.accountDetails;
 import Entity.accounts;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,8 +23,8 @@ import utils.RandomString;
  *
  * @author khait
  */
-@WebServlet(name = "RegisterController", urlPatterns = {"/user/register"})
-public class RegisterController extends HttpServlet {
+@WebServlet(name = "RegisterAdminController", urlPatterns = {"/admin/register-admin"})
+public class RegisterAdminController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -51,11 +52,11 @@ public class RegisterController extends HttpServlet {
                 gender = true;
             }
             int idAccD = 0;
+            
             accountDao acDao = new accountDao();
-
             if (acDao.isCheckDuplicateEmail(email)) {
                 request.setAttribute("mess", "Email đã tồn tại");
-                request.getRequestDispatcher("/user/register.jsp").forward(request, response);
+                request.getRequestDispatcher("/admin/user-list").forward(request, response);
             } else {
                 if (password.equalsIgnoreCase(rePassword)) {
                     accountDetails accDetails = new accountDetails(0, name, mobile, address, gender);
@@ -68,26 +69,25 @@ public class RegisterController extends HttpServlet {
                         boolean check = acDao.insert(ac);
                         if (check) {
                             new JavaMail().sentEmail(email, subject, code);
-                            request.setAttribute("email", email);
-                            request.getRequestDispatcher("/user/active-account.jsp").forward(request, response);
+                            request.setAttribute("mess", "Thêm tài khoản thành công.!!");
+                            request.getRequestDispatcher("/admin/user-list").forward(request, response);
                         } else {
                             new accountDetailDao().remove(idAccD);
                             request.setAttribute("mess", "Tạo tài khoản không thành công!!");
-                            request.getRequestDispatcher("/user/register.jsp").forward(request, response);
+                            request.getRequestDispatcher("/admin/user-list").forward(request, response);
                         }
                     } else {
                         request.setAttribute("mess", "Tạo tài khoản không thành công!!");
-                        request.getRequestDispatcher("/user/register.jsp").forward(request, response);
+                        request.getRequestDispatcher("/admin/user-list").forward(request, response);
                     }
                 } else {
                     request.setAttribute("mess", "Mật khẩu không khớp!!");
-                    request.getRequestDispatcher("/user/register.jsp").forward(request, response);
+                    request.getRequestDispatcher("/admin/user-list").forward(request, response);
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("/user/error.jsp");
+            response.sendRedirect("/admin/error.jsp");
         }
     }
 

@@ -5,9 +5,10 @@
  */
 package Controller;
 
-import DAO.accountDao;
-import Entity.accounts;
+import DAO.accountDetailDao;
+import Entity.accountDetails;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author khait
  */
-@WebServlet(name = "ActiveAccountController", urlPatterns = {"/user/active-account"})
-public class ActiveAccountController extends HttpServlet {
+@WebServlet(name = "UserDetailAdminController", urlPatterns = {"/admin/user-detail-admin"})
+public class UserDetailAdminController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,27 +35,13 @@ public class ActiveAccountController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String email = request.getParameter("email");
-            String code = request.getParameter("code");
-            accounts ac = new accountDao().getAccountByEmail(email);
-            if(ac.getActiveCode().equalsIgnoreCase(code)){
-                boolean updateStatus = new accountDao().activeAccount(2, ac.getId());
-                if(updateStatus){
-                    request.setAttribute("mess", "Tạo tài khoản thành công");
-                    request.getRequestDispatcher("/user/login.jsp").forward(request, response);
-                } else {
-                    request.setAttribute("email", email);
-                    request.setAttribute("mess", "Active account không thành công");
-                    request.getRequestDispatcher("/user/active-account.jsp").forward(request, response);
-                }
-            } else{
-                request.setAttribute("email", email);
-                request.setAttribute("mess", "Code không khớp");
-                request.getRequestDispatcher("/user/active-account.jsp").forward(request, response);
-            }
+            int id = Integer.parseInt(request.getParameter("id").trim());
+            accountDetails aDetails = new accountDetailDao().getOne(id);
+            request.setAttribute("aDetails", aDetails);
+            request.getRequestDispatcher("/admin/user-detail.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("/user/error.jsp");
+            response.sendRedirect("/admin/error.jsp");
         }
     }
 

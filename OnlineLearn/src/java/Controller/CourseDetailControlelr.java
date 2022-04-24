@@ -5,9 +5,11 @@
  */
 package Controller;
 
-import DAO.accountDao;
-import Entity.accounts;
+import DAO.courseDao;
+import Entity.course;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,10 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author khait
+ * @author AD
  */
-@WebServlet(name = "ActiveAccountController", urlPatterns = {"/user/active-account"})
-public class ActiveAccountController extends HttpServlet {
+@WebServlet(name = "CourseDetailControlelr", urlPatterns = {"/user/courseDetail"})
+public class CourseDetailControlelr extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,28 +36,15 @@ public class ActiveAccountController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String email = request.getParameter("email");
-            String code = request.getParameter("code");
-            accounts ac = new accountDao().getAccountByEmail(email);
-            if(ac.getActiveCode().equalsIgnoreCase(code)){
-                boolean updateStatus = new accountDao().activeAccount(2, ac.getId());
-                if(updateStatus){
-                    request.setAttribute("mess", "Tạo tài khoản thành công");
-                    request.getRequestDispatcher("/user/login.jsp").forward(request, response);
-                } else {
-                    request.setAttribute("email", email);
-                    request.setAttribute("mess", "Active account không thành công");
-                    request.getRequestDispatcher("/user/active-account.jsp").forward(request, response);
-                }
-            } else{
-                request.setAttribute("email", email);
-                request.setAttribute("mess", "Code không khớp");
-                request.getRequestDispatcher("/user/active-account.jsp").forward(request, response);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect("/user/error.jsp");
+            int id = Integer.parseInt(request.getParameter("id"));
+            courseDao dao = new courseDao();
+            course c = dao.getCourseById(id);
+            request.setAttribute("course", c);
+            request.getRequestDispatcher("/user/course-detail.jsp").forward(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

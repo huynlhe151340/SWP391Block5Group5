@@ -1,25 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
-import DAO.accountDao;
-import Entity.accounts;
+import DAO.courseDao;
+import Entity.course;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author khait
- */
-@WebServlet(name = "ActiveAccountController", urlPatterns = {"/user/active-account"})
-public class ActiveAccountController extends HttpServlet {
+@WebServlet(name = "CoursesListController", urlPatterns = {"/user/courses"})
+public class CoursesListController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,31 +26,23 @@ public class ActiveAccountController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
+        courseDao c = new courseDao();
+        int pageIndex = 1;
+        int pageSize = 3;
         try {
-            String email = request.getParameter("email");
-            String code = request.getParameter("code");
-            accounts ac = new accountDao().getAccountByEmail(email);
-            if(ac.getActiveCode().equalsIgnoreCase(code)){
-                boolean updateStatus = new accountDao().activeAccount(2, ac.getId());
-                if(updateStatus){
-                    request.setAttribute("mess", "Tạo tài khoản thành công");
-                    request.getRequestDispatcher("/user/login.jsp").forward(request, response);
-                } else {
-                    request.setAttribute("email", email);
-                    request.setAttribute("mess", "Active account không thành công");
-                    request.getRequestDispatcher("/user/active-account.jsp").forward(request, response);
-                }
-            } else{
-                request.setAttribute("email", email);
-                request.setAttribute("mess", "Code không khớp");
-                request.getRequestDispatcher("/user/active-account.jsp").forward(request, response);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect("/user/error.jsp");
+            pageIndex = Integer.parseInt(request.getParameter("page"));
+        } catch (NumberFormatException ex) {
+            pageIndex = 1;
         }
+        List<course> listC = c.getCoursesByPage(pageIndex - 1, pageSize);
+        int totalCourse = c.getNumberOfCourse();
+        int numOfPage = totalCourse % pageSize == 0 ? totalCourse / pageSize : (totalCourse / pageSize) + 1;
+        request.setAttribute("listCourse", listC);
+        request.setAttribute("pageIndex", pageIndex);
+        request.setAttribute("numOfPage", numOfPage);
+        request.getRequestDispatcher("/user/courses.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -70,7 +57,11 @@ public class ActiveAccountController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(CoursesListController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -84,7 +75,11 @@ public class ActiveAccountController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(CoursesListController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

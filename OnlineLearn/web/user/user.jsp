@@ -91,7 +91,12 @@
                                 <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
                                     <div class="profile-bx text-center">
                                         <div class="user-profile-thumb">
-                                            <img src="assets/images/profile/pic1.jpg" alt=""/>
+                                            <c:if test="${accountDetail.gender == false}">
+                                                <img src="assets/images/profile/pic1.jpg" alt=""/>
+                                            </c:if>
+                                            <c:if test="${accountDetail.gender == true}">
+                                                <img src="assets/images/profile/pic3.jpg" alt=""/>
+                                            </c:if>
                                         </div>
                                         <div class="profile-info" style="text-align: center;">
                                             <h4>${accountDetail.name}</h4>
@@ -108,10 +113,10 @@
                                         <div class="profile-tabnav">
                                             <ul class="nav nav-tabs">
                                                 <li class="nav-item">
-                                                    <a class="nav-link active" data-toggle="tab" href="#courses"><i class="ti-book"></i>Courses</a>
+                                                    <a class="nav-link active" data-toggle="tab" href="#courses"><i class="ti-book"></i>My Courses</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="tab" href="#quiz-results"><i class="ti-bookmark-alt"></i>Quiz Results </a>
+                                                    <a class="nav-link" data-toggle="tab" href="#quiz-results"><i class="ti-bookmark-alt"></i>My Post</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" data-toggle="tab" href="#edit-profile"><i class="ti-pencil-alt"></i>Edit Profile</a>
@@ -407,7 +412,7 @@
                                             </div>
                                             <div class="tab-pane" id="quiz-results">
                                                 <div class="profile-head">
-                                                    <h3>Quiz Results</h3>
+                                                    <h3>Post</h3>
                                                 </div>
                                                 <div class="courses-filter">
                                                     <div class="row">
@@ -490,7 +495,7 @@
                                                             <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
 
                                                         </div>
-                                                                <h3 id="result"></h3>
+                                                        <h3 id="result"></h3>
                                                         <div class="">
                                                             <div class="">
                                                                 <div class="row">
@@ -541,7 +546,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                            <h3 id="result-change"></h3>
+                                                    <h3 id="result-change"></h3>
                                                     <div class="row">
                                                         <div class="col-12 col-sm-4 col-md-4 col-lg-3">
                                                         </div>

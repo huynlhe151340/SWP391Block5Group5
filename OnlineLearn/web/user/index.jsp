@@ -118,8 +118,7 @@
                     </div>
                 </div>
                 <!-- Recent News End -->
-
-
+        <!-- Content END-->
         <%@include file="component/footer.jsp" %>
     </div>
 
