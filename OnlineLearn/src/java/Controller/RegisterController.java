@@ -45,13 +45,14 @@ public class RegisterController extends HttpServlet {
             String address = request.getParameter("address");
             String mobile = request.getParameter("mobile");
             boolean gender = true;
-            if (Integer.parseInt(request.getParameter("gender")) == 1) {
+            if (Integer.parseInt(request.getParameter("gender").trim()) == 1) {
                 gender = false;
             } else {
                 gender = true;
             }
             int idAccD = 0;
             accountDao acDao = new accountDao();
+
             if (acDao.isCheckDuplicateEmail(email)) {
                 request.setAttribute("mess", "Email đã tồn tại");
                 request.getRequestDispatcher("/user/register.jsp").forward(request, response);
@@ -83,6 +84,7 @@ public class RegisterController extends HttpServlet {
                     request.getRequestDispatcher("/user/register.jsp").forward(request, response);
                 }
             }
+
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("/user/error.jsp");

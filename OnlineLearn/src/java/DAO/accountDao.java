@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Entity.accountDetails;
 import Entity.accounts;
 import JDBC.SQLServerConnection;
 import java.sql.Connection;
@@ -181,6 +182,7 @@ public class accountDao {
     public List<accounts> getAllAccount() {
 
         List<accounts> list = new ArrayList<>();
+        accountDetailDao accountDetailDao = new accountDetailDao();
         String sql = "SELECT * FROM accounts";
         try (Connection con = SQLServerConnection.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
@@ -195,6 +197,10 @@ public class accountDao {
                         rs.getInt("status"),
                         rs.getDate("create_date"),
                         rs.getString("active_code"));
+                accountDetails accountDetail = accountDetailDao.getOne(ac.getAccountDetailID());
+                if(accountDetail != null){
+                    ac.setAccountDetail(accountDetail);
+                }
                 list.add(ac);
             }
             return list;
@@ -207,7 +213,7 @@ public class accountDao {
     public int countTotalAccount() {
         return getAllAccount().size();
     }
-    
+
     public List<accounts> getAccountPerPage(int pageIndex, int numberProduct) {
         List<accounts> ls = new ArrayList<>();
         String sql = "SELECT * FROM accounts ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROW ONLY";
@@ -235,15 +241,15 @@ public class accountDao {
         }
         return null;
     }
-    
-    public boolean updateStatus(int status, int id){
+
+    public boolean updateStatus(int status, int id) {
         int check = 0;
         String sql = "UPDATE accounts SET status= ? WHERE id= ?";
-        try(Connection con = SQLServerConnection.getConnection();
+        try (Connection con = SQLServerConnection.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setObject(1, status);
             ps.setObject(2, id);
-            
+
             check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace(System.out);
@@ -252,6 +258,9 @@ public class accountDao {
     }
 
     public static void main(String[] args) {
-        boolean a = new accountDao().update_code_status("jgBvFn", 2, "khaitqhe141672@fpt.edu.vn");
+        ArrayList<accounts> listAccount = (ArrayList<accounts>) new accountDao().getAllAccount();
+        for (accounts object : listAccount) {
+            System.out.println(object.getAccountDetail());
+        }
     }
 }

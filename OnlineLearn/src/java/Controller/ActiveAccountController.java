@@ -53,6 +53,7 @@ public class ActiveAccountController extends HttpServlet {
                 request.getRequestDispatcher("/user/active-account.jsp").forward(request, response);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             response.sendRedirect("/user/error.jsp");
         }
     }

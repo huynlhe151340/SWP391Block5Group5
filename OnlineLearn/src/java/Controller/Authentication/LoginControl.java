@@ -67,7 +67,7 @@ public class LoginControl extends HttpServlet {
                     }
                     if (currentAccount.getRoleID() == 2) {
                         request.setAttribute("isIndex", true);
-                        request.getRequestDispatcher("user/index.jsp").forward(request, response);
+                        request.getRequestDispatcher("user/home").forward(request, response);
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();

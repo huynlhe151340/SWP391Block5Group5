@@ -48,13 +48,24 @@
 
         <!-- SHORTCODES ============================================= -->
         <link rel="stylesheet" type="text/css" href="assets/css/shortcodes/shortcodes.css">
-
+        <link rel="stylesheet" type="text/css" href="assets/css/newcss.css">
         <!-- STYLESHEETS ============================================= -->
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <link class="skin" rel="stylesheet" type="text/css" href="assets/css/color/color-1.css">
         <link rel="stylesheet" type="text/css" href="admin/assets/css/style.css">
         <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+        <style>
+            .hiddenTopic{
+                display: none;
+            }
+
+            .showTopic{
+                display: block;
+            }
+        </style> 
+
     </head>
     <body id="bg">
         <div class="page-wraper">
@@ -87,40 +98,53 @@
                 <div class="content-block">
                     <!-- About Us -->
                     <div class="section-area section-sp1">
-                        <div style="padding-left: 200px;">
+                        <div class="container">
                             <div class="row">
-                                <div class="col-md-1">
-                                    <input name="courseId" class="form-control" value="${courseId}" placeholder="Your Email Address" type="text" style="display: none;">
-                                    <input name="registerId" class="form-control" value="${registerId}" placeholder="Your Email Address" type="text" style="display: none;">
-                                    <div class="widget">
-                                        <h6 class="widget-title">Courses</h6>
-                                    </div>
-                                    <div class="widget recent-posts-entry widget-courses">
-                                        <div class="widget-post-bx">
-                                            <c:forEach items="${listLesson}" var="i">
-                                                <div class="widget-post clearfix">
-                                                    <div class="ttr-post-info">
-                                                        <div class="ttr-post-header">
-                                                            <c:if test="${i.type == 1}">
-                                                                <label class="post-title">${i.title}</label>
-                                                            </c:if>
-                                                            <c:if test="${i.type == 2}">
-                                                                <span style="padding-left: 20px; <c:if test="${lessonId == i.id}">background-color: lightgray; padding: 20px;</c:if>" class="post-title"><a onclick="changeLesson(${courseId},${i.id}, ${registerId})" href="/lesson-view?courseId=${courseId}&lessonId=${i.id}">${i.title}</a></span>
-                                                                </c:if>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </c:forEach>
+                                <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
+                                    <div class="profile-bx text-center">
+                                        <div class="profile-tabnav">
+                                            <ul class="nav nav-tabs">
+                                                <li>
+                                                    <a class="nav-link active" data-toggle="tab" href="#"><i class="ti-book"></i>Week 1</a>
+                                                    <ul style="margin-left: 15px;line-height: 35px;">
+                                                        <c:forEach items="${listWeek1}" var="i">
+                                                            <li>
+                                                                <a style="pointer-events: none;" href="${pageContext.request.contextPath}/user/lesson-detail?id=${i.id}" class="ttr-material-button ${i.id == idLesson ? "active" :""}"><span class="ttr-label">${i.title}</span></a>
+                                                            </li>
+                                                        </c:forEach>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link active" data-toggle="tab" href="#"><i class="ti-book"></i>Week 2</a>
+                                                    <ul style="margin-left: 15px;line-height: 35px;">
+                                                        <c:forEach items="${listWeek2}" var="i">
+                                                            <li>
+                                                                <a href="${pageContext.request.contextPath}/user/lesson-detail?id=${i.id}" class="ttr-material-button  ${i.id == idLesson ? "active" :""}"><span class="ttr-label">${i.title}</span></a>
+                                                            
+                                                            </li>
+                                                        </c:forEach>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link active" data-toggle="tab" href="#"><i class="ti-book"></i>Week 3</a>
+                                                    <ul style="margin-left: 15px;line-height: 35px;">
+                                                        <c:forEach items="${listWeek3}" var="i">
+                                                            <li>
+                                                                <a href="${pageContext.request.contextPath}/user/lesson-detail?id=${i.id}" class="ttr-material-button ${i.id == idLesson ? "active" :""}"><span class="ttr-label">${i.title}</span></a>
+                                                            </li>
+                                                        </c:forEach>
+                                                    </ul>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-9" style="padding-left: 100px;">
                                     <div class="row">
-                                        <iframe id="video" width="100%" height="600px" class="height-video" src="${lesson.videoLink}" frameborder="0"
-                                                webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>    
+                                          ${lessonIntro.videoLink == null ? "" : lessonIntro.videoLink}
                                     </div>
                                     <div class="row">
-                                        ${lesson.content}
+                                        ${lessonIntro.content}
                                     </div>
                                 </div>
                             </div>
@@ -152,6 +176,7 @@
         <script src="assets/js/contact.js"></script>
         <script src="assets/js/lesson-view.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
     </body>
 </html>
 
