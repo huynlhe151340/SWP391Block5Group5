@@ -118,14 +118,14 @@
                                                     <td>${k.accountDetail.name}</td>
                                                 </c:if>
                                             </c:forEach>
-                                            <c:if test="${i.status==0}">
-                                                <td style="text-align: center;">Inactive</td>
+                                            <c:if test="${i.status==0}" >
+                                                <td style="text-align: center;"class="text-warning" >Inactive</td>
                                             </c:if>
-                                            <c:if test="${i.status==1}">
-                                                <td style="text-align: center;">Active</td>
+                                            <c:if test="${i.status==1}" >
+                                                <td style="text-align: center;"  class="text-success">Active</td>
                                             </c:if>
-                                            <c:if test="${i.status==2}">
-                                                <td style="text-align: center;">Block</td>
+                                            <c:if test="${i.status==2}" >
+                                                <td style="text-align: center;" class="text-danger">Block</td>
                                             </c:if>
                                             <%--<c:if test="${i.status == 2 && i.roleID == 2}">
                                                 <td style="text-align: center"> 
@@ -143,7 +143,9 @@
                                                 </td>
                                             </c:if>--%>
                                             <td style="text-align: center"> 
-                                                <a href="/PostDetailController?postID=${i.id}" class="btn green radius-xl outline">Edit</a>
+                                                <a href="/EditPostAdminController?postID=${i.id}" class="btn green radius-xl outline">Edit</a> 
+                                                <a href="/PostDetailController?postID=${i.id}" class="btn green radius-xl outline">View</a>
+
                                             </td>
                                         </tr>
                                     </c:forEach>

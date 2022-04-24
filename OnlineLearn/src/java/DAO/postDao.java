@@ -236,45 +236,6 @@ public class postDao {
     }
 
     // Post Detail
-    public int getStatusById(int id) {
-        int Status = 0;
-        try {
-            con = SQLServerConnection.getConnection();
-            String sql = "Select status FROM post Where id=?";
-            ps = con.prepareStatement(sql);
-            ps.setObject(1, id);
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-                Status = rs.getInt(1);
-            }
-            return Status;
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return 3;
-    }
-
-    ;
-        public int getAcIDByIdpost(int id_post) {
-        int id_ac = 0;
-        try {
-            con = SQLServerConnection.getConnection();
-            String sql = "Select account_id FROM post Where id=?";
-            ps = con.prepareStatement(sql);
-            ps.setObject(1, id_post);
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-                id_ac = rs.getInt(1);
-            }
-            return id_ac;
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return 0;
-    }
-
     public int getIDDetailByIdAc(int id) {
         int id_detail = 0;
         try {
@@ -295,13 +256,12 @@ public class postDao {
         return 0;
     }
 
-    public post getPostByStatus(int status, int id) {
+    public post getPostByID(int id) {
         try {
             con = SQLServerConnection.getConnection();
-            String sql = "SELECT * FROM post Where status=? and id=?";
+            String sql = "SELECT * FROM post Where id=?";
             ps = con.prepareStatement(sql);
-            ps.setObject(1, status);
-            ps.setObject(2, id);
+            ps.setObject(1, id);
 
             rs = ps.executeQuery();
 
@@ -368,6 +328,28 @@ public class postDao {
         return false;
     }
 
+    public boolean UpdateSaveChangePostByID(String title, String Detail, String Author, int id_category, int id) {
+
+        try {
+            con = SQLServerConnection.getConnection();
+            String sql = "Update post  set title=?,post_detail=?,category_id=?,author=?  WHERE id=?";
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, title);
+            ps.setObject(2, Detail);
+            ps.setObject(3, id_category);
+            ps.setObject(4, Author);
+            ps.setObject(5, id);
+
+            if (ps.executeUpdate() > 0) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return false;
+    }
+
     public static void main(String[] args) throws SQLException {
         postDao d = new postDao();
 //        List<post> list = d.getAllPosts(0, 5);
@@ -375,6 +357,6 @@ public class postDao {
 //        for (post b : list) {
 //            System.out.println(b);
 //        }
-        System.out.println(d.UpdateStatusPost(0, 4));
+        System.out.println(d.UpdateSaveChangePostByID("hieunx1111", "hahah", "hieuxxx", 1,6));
     }
 }

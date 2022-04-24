@@ -9,9 +9,6 @@ import DAO.postDao;
 import Entity.post;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-@WebServlet(name = "PostDetailController", urlPatterns = {"/PostDetailController"})
-public class PostDetailController extends HttpServlet {
+@WebServlet(name = "SaveChangePostAdminController", urlPatterns = {"/SaveChangePostAdminController"})
+public class SaveChangePostAdminController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,31 +32,41 @@ public class PostDetailController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
-        response.setContentType("text/html;charset=UTF-8");
+            throws ServletException, IOException {
+      response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
-
         try (PrintWriter out = response.getWriter()) {
-            String id = request.getParameter("postID");
+            /* TODO output your page here. You may use following sample code. */
+            String id = request.getParameter("SavePostEdit");
             int id_post = Integer.parseInt(id);
             postDao d = new postDao();
-            post a = new post();         
-            a = d.getPostByID(id_post);         
-            int status = a.getStatus();
-            int ac_id = a.getAccountID();
-            int id_detail = d.getIDDetailByIdAc(ac_id);
-            String nameAc = d.getNameByIdAcDetail(id_detail);
-            
-            
-            request.setAttribute("PostID",id);
-            request.setAttribute("NameAc",nameAc);
-            request.setAttribute("status",status);
-            request.setAttribute("title", a.getTitle());
-            request.setAttribute("post_detail", a.getPostDetail());
-            request.setAttribute("date", a.getUpdateDate());
-            request.setAttribute("Author", a.getAuthor());
-            request.setAttribute("img", a.getImage());
-            request.getRequestDispatcher("/admin/PostDetail.jsp").forward(request, response);
+            post a = new post();
+            a = d.getPostByID(id_post);
+
+            String Title = request.getParameter("TitlePost");
+            String Author = request.getParameter("author");
+            String Detail = request.getParameter("Des");
+            String Category = request.getParameter("myCheckboxCate").trim();
+            int id_ca = Integer.parseInt(Category);
+
+            if (d.UpdateSaveChangePostByID(Title, Detail, Author,id_ca, id_post)) {
+
+                request.setAttribute("Category",id_ca);
+                request.setAttribute("title", a.getTitle());
+                request.setAttribute("post_detail", a.getPostDetail());
+                request.setAttribute("Author", a.getAuthor());
+
+                request.setAttribute("mess", "Sửa đổi thành công !");
+                request.getRequestDispatcher("/admin/EditPost.jsp").forward(request, response);
+            } else {
+                request.setAttribute("Category",id_ca);
+                request.setAttribute("title", a.getTitle());
+                request.setAttribute("post_detail", a.getPostDetail());
+                request.setAttribute("Author", a.getAuthor());
+                request.setAttribute("mess1", "Sửa đổi thất bại !");
+                request.getRequestDispatcher("/admin/EditPost.jsp").forward(request, response);
+            }
+            request.getRequestDispatcher("/admin/EditPost.jsp").forward(request, response);
         }
     }
 
@@ -75,11 +82,7 @@ public class PostDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(PostDetailController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -93,11 +96,7 @@ public class PostDetailController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(PostDetailController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

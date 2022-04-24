@@ -9,6 +9,9 @@ import DAO.postDao;
 import Entity.post;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +35,7 @@ public class acceptPostController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String id_1 = request.getParameter("submit2");
@@ -41,38 +44,36 @@ public class acceptPostController extends HttpServlet {
             String id_4 = request.getParameter("submit4");
 
             if (id_1 != null && id_2 == null && id_3 == null && id_4 == null) {
-
                 int id_post = Integer.parseInt(id_1);
                 postDao d = new postDao();
-                int status = d.getStatusById(id_post);
-                int ac_id = d.getAcIDByIdpost(id_post);
                 post a = new post();
-                a = d.getPostByStatus(status, id_post);
+                a = d.getPostByID(id_post);
+             
+                int ac_id = a.getAccountID();
                 int id_detail = d.getIDDetailByIdAc(ac_id);
                 String nameAc = d.getNameByIdAcDetail(id_detail);
-                request.setAttribute("PostID", id_1);
-                request.setAttribute("NameAc", nameAc);
+                     
+                request.setAttribute("NameAc", nameAc);        
                 request.setAttribute("title", a.getTitle());
                 request.setAttribute("post_detail", a.getPostDetail());
                 request.setAttribute("date", a.getUpdateDate());
                 request.setAttribute("Author", a.getAuthor());
                 request.setAttribute("img", a.getImage());
-
+                        
                 d.UpdateStatusPost(1, id_post);
                 request.setAttribute("mess", "Thêm thành công !");
                 request.getRequestDispatcher("/admin/PostDetail.jsp").forward(request, response);
             } else if (id_2 != null && id_1 == null && id_3 == null && id_4 == null) {
-
                 int id_post = Integer.parseInt(id_2);
                 postDao d = new postDao();
-                int status = d.getStatusById(id_post);
-                int ac_id = d.getAcIDByIdpost(id_post);
                 post a = new post();
-                a = d.getPostByStatus(status, id_post);
+                a = d.getPostByID(id_post);
+            
+                int ac_id = a.getAccountID();
                 int id_detail = d.getIDDetailByIdAc(ac_id);
                 String nameAc = d.getNameByIdAcDetail(id_detail);
-                request.setAttribute("PostID", id_2);
-                request.setAttribute("NameAc", nameAc);
+                
+                request.setAttribute("NameAc", nameAc);           
                 request.setAttribute("title", a.getTitle());
                 request.setAttribute("post_detail", a.getPostDetail());
                 request.setAttribute("date", a.getUpdateDate());
@@ -80,24 +81,25 @@ public class acceptPostController extends HttpServlet {
                 request.setAttribute("img", a.getImage());
 
                 d.UpdateStatusPost(2, id_post);
-                request.setAttribute("mess1", "Bài viết đã được xóa !");
+                request.setAttribute("mess1", "Bài viết đã được add Block !");
                 request.getRequestDispatcher("/admin/PostDetail.jsp").forward(request, response);
             } else if (id_3 != null && id_1 == null && id_2 == null && id_4 == null) {
                 int id_post = Integer.parseInt(id_3);
                 postDao d = new postDao();
-                int status = d.getStatusById(id_post);
-                int ac_id = d.getAcIDByIdpost(id_post);
                 post a = new post();
-                a = d.getPostByStatus(status, id_post);
+                a = d.getPostByID(id_post);
+          
+                int ac_id = a.getAccountID();
                 int id_detail = d.getIDDetailByIdAc(ac_id);
                 String nameAc = d.getNameByIdAcDetail(id_detail);
-                request.setAttribute("PostID", id_3);
-                request.setAttribute("NameAc", nameAc);
+             
+                request.setAttribute("NameAc", nameAc);          
                 request.setAttribute("title", a.getTitle());
                 request.setAttribute("post_detail", a.getPostDetail());
                 request.setAttribute("date", a.getUpdateDate());
                 request.setAttribute("Author", a.getAuthor());
                 request.setAttribute("img", a.getImage());
+
                 d.UpdateStatusPost(2, id_post);
                 request.setAttribute("mess1", "Bài viết đã được block !");
                 request.getRequestDispatcher("/admin/PostDetail.jsp").forward(request, response);
@@ -106,14 +108,16 @@ public class acceptPostController extends HttpServlet {
 
                 int id_post = Integer.parseInt(id_4);
                 postDao d = new postDao();
-                int status = d.getStatusById(id_post);
-                int ac_id = d.getAcIDByIdpost(id_post);
                 post a = new post();
-                a = d.getPostByStatus(status, id_post);
+                
+                a = d.getPostByID(id_post);
+          
+                int ac_id = a.getAccountID();
                 int id_detail = d.getIDDetailByIdAc(ac_id);
                 String nameAc = d.getNameByIdAcDetail(id_detail);
-                request.setAttribute("PostID", id_4);
-                request.setAttribute("NameAc", nameAc);
+                
+           
+                request.setAttribute("NameAc", nameAc);         
                 request.setAttribute("title", a.getTitle());
                 request.setAttribute("post_detail", a.getPostDetail());
                 request.setAttribute("date", a.getUpdateDate());
@@ -124,7 +128,6 @@ public class acceptPostController extends HttpServlet {
                 request.setAttribute("mess", "Bài viết đã được unBlock !");
                 request.getRequestDispatcher("/admin/PostDetail.jsp").forward(request, response);
             }
-
             request.getRequestDispatcher("/admin/PostDetail.jsp").forward(request, response);
         }
     }
@@ -141,7 +144,11 @@ public class acceptPostController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(acceptPostController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -155,7 +162,11 @@ public class acceptPostController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(acceptPostController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
