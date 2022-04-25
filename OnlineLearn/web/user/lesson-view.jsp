@@ -109,7 +109,7 @@
                                                     <ul style="margin-left: 15px;line-height: 35px;">
                                                         <c:forEach items="${listWeek1}" var="i">
                                                             <li>
-                                                                <a style="pointer-events: none;" href="${pageContext.request.contextPath}/user/lesson-detail?id=${i.id}" class="ttr-material-button ${i.id == idLesson ? "active" :""}"><span class="ttr-label">${i.title}</span></a>
+                                                                <a href="${pageContext.request.contextPath}/user/lesson-detail?id=${i.id}" class="ttr-material-button ${i.id == idLesson ? "active" :""}"><span class="ttr-label">${i.title}</span></a>
                                                             </li>
                                                         </c:forEach>
                                                     </ul>

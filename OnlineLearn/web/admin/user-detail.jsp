@@ -75,42 +75,45 @@
                                 <h4>User Detail</h4>
                             </div>
                             <div class="widget-inner">
-                                 <!--method="POST" action="update-user-admin"-->
-                                <form class="edit-profile m-b30" action="update-user-admin" method="POST" >
+                                <!--method="POST" action="update-user-admin"-->
+                                <form class="edit-profile m-b30" >
                                     <div class="row">
                                         <div class="form-group col-5" hidden>
                                             <label class="col-form-label">ID</label>
                                             <div>
-                                                <input name="id" class="form-control" type="text" value="${aDetails.id}">
+                                                <input id="id" name="id" class="form-control" type="text" value="${aDetails.id}">
                                             </div>
                                         </div>
                                         <div class="form-group col-5">
                                             <label class="col-form-label">Name</label>
                                             <div>
-                                                <input name="name" class="form-control" type="text" value="${aDetails.name}">
+                                                <input id="name" name="name" class="form-control" type="text" value="${aDetails.name}">
                                             </div>
                                         </div>
                                         <div class="form-group col-5">
                                             <label class="col-form-label">Mobile</label>
                                             <div>
-                                                <input name="mobile" class="form-control" type="text" value="${aDetails.mobile}">
+                                                <input id="mobile" name="mobile" class="form-control" type="text" value="${aDetails.mobile}">
                                             </div>
                                         </div>
                                         <div class="form-group col-5">
                                             <label class="col-form-label">Address</label>
                                             <div>
-                                                <input name="address" class="form-control" type="text" value="${aDetails.address}">
+                                                <input id="address" name="address" class="form-control" type="text" value="${aDetails.address}">
                                             </div>
                                         </div>
                                         <div class="form-group col-5">
                                             <label class="col-form-label">gender</label>
                                             <div style="margin-top: 18px;">
-                                                <input checked="${aDetails.gender == true ? "true" : "false"}" name="gender" type="radio" value="0"> Male <span>&emsp;</span> <input checked="${aDetails.gender == false ? "true" : "false"}" name="gender" type="radio" value="1"> Female
+                                                <c:if test="${aDetails.gender ==  true}"><input id="gender" checked="true" name="gender" type="radio" value="0"> Male </c:if>
+                                                <c:if test="${aDetails.gender ==  false}"><input id="gender" name="gender" type="radio" value="0"> Male </c:if>
+                                                <c:if test="${aDetails.gender ==  true}"><span>&emsp;</span> <input id="gender" name="gender" type="radio" value="1"> Female</c:if>
+                                                <c:if test="${aDetails.gender ==  false}"><span>&emsp;</span> <input id="gender" checked="true" name="gender" type="radio" value="1"> Female</c:if>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-12">
+                                            <div class="col-12">
                                             ${mess}
-                                            <button type="submit" class="btn">Save changes</button>
+                                            <button onclick="submitUpdate()" type="submit" class="btn">Save changes</button>
                                             <a href="user-list" class="btn red">Back Page</a>
                                         </div>
                                     </div>
@@ -133,6 +136,7 @@
         <script src="../admin/assets/vendors/owl-carousel/owl.carousel.js"></script>
         <script src="../admin/assets/js/functions.js"></script>
         <script src="../admin/assets/js/user-list.js"></script>
+        <script src="../admin/assets/js/user-detail.js"></script>
         <!--        <script src="../admin/assets/js/admin.js"></script>
                 <script src="../admin/assets/js/user.js"></script>-->
     </body>

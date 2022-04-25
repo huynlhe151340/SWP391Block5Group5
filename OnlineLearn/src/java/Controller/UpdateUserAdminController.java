@@ -50,12 +50,12 @@ public class UpdateUserAdminController extends HttpServlet {
             boolean updateProfile = new accountDetailDao().editProfile(details, details.getId());
             if (updateProfile) {
 //                
-                request.setAttribute("mess", "Update success");
-                request.getRequestDispatcher("/admin/user-detail.jsp").forward(request, response);
+                response.getWriter().println("Update success");
+//                request.getRequestDispatcher("/admin/user-detail.jsp").forward(request, response);
             } else {
 //                
-                request.setAttribute("mess", "Update fail");
-                request.getRequestDispatcher("/admin/user-detail.jsp").forward(request, response);
+                response.getWriter().println("Update fail");
+//                request.getRequestDispatcher("/admin/user-detail.jsp").forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace();
