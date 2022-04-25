@@ -28,6 +28,11 @@ public class course {
     public course() {
     }
 
+    public course(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public course(int id, String name, String thumbnail, category category, int feature, String owner, String description, float price, float salePrice, String duration, String skillLevel, String language, int status) {
         this.id = id;
         this.name = name;

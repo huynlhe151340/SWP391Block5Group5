@@ -1,12 +1,13 @@
 <%-- 
-    Document   : LessonDetail
-    Created on : Apr 18, 2022, 3:12:16 PM
+    Document   : CourseLesson
+    Created on : Apr 18, 2022, 1:18:51 PM
     Author     : VIP
 --%>
-<%@page import="DAO.lessonDao"%>
+<%@page import="Entity.course"%>
 <%@page import="java.util.List"%>
-<%@page import="Entity.lessons"%>
+<%@page import="DAO.courseDao"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,70 +64,96 @@
         <main class="ttr-wrapper">
             <div class="container-fluid">
                 <div class="db-breadcrumb">
-                    <h4 class="breadcrumb-title">Course</h4>
+                    <h4 class="breadcrumb-title">Courses</h4>
                     <ul class="db-breadcrumb-list">
                         <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
-                        <li>Course </li>
-                       <li><a href="CourseLessonController?action=listAllCourse">Course Lesson</a></li>
-                       <li> <a href="CourseLessonController?action=listLesson&courseid=${l.courseID}">Lesson</a></li>
-                        <li> Lesson Detail</li>
+                         <li>Course </li>
+                         <li><a href="CourseLessonController?action=listAllCourse">Course Lesson</a></li>
+                        <li> Create Lesson</li>
                     </ul>
                 </div>	
                 <div class="row">
                     <!-- List user Views Chart -->
                     <div class="col-lg-11 m-b30">
                         <div class="widget-box">
-<!--                            <div class="wc-title" style="text-align: right;">
-                                <a href="LessonController?action=insert" class="btn green radius-xl outline" style="margin-right: 60px;">Create Lesson</a>
-                            </div>-->
-                            <form action="CourseLessonController?action=update" method="POST"> 
-                                <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-                                    
-                                    <tr>
-                                        <td>ID</td>
-                                        <td><input type="text" name="lid" value="${l.id}"  readonly/></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Title</td>
-                                        <td><input type="text" name="Title" value="${l.title}" ></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Topic</td>
-                                        <td><input type="text" name="belongingTopic" value="${l.belongingTopic}" ></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Content</td>
-                                        <td><textarea id="content"  name="content" style="width: 300px;height: 300px"> ${l.content}</textarea></td>                                       
-                                    </tr>
-                                    <tr>                                                                     
-                                        <td>Link Video</td>
-                                        <td><input type="text" name="videoLink" value="${l.videoLink}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Type</td>
-                                        <td><input type="text" name="type" value="${l.type}" ></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Status</td>
-                                        <td><input type="text" name="status" value="${l.status}" ></td>
-                                    </tr>
-                                    <tr>
-                                        <td>CourseId</td>
-                                        <td><input type="text" name="courseID" value="${l.courseID}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td><input class="btn green radius-xl outline" style="margin-right: 60px;" type="submit" name="submit" value="Update"><p>${mess}</p></td>
-                                    </tr>
-                                </table>
-                                    
-                            </form> 
+                           
+                            <form style="margin-top: 100px;" class="contact-bx" action="CourseLessonController?action=insert" method="POST">
+                    <div class="row placeani">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <label>Title</label>
+                                    <input name="Title" type="text" required="" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <label>Topic</label>
+                                    <input name="belongingTopic" type="text" required="" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="input-group"> 
+                                    <label>Content</label>
+                                    <textarea name="content"  class="form-control"  ></textarea>
+<!--                                    <input name="content" type="text" class="form-control" required="">-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="input-group"> 
+                                    <label>Link Video</label>
+                                    <input name="videoLink" type="text" class="form-control" required="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <label>Type</label>
+                                    <input name="type" type="text" required="" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <label>Status</label>
+                                    <input name="status" type="text" required="" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        
+                      
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <label>CourseID</label>
+                                   
+                                   
+                                    <input name="courseID" type="text" required="" class="form-control" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 m-b30">
+                            
+                            <button name="submit" type="submit" value="Submit" class="btn button-md">Add</button>
+                        </div>
+                    </div>
+                </form>
                         </div>
                     </div>
                     <!-- List User Views Chart END-->
                 </div>
             </div>
         </main>
+
+        
         <!-- External JavaScripts -->
         <script src="../admin/assets/js/jquery.min.js"></script>
         <script src="../admin/assets/vendors/bootstrap/js/popper.min.js"></script>
@@ -136,7 +163,7 @@
         <script src='../admin/assets/vendors/scroll/scrollbar.min.js'></script>
         <script src="../admin/assets/vendors/owl-carousel/owl.carousel.js"></script>
         <script src="../admin/assets/js/functions.js"></script>
-        <!--<script src="../admin/assets/js/user-list.js"></script>-->
+        <script src="../admin/assets/js/user-list.js"></script>
         <!--        <script src="../admin/assets/js/admin.js"></script>
                 <script src="../admin/assets/js/user.js"></script>-->
     </body>

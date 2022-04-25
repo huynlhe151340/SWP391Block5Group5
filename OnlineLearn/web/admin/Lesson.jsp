@@ -61,21 +61,28 @@
         <main class="ttr-wrapper">
             <div class="container-fluid">
                 <div class="db-breadcrumb">
-                    <h4 class="breadcrumb-title">Users</h4>
+                    <h4 class="breadcrumb-title">Course</h4>
                     <ul class="db-breadcrumb-list">
                         <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
-                        <li>Users</li>
+                         <li>Course </li>
+                         <li><a href="CourseLessonController?action=listAllCourse">Course Lesson</a></li>
+                        <li> Lesson</li>
                     </ul>
                 </div>	
                 <div class="row">
                     <!-- List user Views Chart -->
                     <div class="col-lg-11 m-b30">
                         <div class="widget-box">
-                            <div class="wc-title" style="text-align: right;">
+<!--                            <div class="wc-title" style="text-align: right;">
                                 <button id="demo" class="btn green radius-xl outline" style="margin-right: 60px;">Create Lesson</button>
 
-                            </div>
-                            <form action="LessonController?action=listAll" method="POST">  
+                            </div>-->
+                            
+                            
+                         
+                            
+                            
+                            <form action="CourseLessonController?action=listLesson" method="POST">  
                                 <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
@@ -83,7 +90,6 @@
                                             <th scope="col">Title</th>
                                             <th scope="col">Topic</th>
                                             <th scope="col" style="text-align: center;">Course</th>
-                                            <th scope="col" style="text-align: center;">Status</th>
                                             <th scope="col" style="text-align: center; width: 250px;">Action</th>
                                         </tr>
                                     </thead>
@@ -94,10 +100,9 @@
                                                 <td> ${o.title}</td>
                                                 <td>${o.belongingTopic}</td>
                                                 <td>${o.name}</td>
-                                                <td>${o.status}</td>
                                                 <td style="text-align: center"> 
-                                                    <a href="LessonController?action=listDetail&lid=${o.id}" class="btn green radius-xl outline">Edit</a>
-                                                    <a href="LessonController?action=delete&lid=${o.id}" class="btn red radius-xl outline">Delete</a>
+                                                    <a href="CourseLessonController?action=listDetail&lid=${o.id}" class="btn green radius-xl outline">Edit</a>
+                                                    <a href="CourseLessonController?action=delete&lid=${o.id}" class="btn red radius-xl outline">Delete</a>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -114,7 +119,7 @@
         <div class="popup hide__popup">
             <div class="popup__content">
                 <div class="popup__close"><i class="fa fa-close"></i></div>
-                <form style="margin-top: 100px;" class="contact-bx" action="LessonController?action=insert" method="POST">
+                <form style="margin-top: 100px;" class="contact-bx" action="CourseLessonController?action=insert" method="POST">
                     <div class="row placeani">
                         <div class="col-lg-12">
                             <div class="form-group">

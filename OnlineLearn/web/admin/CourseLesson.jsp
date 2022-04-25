@@ -1,12 +1,10 @@
 <%-- 
-    Document   : LessonDetail
-    Created on : Apr 18, 2022, 3:12:16 PM
+    Document   : CourseLesson
+    Created on : Apr 18, 2022, 1:18:51 PM
     Author     : VIP
 --%>
-<%@page import="DAO.lessonDao"%>
-<%@page import="java.util.List"%>
-<%@page import="Entity.lessons"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,70 +61,59 @@
         <main class="ttr-wrapper">
             <div class="container-fluid">
                 <div class="db-breadcrumb">
-                    <h4 class="breadcrumb-title">Course</h4>
+                    <h4 class="breadcrumb-title">Courses</h4>
                     <ul class="db-breadcrumb-list">
                         <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
                         <li>Course </li>
-                       <li><a href="CourseLessonController?action=listAllCourse">Course Lesson</a></li>
-                       <li> <a href="CourseLessonController?action=listLesson&courseid=${l.courseID}">Lesson</a></li>
-                        <li> Lesson Detail</li>
+                        <li>Course Lesson</li>
                     </ul>
                 </div>	
                 <div class="row">
+                   
+                   <div class="wc-title" style="text-align: right;">
+                                <a href="/admin/CreateLesson.jsp">Create Lesson</a>
+
+                            </div>
+                   
                     <!-- List user Views Chart -->
                     <div class="col-lg-11 m-b30">
                         <div class="widget-box">
-<!--                            <div class="wc-title" style="text-align: right;">
-                                <a href="LessonController?action=insert" class="btn green radius-xl outline" style="margin-right: 60px;">Create Lesson</a>
-                            </div>-->
-                            <form action="CourseLessonController?action=update" method="POST"> 
+                           
+                             
+                            <form action="CourseLessonController?action=listCourse" method="POST">  
                                 <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-                                    
-                                    <tr>
-                                        <td>ID</td>
-                                        <td><input type="text" name="lid" value="${l.id}"  readonly/></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Title</td>
-                                        <td><input type="text" name="Title" value="${l.title}" ></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Topic</td>
-                                        <td><input type="text" name="belongingTopic" value="${l.belongingTopic}" ></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Content</td>
-                                        <td><textarea id="content"  name="content" style="width: 300px;height: 300px"> ${l.content}</textarea></td>                                       
-                                    </tr>
-                                    <tr>                                                                     
-                                        <td>Link Video</td>
-                                        <td><input type="text" name="videoLink" value="${l.videoLink}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Type</td>
-                                        <td><input type="text" name="type" value="${l.type}" ></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Status</td>
-                                        <td><input type="text" name="status" value="${l.status}" ></td>
-                                    </tr>
-                                    <tr>
-                                        <td>CourseId</td>
-                                        <td><input type="text" name="courseID" value="${l.courseID}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td><input class="btn green radius-xl outline" style="margin-right: 60px;" type="submit" name="submit" value="Update"><p>${mess}</p></td>
-                                    </tr>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" style="text-align: center;">ID</th>
+                                            <th scope="col">Course</th>
+                                            
+                                            <th scope="col" style="text-align: center; width: 250px;">Lesson of Course</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="${listCourse}" var="o">
+                                            <tr>
+                                                <th scope="row" style="text-align: center;">${o.id}</th>
+                                               
+                                                <td>${o.name}</td>
+                                             
+                                                <td style="text-align: center"> 
+                                                    <a href="CourseLessonController?action=listLesson&courseid=${o.id}" class="btn green radius-xl outline">View</a>
+                                                    
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
                                 </table>
-                                    
-                            </form> 
+                            </form>
                         </div>
                     </div>
                     <!-- List User Views Chart END-->
                 </div>
             </div>
         </main>
+
+        
         <!-- External JavaScripts -->
         <script src="../admin/assets/js/jquery.min.js"></script>
         <script src="../admin/assets/vendors/bootstrap/js/popper.min.js"></script>
@@ -136,7 +123,7 @@
         <script src='../admin/assets/vendors/scroll/scrollbar.min.js'></script>
         <script src="../admin/assets/vendors/owl-carousel/owl.carousel.js"></script>
         <script src="../admin/assets/js/functions.js"></script>
-        <!--<script src="../admin/assets/js/user-list.js"></script>-->
+        <script src="../admin/assets/js/user-list.js"></script>
         <!--        <script src="../admin/assets/js/admin.js"></script>
                 <script src="../admin/assets/js/user.js"></script>-->
     </body>

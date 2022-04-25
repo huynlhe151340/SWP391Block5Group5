@@ -226,7 +226,7 @@
                                     <a href="mailbox.html" class="ttr-material-button"><span class="ttr-label">Course List</span></a>
                                 </li>
                                 <li>
-                                    <a href="/admin/LessonController" class="ttr-material-button"><span class="ttr-label">Course Lesson</span></a>
+                                    <a href="/admin/CourseLessonController" class="ttr-material-button"><span class="ttr-label">Course Lesson</span></a>
                                 </li>
                                 <li>
                                     <a href="mailbox-read.html" class="ttr-material-button"><span class="ttr-label">Mail Read</span></a>
