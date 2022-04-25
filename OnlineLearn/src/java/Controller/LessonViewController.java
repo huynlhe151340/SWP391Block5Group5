@@ -5,10 +5,10 @@
  */
 package Controller;
 
-import DAO.postDao;
-import Entity.post;
+import DAO.lessonDao;
+import Entity.lessons;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Admin
+ * @author khait
  */
-@WebServlet(name = "EditPostAdminController", urlPatterns = {"/admin/EditPostAdminController"})
-public class EditPostAdminController extends HttpServlet {
+@WebServlet(name = "LessonViewController", urlPatterns = {"/user/lesson-view"})
+public class LessonViewController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,25 +33,22 @@ public class EditPostAdminController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
-        try (PrintWriter out = response.getWriter()) {
-
-            String id = request.getParameter("postID");
-            int id_post = Integer.parseInt(id);
-            postDao d = new postDao();
-            post a = new post();
-            a = d.getPostByID(id_post);   
-            
-            request.setAttribute("id_post", id_post);
-            request.setAttribute("Category",a.getCategoryID());
-            request.setAttribute("title", a.getTitle());
-            request.setAttribute("post_detail", a.getPostDetail());           
-            request.setAttribute("Author", a.getAuthor());
-          
-
-            request.getRequestDispatcher("/admin/EditPost.jsp").forward(request, response);
-
+        response.setContentType("text/html;charset=UTF-8");
+        try {
+            int firstLessonId = new lessonDao().getFisrtLessonId(1);
+            lessons lessonIntro = new lessonDao().getLesson(firstLessonId);
+            List<lessons> listWeek1 = new lessonDao().getTitleOfWeek("Week 1");
+            List<lessons> listWeek2 = new lessonDao().getTitleOfWeek("Week 2");
+            List<lessons> listWeek3 = new lessonDao().getTitleOfWeek("Week 3");
+            request.setAttribute("lessonIntro", lessonIntro);
+            request.setAttribute("listWeek1", listWeek1);
+            request.setAttribute("listWeek2", listWeek2);
+            request.setAttribute("listWeek3", listWeek3);
+            request.setAttribute("idLesson", lessonIntro.getId());
+            request.getRequestDispatcher("/user/lesson-view.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("/user/error.jsp");
         }
     }
 

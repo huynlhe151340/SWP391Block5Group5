@@ -9,7 +9,6 @@ import DAO.postDao;
 import Entity.accounts;
 import Entity.post;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,10 +44,12 @@ public class CreatePostController extends HttpServlet {
         String author = request.getParameter("author");
         String postDetail = request.getParameter("detail");
         String categoryID = request.getParameter("category");
+        String image = request.getParameter("image");
+        System.out.println(image);
         if (currentAccount != null && currentAccount.getRoleID() == 1) {
             try {
                 postDao postDao = new postDao();
-                post currentPost = new post(-1, title, author, new java.sql.Date(System.currentTimeMillis()),Integer.parseInt(categoryID), postDetail, "images", 0,currentAccount.getId());
+                post currentPost = new post(-1, title, author, new java.sql.Date(System.currentTimeMillis()),Integer.parseInt(categoryID), postDetail, image, 0,currentAccount.getId());
                 if(currentAccount.getRoleID() == 1){
                     currentPost.setStatus(1);
                 }

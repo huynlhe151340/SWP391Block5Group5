@@ -8,8 +8,8 @@ package Controller;
 import DAO.postDao;
 import Entity.post;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -20,9 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Admin
+ * @author AD
  */
-@WebServlet(name = "PostDetailController", urlPatterns = {"/PostDetailController"})
+@WebServlet(name = "PostDetailController", urlPatterns = {"/user/post"})
 public class PostDetailController extends HttpServlet {
 
     /**
@@ -37,30 +37,17 @@ public class PostDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
+        int id = Integer.parseInt(request.getParameter("id"));
+        postDao d = new postDao();
 
-        try (PrintWriter out = response.getWriter()) {
-            String id = request.getParameter("postID");
-            int id_post = Integer.parseInt(id);
-            postDao d = new postDao();
-            post a = new post();         
-            a = d.getPostByID(id_post);         
-            int status = a.getStatus();
-            int ac_id = a.getAccountID();
-            int id_detail = d.getIDDetailByIdAc(ac_id);
-            String nameAc = d.getNameByIdAcDetail(id_detail);
-            
-            
-            request.setAttribute("PostID",id);
-            request.setAttribute("NameAc",nameAc);
-            request.setAttribute("status",status);
-            request.setAttribute("title", a.getTitle());
-            request.setAttribute("post_detail", a.getPostDetail());
-            request.setAttribute("date", a.getUpdateDate());
-            request.setAttribute("Author", a.getAuthor());
-            request.setAttribute("img", a.getImage());
-            request.getRequestDispatcher("/admin/PostDetail.jsp").forward(request, response);
-        }
+//      Get blog by id 
+        post b = d.getPostById(id);
+        request.setAttribute("post", b);
+
+//      Get list blog recent post
+        List<post> listP = d.getTopPostRecent();
+        request.setAttribute("listPost", listP);
+        request.getRequestDispatcher("/user/post-detail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -226,7 +226,7 @@
                                     <a href="mailbox.html" class="ttr-material-button"><span class="ttr-label">Course List</span></a>
                                 </li>
                                 <li>
-                                    <a href="/admin/LessonController" class="ttr-material-button"><span class="ttr-label">Course Lesson</span></a>
+                                    <a href="/admin/CourseLessonController" class="ttr-material-button"><span class="ttr-label">Course Lesson</span></a>
                                 </li>
                                 <li>
                                     <a href="mailbox-read.html" class="ttr-material-button"><span class="ttr-label">Mail Read</span></a>
@@ -240,31 +240,10 @@
                             </a>
                         </li>
                         <li>
-                            <a href="review.html" class="ttr-material-button">
-                                <span class="ttr-icon"><i class="ti-comments"></i></span>
-                                <span class="ttr-label">Review</span>
-                            </a>
-                        </li>
-                        <li>
                             <a href="add-listing.html" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-layout-accordion-list"></i></span>
-                                <span class="ttr-label">Add listing</span>
+                                <span class="ttr-label">Slider</span>
                             </a>
-                        </li>
-                        <li>
-                            <a href="#" class="ttr-material-button">
-                                <span class="ttr-icon"><i class="ti-user"></i></span>
-                                <span class="ttr-label">My Profile</span>
-                                <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="user-profile.html" class="ttr-material-button"><span class="ttr-label">User Profile</span></a>
-                                </li>
-                                <li>
-                                    <a href="teacher-profile.html" class="ttr-material-button"><span class="ttr-label">Teacher Profile</span></a>
-                                </li>
-                            </ul>
                         </li>
                         <li>
                             <a href="${pageContext.request.contextPath}/admin/list-posts" class="ttr-material-button">

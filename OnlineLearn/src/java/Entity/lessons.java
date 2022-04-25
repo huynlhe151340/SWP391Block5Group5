@@ -23,6 +23,10 @@ public class lessons extends course {
     public lessons() {
     }
 
+    public lessons(String belongingTopic) {
+        this.belongingTopic = belongingTopic;
+    }
+
     public lessons(int id, String title, String belongingTopic, String content, String videoLink, String type, int status, int courseID) {
         this.id = id;
         this.title = title;

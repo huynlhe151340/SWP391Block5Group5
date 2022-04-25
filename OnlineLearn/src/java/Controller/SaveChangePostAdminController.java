@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-@WebServlet(name = "SaveChangePostAdminController", urlPatterns = {"/SaveChangePostAdminController"})
+@WebServlet(name = "SaveChangePostAdminController", urlPatterns = {"/admin/SaveChangePostAdminController"})
 public class SaveChangePostAdminController extends HttpServlet {
 
     /**

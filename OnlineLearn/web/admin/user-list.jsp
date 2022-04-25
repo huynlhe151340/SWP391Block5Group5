@@ -107,6 +107,11 @@
                                             <c:if test="${i.status==3}">
                                                 <td style="text-align: center;">Account block</td>
                                             </c:if>
+                                            <c:if test="${i.status == 1 && i.roleID == 2}">
+                                                <td style="text-align: center"> 
+                                                    <button disabled="" onclick="onClickBlockAccount(this.getAttribute('data-id'))" data-id="${i.id}" class="btn red radius-xl outline">Block</button>
+                                                </td>
+                                            </c:if>
                                             <c:if test="${i.status == 2 && i.roleID == 2}">
                                                 <td style="text-align: center"> 
                                                     <button onclick="onClickBlockAccount(this.getAttribute('data-id'))" data-id="${i.id}" class="btn red radius-xl outline">Block</button>
@@ -123,13 +128,13 @@
                                                 </td>
                                             </c:if>
                                             <td style="text-align: center"> 
-                                                <a href="/user-detail?userId=${i.id}" class="btn green radius-xl outline">Edit</a>
+                                                <a href="user-detail-admin?id=${i.accountDetailID}" class="btn green radius-xl outline">Edit</a>
                                             </td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
                             </table>
-
+                            <p class="notification" style="color: red;">${mess}&nbsp;</p>
                             <nav aria-label="Page navigation example" class="mb-5">
                                 <ul class="pagination justify-content-end">
                                     <c:forEach items="${requestScope.lsPage}" var="page">
@@ -149,13 +154,13 @@
         <div class="popup hide__popup">
             <div class="popup__content">
                 <div class="popup__close"><i class="fa fa-close"></i></div>
-                <form style="margin-top: 100px;" class="contact-bx" action="" method="POST">
+                <form style="margin-top: 100px;" class="contact-bx" action="/admin/register-admin" method="POST">
                     <div class="row placeani">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <div class="input-group">
                                     <label>Your Name</label>
-                                    <input name="name" type="text" required="" class="form-control">
+                                    <input id="name" name="name" type="text" required="" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -163,7 +168,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <label>Your Email Address</label>
-                                    <input name="email" type="email" required="" class="form-control">
+                                    <input id="email" name="email" type="email" required="" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -171,7 +176,7 @@
                             <div class="form-group">
                                 <div class="input-group"> 
                                     <label>Your Password</label>
-                                    <input name="password" type="password" class="form-control" required="">
+                                    <input id="password" name="password" type="password" class="form-control" required="">
                                 </div>
                             </div>
                         </div>
@@ -179,7 +184,7 @@
                             <div class="form-group">
                                 <div class="input-group"> 
                                     <label>Re-Password</label>
-                                    <input name="rePassword" type="password" class="form-control" required="">
+                                    <input id="rePassword" name="rePassword" type="password" class="form-control" required="">
                                 </div>
                             </div>
                         </div>
@@ -187,7 +192,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <label>Your Address</label>
-                                    <input name="address" type="text" required="" class="form-control">
+                                    <input id="address" name="address" type="text" required="" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -195,7 +200,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <label>Your Mobile</label>
-                                    <input name="mobile" type="text" required="" class="form-control">
+                                    <input id="mobile" name="mobile" type="text" required="" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -207,7 +212,7 @@
                         </div>
                         <div class="col-lg-12 m-b30">
                             <p class="notification" style="color: red;"> ${mess}&nbsp;</p>
-                            <button name="submit" type="submit" value="Submit" class="btn button-md">Create Account</button>
+                            <button type="submit" value="Submit" class="btn button-md">Create Account</button>
                         </div>
                     </div>
                 </form>

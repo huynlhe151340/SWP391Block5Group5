@@ -30,7 +30,7 @@
         <!-- FAVICONS ICON ============================================= -->
         <link rel="icon" href="../error-404.jsp" type="image/x-icon" />
         <link rel="shortcut icon" type="image/x-icon" href="../admin/assets/images/favicon.png" />
-
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
         <!-- PAGE TITLE HERE ============================================= -->
         <title>EduChamp : Education HTML Template </title>
 
@@ -72,19 +72,13 @@
                     <div class="col-lg-11 m-b30">
                         <div class="widget-box">
                             <div class="wc-title" style="text-align: right;">
-                                <button id="demo" class="btn green radius-xl outline" style="margin-right: 60px;">Create New Post</button>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <!--<select class="form-control" id="status">-->
-                                        <a href="${pageContext.request.contextPath}/admin/list-posts?status=-1"><option ${currentStatus == -1 ? "selected": ""}>All Post</option></a>
-                                        <a href="${pageContext.request.contextPath}/admin/list-posts?status=0"><option ${currentStatus == 0 ? "selected": ""}>In Active</option></a>
-                                        <a href="${pageContext.request.contextPath}/admin/list-posts?status=1"><option ${currentStatus == 1 ? "selected": ""}>Active</option></a>
-
-                                        <!--                                    </select>-->
-
-                                    </div>
-
+                                <div class="btn-group">
+                                    <a href="${pageContext.request.contextPath}/admin/list-posts" class="btn btn-primary ${currentStatus == -1 ? "active": ""}" aria-current="page">All Post</a>
+                                    <a href="${pageContext.request.contextPath}/admin/list-posts?status=0" class="btn btn-primary ${currentStatus == 0 ? "active": ""}">In Active</a>
+                                    <a href="${pageContext.request.contextPath}/admin/list-posts?status=1" class="btn btn-primary ${currentStatus == 1 ? "active": ""}">Active</a>
                                 </div>
+                                <button id="demo" class="btn green radius-xl outline" style="margin-right: 60px;">Create New Post</button>
+
                             </div>
                             <div class="wc-title">
                                 <c:if test="${createMess == false}">
@@ -143,8 +137,8 @@
                                                 </td>
                                             </c:if>--%>
                                             <td style="text-align: center"> 
-                                                <a href="/EditPostAdminController?postID=${i.id}" class="btn green radius-xl outline">Edit</a> 
-                                                <a href="/PostDetailController?postID=${i.id}" class="btn green radius-xl outline">View</a>
+                                                <a href="EditPostAdminController?postID=${i.id}" class="btn green radius-xl outline">Edit</a> 
+                                                <a href="PostDetailController?postID=${i.id}" class="btn green radius-xl outline">View</a>
 
                                             </td>
                                         </tr>
@@ -173,13 +167,14 @@
         <div class="popup hide__popup">
             <div class="popup__content">
                 <div class="popup__close"><i class="fa fa-close"></i></div>
-                <form style="margin-top: 100px;" class="contact-bx" action="${pageContext.request.contextPath}/admin/create-post" method="POST">
+                <!--action="${pageContext.request.contextPath}/admin/create-post" method="POST"-->
+                <form style="margin-top: 100px;" class="contact-bx" >
                     <div class="row placeani">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <div class="input-group">
                                     <label>Post Title</label>
-                                    <input name="title" type="text" required="" class="form-control" value="${lastInputTitle}">
+                                    <input id="title" name="title" type="text" required="" class="form-control" value="${lastInputTitle}">
                                 </div>
                             </div>
                         </div>
@@ -187,7 +182,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <label>Post Author</label>
-                                    <input name="author" type="text" required="" class="form-control" value="${lastInputAuthor}">
+                                    <input id="author" name="author" type="text" required="" class="form-control" value="${lastInputAuthor}">
                                 </div>
                             </div>
                         </div>
@@ -195,23 +190,39 @@
                             <div for="inputState" class="">Category</div>
                             <!--<select name="category" id="inputState" class="">-->
                             <c:forEach items="${listCategory}" var="o">
-                                <input  name="category" id="${o.id}" type="radio" ${lastInputCategoryID == o.id ? "selected" : ""} value="${o.id}"><label style="margin-right: 10px" for="${o.id}">${o.category}</label>
+                                <input  name="category" id="category" type="radio" ${lastInputCategoryID == o.id ? "selected" : ""} value="${o.id}"><label style="margin-right: 10px" for="${o.id}">${o.category}</label>
                             </c:forEach>
                             <!--</select>-->
                         </div>
                         <div class="col-lg-12">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <label>Post Detail</label>
-                                    <input name="detail" type="text" required="" class="form-control"  value="${lastInputPostDetail}"> 
+                            <c:if test="${posts.thumbnail == null}">
+                                <img style="width: 200px; height: 200px;" src="../admin/assets/images/courses/noimage.jpg" class="img-avatar" id="img-avatar" />
+                            </c:if>
+                            <c:if test="${posts.thumbnail != null}">
+                                <img src="${posts.thumbnail}" class="img-avatar" id="img-avatar" />
+                            </c:if>
+                            <div class="overlay-avatar" style="margin-top: 25px; margin-bottom: 20px;">
+                                <div class="overlay">
+                                    <div class="text-img">
+
+                                        <input type="file" name="file" id="upload-photo" onchange="changeImage(event)" />
+                                    </div>
                                 </div>
                             </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Post Detail</label>
+                                        <input id="detail" name="detail" type="text" required="" class="form-control"  value="${lastInputPostDetail}"> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 m-b30">
+                                <p class="notification" style="color: red;"> ${mess}&nbsp;</p>
+                                <button name="submit" onclick="onClickAddPost()" value="Submit" class="btn button-md">Create Post</button>
+                                <!--name="submit" type="submit" onclick="onClickAddPost()"--> 
+                            </div>
                         </div>
-                        <div class="col-lg-12 m-b30">
-                            <p class="notification" style="color: red;"> ${mess}&nbsp;</p>
-                            <button name="submit" type="submit" value="Submit" class="btn button-md">Create Post</button>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
@@ -225,6 +236,8 @@
         <script src="../admin/assets/vendors/owl-carousel/owl.carousel.js"></script>
         <script src="../admin/assets/js/functions.js"></script>
         <script src="../admin/assets/js/user-list.js"></script>
+        <script src="../admin/assets/js/post.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <!--        <script src="../admin/assets/js/admin.js"></script>
                 <script src="../admin/assets/js/user.js"></script>-->
     </body>

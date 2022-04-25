@@ -234,8 +234,54 @@ public class postDao {
 
         return false;
     }
-
-    // Post Detail
+    
+    public List<post> getPostsByPage(int pageIndex, int pageSize) throws SQLException {
+        try {
+            con = SQLServerConnection.getConnection();
+            String sql = "SELECT * FROM post WHERE status = 1 "
+                    + "ORDER BY update_date DESC "
+                    + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, pageIndex * pageSize);
+            ps.setInt(2, pageSize);
+            rs = ps.executeQuery();
+            List<post> list = new ArrayList<>();
+            while (rs.next()) {
+                list.add(new post(rs.getInt("id"),
+                        rs.getString("title"),
+                        rs.getString("author"),
+                        rs.getDate("update_date"),
+                        rs.getInt("category_id"),
+                        rs.getString("post_detail"),
+                        rs.getString("image"),
+                        rs.getInt("status")));
+            }
+            return list;
+        } catch (SQLException ex) {
+            return null;
+        } finally {
+            ps.close();
+        }
+    }
+    
+    public int getNumberOfPost() throws SQLException {
+        try {
+            con = SQLServerConnection.getConnection();
+            String sql = "SELECT COUNT(*) as number_post FROM post "
+                    + "WHERE status = 1";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("number_post");
+            }
+        } catch (SQLException ex) {
+            return 0;
+        } finally {
+            ps.close();
+        }
+        return 0;
+    }
+    
     public int getIDDetailByIdAc(int id) {
         int id_detail = 0;
         try {
@@ -357,6 +403,6 @@ public class postDao {
 //        for (post b : list) {
 //            System.out.println(b);
 //        }
-        System.out.println(d.UpdateSaveChangePostByID("hieunx1111", "hahah", "hieuxxx", 1,6));
+        System.out.println(d.getTopPostRecent());
     }
 }

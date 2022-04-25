@@ -1,26 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import DAO.postDao;
 import Entity.post;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Admin
- */
-@WebServlet(name = "EditPostAdminController", urlPatterns = {"/admin/EditPostAdminController"})
-public class EditPostAdminController extends HttpServlet {
+@WebServlet(name = "PostController", urlPatterns = {"/user/posts"})
+public class PostController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,27 +26,24 @@ public class EditPostAdminController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-      response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
-        try (PrintWriter out = response.getWriter()) {
-
-            String id = request.getParameter("postID");
-            int id_post = Integer.parseInt(id);
-            postDao d = new postDao();
-            post a = new post();
-            a = d.getPostByID(id_post);   
-            
-            request.setAttribute("id_post", id_post);
-            request.setAttribute("Category",a.getCategoryID());
-            request.setAttribute("title", a.getTitle());
-            request.setAttribute("post_detail", a.getPostDetail());           
-            request.setAttribute("Author", a.getAuthor());
-          
-
-            request.getRequestDispatcher("/admin/EditPost.jsp").forward(request, response);
-
+            throws ServletException, IOException, SQLException {
+        response.setContentType("text/html;charset=UTF-8");
+        postDao d = new postDao();
+        int pageIndex = 1;
+        try {
+            pageIndex = Integer.parseInt(request.getParameter("page"));
+        } catch (NumberFormatException ex) {
+            pageIndex = 1;
         }
+
+        int pageSize = 3;
+        List<post> listP = d.getPostsByPage((pageIndex - 1), pageSize);
+        int totalPost = d.getNumberOfPost();
+        int numOfPage = totalPost % pageSize == 0 ? totalPost / pageSize : (totalPost / pageSize) + 1;
+        request.setAttribute("listPost", listP);
+        request.setAttribute("pageIndex", pageIndex);
+        request.setAttribute("numOfPage", numOfPage);
+        request.getRequestDispatcher("/user/post.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -67,7 +58,11 @@ public class EditPostAdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -81,7 +76,11 @@ public class EditPostAdminController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

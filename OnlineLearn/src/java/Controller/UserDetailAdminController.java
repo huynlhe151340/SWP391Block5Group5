@@ -5,8 +5,8 @@
  */
 package Controller;
 
-import DAO.postDao;
-import Entity.post;
+import DAO.accountDetailDao;
+import Entity.accountDetails;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Admin
+ * @author khait
  */
-@WebServlet(name = "EditPostAdminController", urlPatterns = {"/admin/EditPostAdminController"})
-public class EditPostAdminController extends HttpServlet {
+@WebServlet(name = "UserDetailAdminController", urlPatterns = {"/admin/user-detail-admin"})
+public class UserDetailAdminController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,25 +33,15 @@ public class EditPostAdminController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
-        try (PrintWriter out = response.getWriter()) {
-
-            String id = request.getParameter("postID");
-            int id_post = Integer.parseInt(id);
-            postDao d = new postDao();
-            post a = new post();
-            a = d.getPostByID(id_post);   
-            
-            request.setAttribute("id_post", id_post);
-            request.setAttribute("Category",a.getCategoryID());
-            request.setAttribute("title", a.getTitle());
-            request.setAttribute("post_detail", a.getPostDetail());           
-            request.setAttribute("Author", a.getAuthor());
-          
-
-            request.getRequestDispatcher("/admin/EditPost.jsp").forward(request, response);
-
+        response.setContentType("text/html;charset=UTF-8");
+        try {
+            int id = Integer.parseInt(request.getParameter("id").trim());
+            accountDetails aDetails = new accountDetailDao().getOne(id);
+            request.setAttribute("aDetails", aDetails);
+            request.getRequestDispatcher("/admin/user-detail.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("/admin/error.jsp");
         }
     }
 

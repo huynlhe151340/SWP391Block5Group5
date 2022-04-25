@@ -173,9 +173,6 @@ public class loginDAO {
 
 System.out.println(checkPassword("khaitqhe141672@fpt.edu.vn", "123456"));
 
-
-System.out.println(checkPassword("khaitqhe141672@fpt.edu.vn", "123456"));
-
 System.out.println(checkPassword("khaitqhe141672@fpt.edu.v", "123456789"));
 
 //System.out.println(checkPassword("khaitqhe141672@fpt.edu.v", "123456789"));
