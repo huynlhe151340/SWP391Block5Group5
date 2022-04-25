@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author khait
  */
 @WebServlet(name = "LessonDetailController", urlPatterns = {"/user/lesson-detail"})
-public class LessonDetailController extends HttpServlet {
+public class LessonViewDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +38,7 @@ public class LessonDetailController extends HttpServlet {
         try {
             int id = Integer.parseInt(request.getParameter("id").trim());
             System.out.println(id);
-            lessons lessonIntro = new lessonDao().getTopic(id);
+            lessons lessonIntro = new lessonDao().getLesson(id);
             List<lessons> listWeek1 = new lessonDao().getTitleOfWeek("Week 1");
             List<lessons> listWeek2 = new lessonDao().getTitleOfWeek("Week 2");
             List<lessons> listWeek3 = new lessonDao().getTitleOfWeek("Week 3");

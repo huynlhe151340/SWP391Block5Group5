@@ -8,7 +8,6 @@ package Controller;
 import DAO.lessonDao;
 import Entity.lessons;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,7 +35,8 @@ public class LessonViewController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            lessons lessonIntro = new lessonDao().getTopic(9);
+            int firstLessonId = new lessonDao().getFisrtLessonId(1);
+            lessons lessonIntro = new lessonDao().getLesson(firstLessonId);
             List<lessons> listWeek1 = new lessonDao().getTitleOfWeek("Week 1");
             List<lessons> listWeek2 = new lessonDao().getTitleOfWeek("Week 2");
             List<lessons> listWeek3 = new lessonDao().getTitleOfWeek("Week 3");

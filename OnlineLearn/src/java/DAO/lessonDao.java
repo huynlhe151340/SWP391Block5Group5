@@ -152,23 +152,23 @@ public class lessonDao {
         }
 
     }
-    
+
     // code vũ
-    public List<lessons> getAll(){
-        
+    public List<lessons> getAll() {
+
         List<lessons> list = new ArrayList<>();
         String sql = "SELECT * FROM lesson";
-        
-        try(Connection con = SQLServerConnection.getConnection();
+
+        try (Connection con = SQLServerConnection.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                lessons l = new lessons(rs.getInt("id"), 
-                        rs.getString("title"), 
-                        rs.getString("belonging_topic"), 
-                        rs.getString("content"), 
-                        rs.getString("video_link"), 
-                        rs.getString("type"), 
+            while (rs.next()) {
+                lessons l = new lessons(rs.getInt("id"),
+                        rs.getString("title"),
+                        rs.getString("belonging_topic"),
+                        rs.getString("content"),
+                        rs.getString("video_link"),
+                        rs.getString("type"),
                         rs.getInt("status"),
                         rs.getInt("course_id"));
                 list.add(l);
@@ -179,22 +179,22 @@ public class lessonDao {
         }
         return null;
     }
-    
-    public lessons getTopic(int id){
+
+    public lessons getTopic(int id) {
         String sql = "SELECT *  FROM lesson WHERE id= ?";
-        
-        try(Connection con = SQLServerConnection.getConnection();
+
+        try (Connection con = SQLServerConnection.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setObject(1, id);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){ 
-                lessons l = new lessons(rs.getInt("id"), 
-                        rs.getString("title"), 
-                        rs.getString("belonging_topic"), 
-                        rs.getString("content"), 
-                        rs.getString("video_link"), 
-                        rs.getString("type"), 
-                        rs.getInt("status"), 
+            if (rs.next()) {
+                lessons l = new lessons(rs.getInt("id"),
+                        rs.getString("title"),
+                        rs.getString("belonging_topic"),
+                        rs.getString("content"),
+                        rs.getString("video_link"),
+                        rs.getString("type"),
+                        rs.getInt("status"),
                         rs.getInt("course_id"));
                 return l;
             }
@@ -203,23 +203,23 @@ public class lessonDao {
         }
         return null;
     }
-  
-    public List<lessons> getTitleOfWeek(String week){
-        
+
+    public List<lessons> getTitleOfWeek(String week) {
+
         List<lessons> list = new ArrayList<>();
         String sql = "SELECT * FROM lesson WHERE belonging_topic= ?";
-        
-        try(Connection con = SQLServerConnection.getConnection();
+
+        try (Connection con = SQLServerConnection.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setObject(1, week);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                lessons l = new lessons(rs.getInt("id"), 
-                        rs.getString("title"), 
-                        rs.getString("belonging_topic"), 
-                        rs.getString("content"), 
-                        rs.getString("video_link"), 
-                        rs.getString("type"), 
+            while (rs.next()) {
+                lessons l = new lessons(rs.getInt("id"),
+                        rs.getString("title"),
+                        rs.getString("belonging_topic"),
+                        rs.getString("content"),
+                        rs.getString("video_link"),
+                        rs.getString("type"),
                         rs.getInt("status"),
                         rs.getInt("course_id"));
                 list.add(l);
@@ -230,9 +230,73 @@ public class lessonDao {
         }
         return null;
     }
+
+    public int getFisrtLessonId(int courseId) {
+        String sql = "SELECT top 1 id FROM [dbo].[lesson] WHERE course_id = ?";
+
+        try (Connection con = SQLServerConnection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, courseId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    //get lesson info
+    public lessons getLesson(int lessonId) {
+        String sql = "SELECT *  FROM lesson WHERE id= ?";
+
+        try (Connection con = SQLServerConnection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, lessonId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                lessons l = new lessons(rs.getInt("id"),
+                        rs.getString("title"),
+                        rs.getString("belonging_topic"),
+                        rs.getString("content"),
+                        rs.getString("video_link"),
+                        rs.getString("type"),
+                        rs.getInt("status"),
+                        rs.getInt("course_id"));
+                return l;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     
+    public ArrayList<lessons> listLessonByCourse(int cid) {
+        ArrayList<lessons> list = new ArrayList<lessons>();
+        String query = "select lesson.id,lesson.title,lesson.belonging_topic,courses.[name],lesson.course_id  "
+                + "from lesson inner join courses on lesson.course_id=courses.id where course_id=?";
+
+        try {
+            con = JDBC.SQLServerConnection.getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, cid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new lessons(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getInt(5)));
+            }
+        } catch (SQLException ex) {
+
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         lessonDao a = new lessonDao();
-        System.out.println(a.getTopic(10));
+        System.out.println(a.getFisrtLessonId(1));
     }
 }

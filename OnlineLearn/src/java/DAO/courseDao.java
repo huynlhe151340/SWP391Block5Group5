@@ -185,6 +185,23 @@ public class courseDao {
         }
         return 0;
     }
+    
+    public ArrayList<course> listCourse() {
+        ArrayList<course> list = new ArrayList<course>();
+        String query = "select id,name from courses";
+
+        try {
+            con = JDBC.SQLServerConnection.getConnection();
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new course(rs.getInt(1),rs.getString(2)));
+            }
+        } catch (SQLException ex) {
+
+        }
+        return list;
+    }
 
     public static void main(String[] args) throws SQLException {
         courseDao d = new courseDao();
