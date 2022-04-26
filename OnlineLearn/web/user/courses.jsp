@@ -100,7 +100,7 @@
                                                     <div class="ttr-post-media"> <img src="assets/images/courses/${r.getThumbnail()}" width="200" height="143" alt=""> </div>
                                                     <div class="ttr-post-info">
                                                         <div class="ttr-post-header">
-                                                            <h6 class="post-title"><a href="courseDetail?id=${c.getId()}" class="text-claim-1">${r.getName()}</a></h6>
+                                                            <h6 class="post-title"><a href="courseDetail?id=${r.getId()}" class="text-claim-1">${r.getName()}</a></h6>
                                                         </div>
                                                         <div class="ttr-post-meta">
                                                             <ul>
