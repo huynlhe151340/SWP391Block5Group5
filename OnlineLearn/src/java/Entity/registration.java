@@ -21,6 +21,8 @@ public class registration {
     private int status;
     private Date validFrom;
     private Date validTo;
+    accounts account;
+    course course;
 
     public registration() {
     }
@@ -35,6 +37,18 @@ public class registration {
         this.validFrom = validFrom;
         this.validTo = validTo;
     }
+//<<<<<<< HEAD
+    
+        public registration(int id, accounts account, course course, Date registrationTime, double totalCost, int status, Date validFrom, Date validTo) {
+        this.id = id;
+        this.account = account;
+        this.course = course;
+        this.registrationTime = registrationTime;
+        this.totalCost = totalCost;
+        this.status = status;
+        this.validFrom = validFrom;
+        this.validTo = validTo;
+        }
 
     public int getId() {
         return id;
@@ -99,6 +113,15 @@ public class registration {
     public void setValidTo(Date validTo) {
         this.validTo = validTo;
     }
+
+    public accounts getAccount() {
+        return account;
+    }
+
+    public course getCourse() {
+        return course;
+    }
+    
 
     @Override
     public String toString() {

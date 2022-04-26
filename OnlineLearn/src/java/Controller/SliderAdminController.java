@@ -5,10 +5,8 @@
  */
 package Controller;
 
-import DAO.accountDao;
 import DAO.courseDao;
 import DAO.sliderDao;
-import Entity.accounts;
 import Entity.course;
 import Entity.slider;
 import java.io.IOException;

@@ -282,7 +282,6 @@ public class postDao {
         return 0;
     }
     
-    // post Detail 
     public int getIDDetailByIdAc(int id) {
         int id_detail = 0;
         try {

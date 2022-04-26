@@ -5,11 +5,9 @@
  */
 package DAO;
 
-import Entity.post;
 import Entity.slider;
 import JDBC.SQLServerConnection;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
