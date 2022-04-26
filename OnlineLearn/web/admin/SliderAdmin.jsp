@@ -95,10 +95,10 @@
                                             </td>
                                             <td style="text-align: center;">
                                                 <c:if test="${i.status==1}">
-                                                    <a class="text-danger">Active</a>
+                                                    <a class="text-success" >Active</a>
                                                 </c:if>
                                                 <c:if test="${i.status==2}">
-                                                    <a class="text-success" >InActive</a>  
+                                                    <a class="text-danger" >InActive</a>  
                                                 </c:if>
                                             </td>
                                             <td style="text-align: center"> 
