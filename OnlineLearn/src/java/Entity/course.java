@@ -33,6 +33,11 @@ public class course {
         this.name = name;
     }
 
+    public course(String name) {
+
+        this.name = name;
+    }
+
     public course(int id, String name, String thumbnail, category category, int feature, String owner, String description, float price, float salePrice, String duration, String skillLevel, String language, int status) {
         this.id = id;
         this.name = name;

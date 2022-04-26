@@ -202,13 +202,9 @@ public class courseDao {
         }
         return list;
     }
-
+     
     public static void main(String[] args) throws SQLException {
         courseDao d = new courseDao();
-        List<course> list = d.getAllCourses(0, 3);
-       // System.out.println(d.getCourseById(1));
-        for (course b : list) {
-            System.out.println(b.toString());
+      
         }
-    }
 }

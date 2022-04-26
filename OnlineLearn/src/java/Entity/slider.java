@@ -10,7 +10,7 @@ package Entity;
  * @author khait
  */
 public class slider {
-    
+
     private int id;
     private String title;
     private String image;
@@ -21,7 +21,7 @@ public class slider {
     public slider() {
     }
 
-    public slider(int id, String title, String image, String backlink, int status, int courseID) {
+    public slider(int id, String title, String image, String backlink, int courseID, int status) {
         this.id = id;
         this.title = title;
         this.image = image;
