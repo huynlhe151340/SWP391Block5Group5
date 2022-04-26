@@ -37,9 +37,11 @@ public class CoursesListController extends HttpServlet {
             pageIndex = 1;
         }
         List<course> listC = c.getCoursesByPage(pageIndex - 1, pageSize);
+        List<course> listRecent = c.getTopCourse();
         int totalCourse = c.getNumberOfCourse();
         int numOfPage = totalCourse % pageSize == 0 ? totalCourse / pageSize : (totalCourse / pageSize) + 1;
         request.setAttribute("listCourse", listC);
+        request.setAttribute("listCourse", listRecent);
         request.setAttribute("pageIndex", pageIndex);
         request.setAttribute("numOfPage", numOfPage);
         request.getRequestDispatcher("/user/courses.jsp").forward(request, response);
