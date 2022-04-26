@@ -12,6 +12,14 @@ and open the template in the editor.
     justify-content: space-between!important;
 }
 
+.text-claim-1{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
 .text-claim-2{
     text-overflow: ellipsis;
     overflow: hidden;

@@ -76,13 +76,13 @@
                                 <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
 <!--                                    <div class="widget courses-search-bx placeani">
                                         <div class="form-group">
-                                            <div class="input-group">
+                                            <form action="courses" method="GET"  class="input-group">
                                                 <label>Search Courses</label>
-                                                <input name="dzName" type="text" required class="form-control">
-                                            </div>
+                                                <input name="textSearch" type="text" required class="form-control">
+                                            </form>
                                         </div>
                                     </div>-->
-                                    <div class="widget widget_archive">
+<!--                                    <div class="widget widget_archive">
                                         <h5 class="widget-title style-1">All Courses</h5>
                                         <ul>
                                             <li class="active"><a href="#">General</a></li>
@@ -91,46 +91,29 @@
                                             <li><a href="#">Programming Language</a></li>
                                             <li><a href="#">Technology</a></li>
                                         </ul>
-                                    </div>
-                                    <div class="widget">
-                                        <a href="#"><img src="assets/images/adv/adv.jpg" alt=""/></a>
-                                    </div>
+                                    </div>-->
                                     <div class="widget recent-posts-entry widget-courses">
                                         <h5 class="widget-title style-1">Recent Courses</h5>
                                         <div class="widget-post-bx">
-                                            <div class="widget-post clearfix">
-                                                <div class="ttr-post-media"> <img src="assets/images/blog/recent-blog/pic1.jpg" width="200" height="143" alt=""> </div>
-                                                <div class="ttr-post-info">
-                                                    <div class="ttr-post-header">
-                                                        <h6 class="post-title"><a href="#">Introduction EduChamp</a></h6>
-                                                    </div>
-                                                    <div class="ttr-post-meta">
-                                                        <ul>
-                                                            <li class="price">
-                                                                <del>$190</del>
-                                                                <h5>$120</h5>
-                                                            </li>
-                                                            <li class="review">03 Review</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="widget-post clearfix">
-                                                <div class="ttr-post-media"> <img src="assets/images/blog/recent-blog/pic3.jpg" width="200" height="160" alt=""> </div>
-                                                <div class="ttr-post-info">
-                                                    <div class="ttr-post-header">
-                                                        <h6 class="post-title"><a href="#">English For Tommorow</a></h6>
-                                                    </div>
-                                                    <div class="ttr-post-meta">
-                                                        <ul>
-                                                            <li class="price">
-                                                                <h5 class="free">Free</h5>
-                                                            </li>
-                                                            <li class="review">07 Review</li>
-                                                        </ul>
+                                            <c:forEach items="${listRecent}" var="r">
+                                                <div class="widget-post clearfix">
+                                                    <div class="ttr-post-media"> <img src="assets/images/courses/${r.getThumbnail()}" width="200" height="143" alt=""> </div>
+                                                    <div class="ttr-post-info">
+                                                        <div class="ttr-post-header">
+                                                            <h6 class="post-title"><a href="courseDetail?id=${c.getId()}" class="text-claim-1">${r.getName()}</a></h6>
+                                                        </div>
+                                                        <div class="ttr-post-meta">
+                                                            <ul>
+                                                                <li class="price">
+                                                                    <del>$${r.getPrice()}</del>
+                                                                    <h5>$${Math.round(r.getPrice() *(1 - r.getSalePrice()))}</h5>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </c:forEach>
                                         </div>
                                     </div>
                                 </div>
@@ -140,7 +123,7 @@
                                             <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
                                                 <div class="cours-bx">
                                                     <div class="action-box">
-                                                        <img src="assets/images/courses/${c.getThumbnail()}" alt="">
+                                                        <img src="assets/images/courses/${c.getThumbnail()}" alt="" style="height: 157px;object-fit: contain;">
                                                         <a href="courseDetail?id=${c.getId()}" class="btn">Read More</a>
                                                     </div>
                                                     <div class="info-bx text-center">
@@ -177,7 +160,6 @@
                     </div>
                 </div>
                 <!-- contact area END -->
-
             </div>
             <!-- Content END-->
             <!-- Footer ==== -->

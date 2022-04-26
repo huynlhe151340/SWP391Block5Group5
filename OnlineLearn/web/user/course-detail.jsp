@@ -107,7 +107,7 @@
                                 <div class="col-lg-9 col-md-8 col-sm-12">
                                     <div class="courses-post">
                                         <div class="ttr-post-media media-effect">
-                                            <div><img src="assets/images/courses/1.png" style="height: 500px;object-fit: contain" alt=""></div>
+                                            <div><img src="assets/images/courses/${course.getThumbnail()}" style="height: 500px;object-fit: contain" alt=""></div>
                                         </div>
                                         <div class="ttr-post-info">
                                             <div class="ttr-post-title ">
