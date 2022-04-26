@@ -25,6 +25,11 @@ public class accounts {
     public accounts() {
     }
 
+    public accounts(int id, String email) {
+        this.id = id;
+        this.email = email;
+    }
+    
     public accounts(int id, String email, String password, int accountDetailID, int roleID, int status, Date createDate, String activeCode) {
         this.id = id;
         this.email = email;
