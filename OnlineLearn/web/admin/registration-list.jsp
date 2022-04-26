@@ -85,7 +85,7 @@
                                             <td>${i.account.email}</td>
                                             <td scope="row" style="text-align: center;">${i.course.name}</td>
                                             <td scope="row" style="text-align: center;">${i.registrationTime}</td>
-                                            <td style="text-align: center;">    <a href="registration-detail-admin?id=${i.id}" class="btn green radius-xl outline">Detail</a>
+                                            <td style="text-align: center;"><a href="RegistrationDetailAdminController?id=${i.id}" class="btn green radius-xl outline">Detail</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

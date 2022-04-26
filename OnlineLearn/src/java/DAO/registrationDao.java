@@ -22,6 +22,7 @@ import java.util.List;
  * @author khait
  */
 public class registrationDao {
+
     public List<registration> getAllRegistration() {
 
         List<registration> list = new ArrayList<>();
@@ -33,7 +34,7 @@ public class registrationDao {
                 registration regis = new registration(
                         rs.getInt("id"),
                         new accounts(rs.getInt("account_id"), rs.getString("email")),
-                        new course(rs.getInt("course_id"),rs.getString("name")),
+                        new course(rs.getInt("course_id"), rs.getString("name")),
                         rs.getDate("registration_time"),
                         rs.getDouble("total_cost"),
                         rs.getInt("status"),
@@ -47,9 +48,11 @@ public class registrationDao {
         }
         return null;
     }
+
     public int countTotalRegistration() {
         return getAllRegistration().size();
     }
+
     public List<registration> getRegistrationPerPage(int pageIndex, int numberProduct) {
         List<registration> list = new ArrayList<>();
         String sql = "SELECT r.[id] ,r.[account_id] ,a.email ,r.[course_id] ,c.name ,r.[registration_time] ,r.[total_cost] ,r.[status] ,r.[valid_from] ,r.[valid_to] FROM [dbo].[registration] as r INNER JOIN accounts as a on r.account_id= a.id inner join courses as c on r.course_id=c.id ORDER BY r.registration_time desc, id OFFSET ? ROWS FETCH NEXT ? ROW ONLY";
@@ -63,7 +66,7 @@ public class registrationDao {
                 registration regis = new registration(
                         rs.getInt("id"),
                         new accounts(rs.getInt("account_id"), rs.getString("email")),
-                        new course(rs.getInt("course_id"),rs.getString("name")),
+                        new course(rs.getInt("course_id"), rs.getString("name")),
                         rs.getDate("registration_time"),
                         rs.getDouble("total_cost"),
                         rs.getInt("status"),
@@ -77,12 +80,46 @@ public class registrationDao {
         }
         return null;
     }
-    public static void main(String[] args) {
+
+    Connection con = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    public registration getRegisById(int id) throws SQLException {
+        try {
+            con = SQLServerConnection.getConnection();
+            String sql = "Select * from registration where id=?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new registration(rs.getInt("id"),
+                        rs.getInt("account_id"),
+                        rs.getInt("course_id"),
+                        rs.getDate("registration_time"),
+                        rs.getDouble("total_cost"),
+                        rs.getInt("status"),
+                        rs.getDate("valid_from"),
+                        rs.getDate("valid_to"));
+                
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            ps.close();
+        }
+        return null;
+    }
+
+    public static void main(String[] args) throws SQLException {
         ArrayList<registration> listAccount = (ArrayList<registration>) new registrationDao().getRegistrationPerPage(0, 6);
         for (registration object : listAccount) {
             System.out.println(object);
             System.out.print(object.getAccount().getId());
             System.out.println(object.getCourse().getId());
         }
+        
+        registrationDao d = new registrationDao();
+        System.out.println(d.getRegisById(1));
     }
 }
