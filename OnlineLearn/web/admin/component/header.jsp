@@ -251,6 +251,12 @@
                                 <span class="ttr-label">Posts</span>
                             </a>
                         </li>
+			<li>
+                            <a href="${pageContext.request.contextPath}/admin/list-registrations" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="ti-layout-accordion-separated"></i></span>
+                                <span class="ttr-label">Registration</span>
+                            </a>
+                        </li>
                         <li class="ttr-seperate"></li>
                     </ul>
                     <!-- sidebar menu end -->
