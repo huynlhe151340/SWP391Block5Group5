@@ -81,8 +81,13 @@
                                             <del>$${Math.round(course.getPrice())}</del>
                                             <h4 class="price" style="margin-left: 10px">$${Math.round(course.getPrice() *(1 - course.getSalePrice()))}</h4>
                                         </div>	
-                                        <div class="course-buy-now text-center">
-                                            <a href="#" class="btn radius-xl text-uppercase">Buy Now This Course</a>
+                                        <div class="course-buy-now text-center" style="display: flex;justify-content: center;">
+                                            <c:if test="${course.getStatus() == 1 || course.getStatus() == 2}">
+                                                <a href="#" class="btn radius-xl text-uppercase">Buy Now This Course</a>
+                                            </c:if>
+                                            <c:if test="${course.getStatus() == 0}">
+                                                <span>This course is not available</a>
+                                            </c:if>
                                         </div>
                                         <div class="teacher-bx">
                                             <div class="teacher-info">
@@ -147,7 +152,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                   
+
                                 </div>
                             </div>
                         </div>
