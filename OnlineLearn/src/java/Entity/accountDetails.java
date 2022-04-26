@@ -72,5 +72,12 @@ public class accountDetails {
     public String toString() {
         return "accountDetails{" + "id=" + id + ", name=" + name + ", mobile=" + mobile + ", address=" + address + ", gender=" + gender + '}';
     }
-    
+    public accountDetails(String name) {
+        this.name = name;
+    }
+
+    public accountDetails(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
 }

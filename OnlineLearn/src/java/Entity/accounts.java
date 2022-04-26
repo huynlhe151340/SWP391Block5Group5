@@ -20,11 +20,12 @@ public class accounts {
     private int roleID;
     private int status;
     private Date createDate;
+    private String activeCode;
 
     public accounts() {
     }
 
-    public accounts(int id, String email, String password, int accountDetailID, int roleID, int status, Date createDate) {
+    public accounts(int id, String email, String password, int accountDetailID, int roleID, int status, Date createDate, String activeCode) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -32,7 +33,19 @@ public class accounts {
         this.roleID = roleID;
         this.status = status;
         this.createDate = createDate;
+        this.activeCode = activeCode;
     }
+
+    public accounts(String email, String password, int accountDetailID, int roleID, int status, String activeCode) {
+        this.email = email;
+        this.password = password;
+        this.accountDetailID = accountDetailID;
+        this.roleID = roleID;
+        this.status = status;
+        this.activeCode = activeCode;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -92,7 +105,43 @@ public class accounts {
 
     @Override
     public String toString() {
-        return "accounts{" + "id=" + id + ", email=" + email + ", password=" + password + ", accountDetailID=" + accountDetailID + ", roleID=" + roleID + ", status=" + status + ", createDate=" + createDate + '}';
+        return "accounts{" + "id=" + id + ", email=" + email + ", password=" + password + ", accountDetailID=" + accountDetailID + ", roleID=" + roleID + ", status=" + status + ", createDate=" + createDate + ", activeCode=" + activeCode + '}';
     }
-    
+
+    public String getActiveCode() {
+        return activeCode;
+    }
+
+    public void setActiveCode(String activeCode) {
+        this.activeCode = activeCode;
+    }
+    private accountDetails accountDetail;
+
+    public accounts(int id, String email, String password, int accountDetailID, int roleID, int status, Date createDate, String activeCode, accountDetails accountDetail) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.accountDetailID = accountDetailID;
+        this.roleID = roleID;
+        this.status = status;
+        this.createDate = createDate;
+        this.activeCode = activeCode;
+        this.accountDetail = accountDetail;
+    }
+
+    public accountDetails getAccountDetail() {
+        return accountDetail;
+    }
+
+    public void setAccountDetail(accountDetails accountDetail) {
+        this.accountDetail = accountDetail;
+    }
+
+    public accounts(String email, String password, int accountDetailID, int roleID, int status) {
+        this.email = email;
+        this.password = password;
+        this.accountDetailID = accountDetailID;
+        this.roleID = roleID;
+        this.status = status;
+    }
 }

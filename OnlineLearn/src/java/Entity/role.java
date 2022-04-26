@@ -13,14 +13,17 @@ public class role {
     
     private int id;
     private String name;
-
+    private int status;
+    
     public role() {
     }
 
-    public role(int id, String name) {
+    public role(int id, String name, int status) {
         this.id = id;
         this.name = name;
+        this.status = status;
     }
+    
 
     public int getId() {
         return id;
@@ -38,9 +41,19 @@ public class role {
         this.name = name;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
-        return "role{" + "id=" + id + ", name=" + name + '}';
+        return "role{" + "id=" + id + ", name=" + name + ", status=" + status + '}';
     }
+
+ 
     
 }

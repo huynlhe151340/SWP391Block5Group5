@@ -9,23 +9,61 @@ package Entity;
  *
  * @author khait
  */
-public class lessons {
-    
+public class lessons extends course {
+
     private int id;
-    private int accountID;
-    private int orderID;
-    private int complete;
+    private String title;
+    private String belongingTopic;
+    private String content;
+    private String videoLink;
+    private String type;
     private int status;
+    private int courseID;
 
     public lessons() {
     }
 
-    public lessons(int id, int accountID, int orderID, int complete, int status) {
+    public lessons(String belongingTopic) {
+        this.belongingTopic = belongingTopic;
+    }
+
+    public lessons(int id, String title, String belongingTopic, String content, String videoLink, String type, int status, int courseID) {
         this.id = id;
-        this.accountID = accountID;
-        this.orderID = orderID;
-        this.complete = complete;
+        this.title = title;
+        this.belongingTopic = belongingTopic;
+        this.content = content;
+        this.videoLink = videoLink;
+        this.type = type;
         this.status = status;
+        this.courseID = courseID;
+    }
+
+    public lessons(String title, String belongingTopic, String content, String videoLink, String type, int status, int courseID) {
+        this.title = title;
+        this.belongingTopic = belongingTopic;
+        this.content = content;
+        this.videoLink = videoLink;
+        this.type = type;
+        this.status = status;
+        this.courseID = courseID;
+    }
+
+    private String name;
+
+    public lessons(int id, String title, String belongingTopic, String name, int status) {
+        this.id = id;
+        this.title = title;
+        this.belongingTopic = belongingTopic;
+        this.status = status;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getId() {
@@ -36,28 +74,44 @@ public class lessons {
         this.id = id;
     }
 
-    public int getAccountID() {
-        return accountID;
+    public String getTitle() {
+        return title;
     }
 
-    public void setAccountID(int accountID) {
-        this.accountID = accountID;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public int getOrderID() {
-        return orderID;
+    public String getBelongingTopic() {
+        return belongingTopic;
     }
 
-    public void setOrderID(int orderID) {
-        this.orderID = orderID;
+    public void setBelongingTopic(String belongingTopic) {
+        this.belongingTopic = belongingTopic;
     }
 
-    public int getComplete() {
-        return complete;
+    public String getContent() {
+        return content;
     }
 
-    public void setComplete(int complete) {
-        this.complete = complete;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getVideoLink() {
+        return videoLink;
+    }
+
+    public void setVideoLink(String videoLink) {
+        this.videoLink = videoLink;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getStatus() {
@@ -68,9 +122,17 @@ public class lessons {
         this.status = status;
     }
 
+    public int getCourseID() {
+        return courseID;
+    }
+
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
+    }
+
     @Override
     public String toString() {
-        return "lessons{" + "id=" + id + ", accountID=" + accountID + ", orderID=" + orderID + ", complete=" + complete + ", status=" + status + '}';
+        return "lessons{" + "id=" + id + ", title=" + title + ", belongingTopic=" + belongingTopic + ", content=" + content + ", videoLink=" + videoLink + ", type=" + type + ", status=" + status + ", courseID=" + courseID + '}';
     }
-    
+
 }
