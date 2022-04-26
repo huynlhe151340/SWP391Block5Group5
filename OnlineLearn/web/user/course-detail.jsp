@@ -86,7 +86,7 @@
                                                 <a href="#" class="btn radius-xl text-uppercase">Buy Now This Course</a>
                                             </c:if>
                                             <c:if test="${course.getStatus() == 0}">
-                                                <span>This course is not available</a>
+                                                <span>This course is not available</span>
                                             </c:if>
                                         </div>
                                         <div class="teacher-bx">
