@@ -5,11 +5,11 @@
  */
 package Controller;
 
-import DAO.courseDao;
 import DAO.registrationDao;
-import Entity.accounts;
-import Entity.course;
+import Entity.courseRegistration;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -20,10 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author AD
+ * @author ADMIN
  */
-@WebServlet(name = "CourseDetailControlelr", urlPatterns = {"/user/courseDetail"})
-public class CourseDetailControlelr extends HttpServlet {
+@WebServlet(name = "CourseRegisterController", urlPatterns = {"/user/course-register"})
+public class CourseRegisterController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,22 +37,29 @@ public class CourseDetailControlelr extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            courseDao dao = new courseDao();
-            course c = dao.getCourseById(id);
+        request.setCharacterEncoding("UTF-8");
+
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String id = request.getParameter("id");
+        String total_cost = request.getParameter("total_cost");
+        if (name != null && email != null && phone != null) {
             registrationDao registrationDao = new registrationDao();
-            accounts currentAccount = (accounts) request.getSession().getAttribute("currentAccount");
-            boolean isBuyThisCourse = false;
-            if (currentAccount != null) {
-                isBuyThisCourse = registrationDao.isBuyThisCourse(id, currentAccount.getEmail());
+            courseRegistration currentCourseRegistration = new courseRegistration(-1, Integer.parseInt(id), name, email, phone, new java.sql.Date(System.currentTimeMillis()), Float.parseFloat(total_cost), 1);
+            try {
+                boolean buyMess = registrationDao.createCourseRegister(currentCourseRegistration);
+
+                request.setAttribute("buyMess", buyMess);
+                request.setAttribute("id", id);
+                request.getRequestDispatcher("/user/courseDetail").forward(request, response);
+                return;
+            } catch (SQLException ex) {
+                Logger.getLogger(CourseRegisterController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            request.setAttribute("isBuyThisCourse", isBuyThisCourse);
-            request.setAttribute("course", c);
-            request.getRequestDispatcher("/user/course-detail.jsp").forward(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        request.setAttribute("buyMess", false);
+        request.getRequestDispatcher("/user/courseDetail").forward(request, response);
 
     }
 

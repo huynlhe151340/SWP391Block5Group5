@@ -18,3 +18,15 @@ INSERT [dbo].[slider] ([id], [title], [image], [backlink], [course_id], [status]
 GO
 SET IDENTITY_INSERT [dbo].[slider] OFF
 GO
+
+create table courseRegistration(
+id int identity(1,1),
+course_id int not null,
+name nvarchar(max) not null,
+email nvarchar(50) not null,
+phone nvarchar(max) not null,
+[registration_time] [date] NOT NULL,
+[total_cost] [float] NOT NULL,
+[status] [int] NOT NULL,
+constraint primary_key primary key (id),
+constraint fk_key foreign key (course_id) references courses(id))
