@@ -81,8 +81,13 @@
                                             <del>$${Math.round(course.getPrice())}</del>
                                             <h4 class="price" style="margin-left: 10px">$${Math.round(course.getPrice() *(1 - course.getSalePrice()))}</h4>
                                         </div>	
-                                        <div class="course-buy-now text-center">
-                                            <a href="#" class="btn radius-xl text-uppercase">Buy Now This Course</a>
+                                        <div class="course-buy-now text-center" style="text-align: center">
+                                            <c:if test="${isBuyThisCourse == true}" >
+                                                <a href="#" class="btn green">Paid</a>
+                                            </c:if>
+                                            <c:if test="${isBuyThisCourse == false}" >
+                                                <a href="#" class="btn radius-xl text-uppercase" data-toggle="modal" data-target="#exampleModal">Buy Now This Course</a>
+                                            </c:if>
                                         </div>
                                         <div class="teacher-bx">
                                             <div class="teacher-info">
@@ -101,6 +106,12 @@
                                                 <h5 class="text-primary">${course.getCategory().getCategory()}</h5>
                                             </div>
                                         </div>
+                                        <c:if test="${buyMess == true}">
+                                            <div style="color:green">Buy successful!</div>
+                                        </c:if>
+                                        <c:if test="${buyMess == false}">
+                                            <div style="color: red">Something wrong. Can not buy this course!</div>
+                                        </c:if>
                                     </div>
                                 </div>
 
@@ -147,7 +158,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                   
+
                                 </div>
                             </div>
                         </div>
@@ -157,26 +168,64 @@
 
             </div>
             <!-- Content END-->
+            <!-- Button trigger modal -->
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Process To Buy This Course</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="${pageContext.request.contextPath}/user/course-register" method="post">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" class="form-control" id="fullName" name="name" placeholder="Enter your full name" required="" value="${currentAccount.accountDetail.name}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1"  name="email"  aria-describedby="emailHelp" placeholder="Enter your email" required="" value="${currentAccount.email}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone</label>
+                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter your phome number" required="" value="${currentAccount.accountDetail.mobile}">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="hidden" name="id" value="${course.getId()}">
+                                <input type="hidden" name="total_cost" value="${Math.round(course.getPrice() *(1 - course.getSalePrice()))}">
+                                <button type="button" class="btn outline" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn primary">BUY $${Math.round(course.getPrice() *(1 - course.getSalePrice()))}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <!-- Footer ==== -->
             <%@include file="component/footer.jsp" %>
         </div>
         <!-- External JavaScripts -->
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-        <script src="assets/vendors/bootstrap/js/popper.min.js"></script>
-        <script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
-        <script src="assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
-        <script src="assets/vendors/magnific-popup/magnific-popup.js"></script>
-        <script src="assets/vendors/counter/waypoints-min.js"></script>
-        <script src="assets/vendors/counter/counterup.min.js"></script>
-        <script src="assets/vendors/imagesloaded/imagesloaded.js"></script>
-        <script src="assets/vendors/masonry/masonry.js"></script>
-        <script src="assets/vendors/masonry/filter.js"></script>
-        <script src="assets/vendors/owl-carousel/owl.carousel.js"></script>
-        <script src="assets/js/functions.js"></script>
-        <script src="assets/js/contact.js"></script>
-        <script src="assets/js/lesson-view.js"></script>
+        <script src="${pageContext.request.contextPath}/user/assets/vendors/bootstrap/js/popper.min.js"></script>
+        <script src="${pageContext.request.contextPath}/user/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/user/assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+        <script src="${pageContext.request.contextPath}/user/assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+        <script src="${pageContext.request.contextPath}/user/assets/vendors/magnific-popup/magnific-popup.js"></script>
+        <script src="${pageContext.request.contextPath}/user/assets/vendors/counter/waypoints-min.js"></script>
+        <script src="${pageContext.request.contextPath}/user/assets/vendors/counter/counterup.min.js"></script>
+        <script src="${pageContext.request.contextPath}/user/assets/vendors/imagesloaded/imagesloaded.js"></script>
+        <script src="${pageContext.request.contextPath}/user/assets/vendors/masonry/masonry.js"></script>
+        <script src="${pageContext.request.contextPath}/user/assets/vendors/masonry/filter.js"></script>
+        <script src="${pageContext.request.contextPath}/user/assets/vendors/owl-carousel/owl.carousel.js"></script>
+        <script src="${pageContext.request.contextPath}/user/assets/js/functions.js"></script>
+        <script src="${pageContext.request.contextPath}/user/assets/js/contact.js"></script>
+        <script src="${pageContext.request.contextPath}/user/assets/js/lesson-view.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     </body>
 </html>

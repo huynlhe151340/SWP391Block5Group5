@@ -134,7 +134,7 @@
                                     <a href="index.html"><img src="assets/images/logo.png" alt=""></a>
                                 </div>
                                 <ul class="nav navbar-nav">
-                                    <li class="active"><a href="index.jsp">Home</a></li>
+                                    <li class="active"><a href="${pageContext.request.contextPath}/user/home">Home</a></li>
                                     <li class="add-mega-menu"><a href="courses">Courses</a></li>
                                     <li class="add-mega-menu"><a href="${pageContext.request.contextPath}/user/list-sliders">Sliders</a></li>
                                     <li><a href="posts">Posts</a></li>

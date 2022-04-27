@@ -226,6 +226,7 @@
                 </form>
             </div>
         </div>
+        </div>                            
         <!-- External JavaScripts -->
         <script src="../admin/assets/js/jquery.min.js"></script>
         <script src="../admin/assets/vendors/bootstrap/js/popper.min.js"></script>
