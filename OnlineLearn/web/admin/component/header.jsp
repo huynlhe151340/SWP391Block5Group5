@@ -83,7 +83,7 @@
                     <!-- header left menu start -->
                     <ul class="ttr-header-navigation">
                         <li>
-                            <a href="${pageContext.request.contextPath}/user/index.jsp" class="ttr-material-button ttr-submenu-toggle">HOME</a>
+                            <a href="${pageContext.request.contextPath}/user/home" class="ttr-material-button ttr-submenu-toggle">HOME</a>
                         </li>
                         <li>
                             <a href="#" class="ttr-material-button ttr-submenu-toggle">QUICK MENU <i class="fa fa-angle-down"></i></a>
