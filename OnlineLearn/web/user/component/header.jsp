@@ -136,6 +136,7 @@
                                 <ul class="nav navbar-nav">
                                     <li class="active"><a href="index.jsp">Home</a></li>
                                     <li class="add-mega-menu"><a href="courses">Courses</a></li>
+                                    <li class="add-mega-menu"><a href="${pageContext.request.contextPath}/user/list-sliders">Sliders</a></li>
                                     <li><a href="posts">Posts</a></li>
                                 </ul>
                                 <!--                                <div class="nav-social-link">
