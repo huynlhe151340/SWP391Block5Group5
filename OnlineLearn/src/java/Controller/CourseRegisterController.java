@@ -6,7 +6,7 @@
 package Controller;
 
 import DAO.registrationDao;
-import Entity.courseRegistration;
+import Entity.registration;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -46,7 +46,7 @@ public class CourseRegisterController extends HttpServlet {
         String total_cost = request.getParameter("total_cost");
         if (name != null && email != null && phone != null) {
             registrationDao registrationDao = new registrationDao();
-            courseRegistration currentCourseRegistration = new courseRegistration(-1, Integer.parseInt(id), name, email, phone, new java.sql.Date(System.currentTimeMillis()), Float.parseFloat(total_cost), 1);
+            registration currentCourseRegistration = new registration(-1, Integer.parseInt(id), name, email, phone, new java.sql.Date(System.currentTimeMillis()), Float.parseFloat(total_cost), 1);
             try {
                 boolean buyMess = registrationDao.createCourseRegister(currentCourseRegistration);
 
