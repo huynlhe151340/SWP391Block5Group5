@@ -5,8 +5,9 @@
  */
 package DAO;
 
-import Entity.courseRegistration;
+
 import Entity.post;
+import Entity.registration;
 import JDBC.SQLServerConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,12 +24,12 @@ public class registrationDao {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    public boolean createCourseRegister(courseRegistration currentCourseRegistration) throws SQLException {
+    public boolean createCourseRegister(registration currentCourseRegistration) throws SQLException {
         try {
             con = SQLServerConnection.getConnection();
 
             if (con != null) {
-                String sql = "insert into courseRegistration(course_id, name, email, phone, [registration_time], [total_cost], [status]) values (?,?,?,?,?,?,?)";
+                String sql = "insert into registration(course_id, name, email, phone, [registration_time], [total_cost], [status]) values (?,?,?,?,?,?,?)";
 
                 ps = con.prepareStatement(sql);
                 ps.setInt(1, currentCourseRegistration.getCourse_id());
@@ -63,7 +64,7 @@ public class registrationDao {
             con = SQLServerConnection.getConnection();
 
             if (con != null) {
-                String sql = "select * from courseRegistration where course_id = ? and email = ?";
+                String sql = "select * from registration where course_id = ? and email = ?";
 
                 ps = con.prepareStatement(sql);
                 ps.setInt(1, course_id);
