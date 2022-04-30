@@ -45,12 +45,14 @@ public class CourseDetailControlelr extends HttpServlet {
             accounts currentAccount = (accounts) request.getSession().getAttribute("currentAccount");
             boolean isBuyThisCourse = false;
             if (currentAccount != null) {
-                isBuyThisCourse = registrationDao.isBuyThisCourse(id, currentAccount.getEmail());
+                isBuyThisCourse = registrationDao.isBuyThisCourse(id, currentAccount.getId());
             }
             request.setAttribute("isBuyThisCourse", isBuyThisCourse);
             request.setAttribute("course", c);
+            System.out.println("av");
             request.getRequestDispatcher("/user/course-detail.jsp").forward(request, response);
         } catch (Exception ex) {
+            System.out.println("a");
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
 

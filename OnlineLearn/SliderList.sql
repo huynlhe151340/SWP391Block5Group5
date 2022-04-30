@@ -19,22 +19,4 @@ GO
 SET IDENTITY_INSERT [dbo].[slider] OFF
 GO
 
-alter table registration drop constraint FK_registration_accounts
-
-ALTER TABLE registration DROP COLUMN account_id
-
-ALTER TABLE registration DROP COLUMN valid_from
-
-ALTER TABLE registration DROP COLUMN valid_to
-
-ALTER TABLE registration
-ADD name nvarchar(max) not null
-
-ALTER TABLE registration
-ADD email nvarchar(50) not null
-
-ALTER TABLE registration
-ADD phone nvarchar(max) not null
-
-drop table courseRegistration
 

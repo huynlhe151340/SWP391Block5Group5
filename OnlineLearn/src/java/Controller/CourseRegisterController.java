@@ -6,10 +6,12 @@
 package Controller;
 
 import DAO.registrationDao;
+import Entity.accounts;
 import Entity.registration;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -38,28 +40,35 @@ public class CourseRegisterController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        accounts currentAccount = (accounts) request.getSession().getAttribute("currentAccount");
 
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
         String id = request.getParameter("id");
         String total_cost = request.getParameter("total_cost");
-        if (name != null && email != null && phone != null) {
-            registrationDao registrationDao = new registrationDao();
-            registration currentCourseRegistration = new registration(-1, Integer.parseInt(id), name, email, phone, new java.sql.Date(System.currentTimeMillis()), Float.parseFloat(total_cost), 1);
-            try {
-                boolean buyMess = registrationDao.createCourseRegister(currentCourseRegistration);
+        registrationDao registrationDao = new registrationDao();
 
-                request.setAttribute("buyMess", buyMess);
-                request.setAttribute("id", id);
-                request.getRequestDispatcher("/user/courseDetail").forward(request, response);
-                return;
-            } catch (SQLException ex) {
-                Logger.getLogger(CourseRegisterController.class.getName()).log(Level.SEVERE, null, ex);
+//      Đăng nhập rồi mới thực hiện mua  
+        if (currentAccount != null) {
+            if (id != null && total_cost != null) {
+                registration currentCourseRegistration = new registration(-1,
+                        currentAccount.getId(), Integer.parseInt(id),
+                        new java.sql.Date(System.currentTimeMillis()),
+                        Double.parseDouble(total_cost), 1,
+                        new java.sql.Date(System.currentTimeMillis()),
+                        new java.sql.Date(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(30 * 6)));
+                try {
+                    boolean buyMess = registrationDao.createCourseRegister(currentCourseRegistration);
+                    request.setAttribute("buyMess", buyMess);
+                    request.setAttribute("id", id);
+                    request.getRequestDispatcher("/user/courseDetail").forward(request, response);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CourseRegisterController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+
+        } else {
+            request.setAttribute("buyMess", false);
+            request.getRequestDispatcher("/user/courseDetail").forward(request, response);
         }
-        request.setAttribute("buyMess", false);
-        request.getRequestDispatcher("/user/courseDetail").forward(request, response);
 
     }
 

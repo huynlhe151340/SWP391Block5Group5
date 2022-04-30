@@ -68,7 +68,7 @@
                                                 <a href="courseDetail?id=${c.getId()}" class="btn">Read More</a>
                                             </div>
                                             <div class="info-bx text-center">
-                                                <h5><a href="courseDetail?id=${c.getId()}">${c.getName()}</a></h5>
+                                                <h5><a href="${pageContext.request.contextPath}/user/courseDetail?id=${c.getId()}">${c.getName()}</a></h5>
                                                 <span>${c.getCategory().getCategory()}</span>
                                             </div>
                                             <div class="cours-more-info">

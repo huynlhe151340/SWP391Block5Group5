@@ -183,25 +183,22 @@
                         </div>
                         <form action="${pageContext.request.contextPath}/user/course-register" method="post">
                             <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="fullName">Full Name</label>
-                                    <input type="text" class="form-control" id="fullName" name="name" placeholder="Enter your full name" required="" value="${currentAccount.accountDetail.name}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1"  name="email"  aria-describedby="emailHelp" placeholder="Enter your email" required="" value="${currentAccount.email}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter your phome number" required="" value="${currentAccount.accountDetail.mobile}">
-                                </div>
+                                <c:if test="${not empty currentAccount}">
+                                    <div>You are going to buy this course with $${Math.round(course.getPrice() *(1 - course.getSalePrice()))}</div>
+                                </c:if>
+                                <c:if test="${empty currentAccount}">
+                                    <div>Please <a style="color: #00A0D1" href="${pageContext.request.contextPath}/user/login.jsp">login</a> to use this feature.</div>
+                                </c:if>
                             </div>
-                            <div class="modal-footer">
-                                <input type="hidden" name="id" value="${course.getId()}">
-                                <input type="hidden" name="total_cost" value="${Math.round(course.getPrice() *(1 - course.getSalePrice()))}">
-                                <button type="button" class="btn outline" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn primary">BUY $${Math.round(course.getPrice() *(1 - course.getSalePrice()))}</button>
-                            </div>
+                            <c:if test="${not empty currentAccount}">
+                                <div class="modal-footer">
+                                    <input type="hidden" name="id" value="${course.getId()}">
+                                    <input type="hidden" name="total_cost" value="${Math.round(course.getPrice() *(1 - course.getSalePrice()))}">
+                                    <button type="button" class="btn outline" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn primary">BUY $${Math.round(course.getPrice() *(1 - course.getSalePrice()))}</button>
+                                </div>
+                            </c:if>
+
                         </form>
                     </div>
                 </div>

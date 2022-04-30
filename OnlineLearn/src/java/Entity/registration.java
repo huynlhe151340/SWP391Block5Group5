@@ -12,27 +12,28 @@ import java.sql.Date;
  * @author khait
  */
 public class registration {
-     private int id;
-    private int course_id;
-    private String name;
-    private String email;
-    private String phone;
-    private Date registration_time;
-    private float total_cost;
+ 
+    private int id;
+    private int accountID;
+    private int courseID;
+    private Date registrationTime;
+    private double totalCost;
     private int status;
+    private Date validFrom;
+    private Date validTo;
 
     public registration() {
     }
 
-    public registration(int id, int course_id, String name, String email, String phone, Date registration_time, float total_cost, int status) {
+    public registration(int id, int accountID, int courseID, Date registrationTime, double totalCost, int status, Date validFrom, Date validTo) {
         this.id = id;
-        this.course_id = course_id;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.registration_time = registration_time;
-        this.total_cost = total_cost;
+        this.accountID = accountID;
+        this.courseID = courseID;
+        this.registrationTime = registrationTime;
+        this.totalCost = totalCost;
         this.status = status;
+        this.validFrom = validFrom;
+        this.validTo = validTo;
     }
 
     public int getId() {
@@ -43,52 +44,36 @@ public class registration {
         this.id = id;
     }
 
-    public int getCourse_id() {
-        return course_id;
+    public int getAccountID() {
+        return accountID;
     }
 
-    public void setCourse_id(int course_id) {
-        this.course_id = course_id;
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
     }
 
-    public String getName() {
-        return name;
+    public int getCourseID() {
+        return courseID;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
     }
 
-    public String getEmail() {
-        return email;
+    public Date getRegistrationTime() {
+        return registrationTime;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setRegistrationTime(Date registrationTime) {
+        this.registrationTime = registrationTime;
     }
 
-    public String getPhone() {
-        return phone;
+    public double getTotalCost() {
+        return totalCost;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Date getRegistration_time() {
-        return registration_time;
-    }
-
-    public void setRegistration_time(Date registration_time) {
-        this.registration_time = registration_time;
-    }
-
-    public float getTotal_cost() {
-        return total_cost;
-    }
-
-    public void setTotal_cost(float total_cost) {
-        this.total_cost = total_cost;
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
     }
 
     public int getStatus() {
@@ -99,10 +84,25 @@ public class registration {
         this.status = status;
     }
 
+    public Date getValidFrom() {
+        return validFrom;
+    }
+
+    public void setValidFrom(Date validFrom) {
+        this.validFrom = validFrom;
+    }
+
+    public Date getValidTo() {
+        return validTo;
+    }
+
+    public void setValidTo(Date validTo) {
+        this.validTo = validTo;
+    }
+
     @Override
     public String toString() {
-        return "CourseRegistration{" + "id=" + id + ", course_id=" + course_id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", registration_time=" + registration_time + ", total_cost=" + total_cost + ", status=" + status + '}';
+        return "registration{" + "id=" + id + ", accountID=" + accountID + ", courseID=" + courseID + ", registrationTime=" + registrationTime + ", totalCost=" + totalCost + ", status=" + status + ", validFrom=" + validFrom + ", validTo=" + validTo + '}';
     }
-    
-    
+
 }
